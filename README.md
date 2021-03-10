@@ -31,6 +31,8 @@
 
 ### Day 1 - Planning
 
+As a group we decided very quickly on the idea of Garms for this project and that we all wanted to be involved in the full-stack development of the app. We also decided early on that we should develop it to be fully responsive initially built mobile first. With that in mind we used photoshop to create a storyboard/wireframe as well QuickDBD for the models we required and the relationships between them.
+
 ### Back-end - Day 2 & 3
 
 ### Front-end - Day 4, 5, 6, 7
