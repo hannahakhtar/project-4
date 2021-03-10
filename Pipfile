@@ -13,6 +13,9 @@ marshmallow-sqlalchemy = "*"
 psycopg2-binary = "*"
 flask-bcrypt = "*"
 pyjwt = "*"
+marshmallow = "*"
+datetime = "*"
+blueprint = "*"
 
 [requires]
 python_version = "3.9"
