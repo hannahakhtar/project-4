@@ -20,12 +20,16 @@
 
 ### Development tools:
 - VS code
-- NPM 
+- Pipenv/npm
 - Insomnia
 - Git
 - Github
 - Google Chrome dev tools
 - Heroku (deployment)
+- Trello Board (planning and timeline)
+- PhotoShop (wireframing)
+- Zoom
+- Slack
 
 ## Approach taken
 
