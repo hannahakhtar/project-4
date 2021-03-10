@@ -1,6 +1,7 @@
 
 from app import db, bcrypt
 from models.base import BaseModel
+from models.wishlist import Wishlist
 from sqlalchemy.ext.hybrid import hybrid_property
 import jwt
 from datetime import *
@@ -19,8 +20,8 @@ class User(db.Model, BaseModel):
     # location = db.Column(db.Text, nullable=False)
 
 
-    #! comments = db.relationship('Comment', backref='user', cascade="all, delete")
-    #! cakes = db.relationship('Cake', backref='user', cascade="all, delete")
+    # wishlist = db.relationship('Wishlist', backref='users', cascade="all, delete")
+    # user = db.relationship('User', backref='users', cascade="all, delete")
 
 
     @hybrid_property
