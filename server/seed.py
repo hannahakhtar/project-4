@@ -26,7 +26,7 @@ with app.app_context():
         print("Order History added 🧦")    
         db.session.commit()       
 
-        print("Everything committed 🤖")
+        print("Everything committed 🩲")
     except Exception as e:
         print("There was an error.")
         print(e)

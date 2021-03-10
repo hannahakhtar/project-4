@@ -7,4 +7,4 @@ class ProductSchema(ma.SQLAlchemyAutoSchema):
         model = Product
         load_instance = True
 
-    user = fields.Nested('UserSchema')    
+    # user = fields.Nested('UserSchema')    

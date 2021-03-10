@@ -6,6 +6,7 @@ from sqlalchemy.ext.hybrid import hybrid_property
 import jwt
 from datetime import *
 from config.environment import secret
+from models.product import Product
 
 class User(db.Model, BaseModel):
 
@@ -14,14 +15,14 @@ class User(db.Model, BaseModel):
     username = db.Column(db.String(15), nullable=False, unique=True)
     email = db.Column(db.Text, nullable=False, unique=True)
     password_hash = db.Column(db.String(128), nullable=True)
-    # first_name = db.Column(db.String(128), nullable=False)
-    # last_name = db.Column(db.String(128), nullable=False)
-    # image = db.Column(db.Text, nullable=True)
-    # location = db.Column(db.Text, nullable=False)
+    first_name = db.Column(db.String(128), nullable=False)
+    last_name = db.Column(db.String(128), nullable=False)
+    image = db.Column(db.Text, nullable=True)
+    location = db.Column(db.Text, nullable=False)
 
 
     # wishlist = db.relationship('Wishlist', backref='users', cascade="all, delete")
-    # user = db.relationship('User', backref='users', cascade="all, delete")
+    product = db.relationship('Product', backref='users', cascade="all, delete")
 
 
     @hybrid_property

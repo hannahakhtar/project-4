@@ -14,5 +14,5 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
     #! IMPORT PRODUCT SCHEMA LATER
 
-    #products = fields.Nested('ProductSchema', many=True)
+    product = fields.Nested('ProductSchema', many=True)
     #wishlist = fields.Nested('WishlistSchema', many=True)

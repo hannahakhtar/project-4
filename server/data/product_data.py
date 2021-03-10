@@ -11,7 +11,8 @@ list_product = [
         price = 11.99,
         condition ="Used",
         in_stock = True,
-        gender="Mens"
+        gender = "Mens",
+        user_id = 2
     ),
     Product(
         product_name = "Black jeans",
@@ -23,7 +24,8 @@ list_product = [
         price = 14.99,
         condition ="Used",
         in_stock = True,
-        gender="Mens"
+        gender = "Mens",
+        user_id = 2
     ),
     Product(
         product_name = "Grey oversize hoodie",
@@ -35,7 +37,8 @@ list_product = [
         price = 34.99,
         condition ="Used",
         in_stock = True,
-        gender="Mens"
+        gender = "Mens",
+        user_id = 2
     ),
         Product(
         product_name = "White Trainers",
@@ -47,7 +50,8 @@ list_product = [
         price = 20.00,
         condition ="Used",
         in_stock = True,
-        gender="Unisex"
+        gender = "Unisex",
+        user_id = 1
     ),
     Product(
         product_name = "Red jumper",
@@ -59,7 +63,8 @@ list_product = [
         price = 30.50,
         condition ="Used",
         in_stock = True,
-        gender="Womens"
+        gender = "Womens",
+        user_id = 3
     ),
         Product(
         product_name = "Black Dress",
@@ -71,7 +76,8 @@ list_product = [
         price = 50.00,
         condition ="Used",
         in_stock = True,
-        gender="Womens"
+        gender = "Womens",
+        user_id = 3
     ),
         Product(
         product_name = "Khaki Dress",
@@ -83,7 +89,8 @@ list_product = [
         price = 20.00,
         condition ="New",
         in_stock = True,
-        gender="Womens"
+        gender = "Womens",
+        user_id = 1
     ),
         Product(
         product_name = "Wooly jacket",
@@ -95,7 +102,8 @@ list_product = [
         price = 25.00,
         condition ="New",
         in_stock = False,
-        gender="Womens"
+        gender = "Womens",
+        user_id = 1
     ),
         Product(
         product_name = "Light blue jeans",
@@ -107,6 +115,7 @@ list_product = [
         price = 5.00,
         condition ="New",
         in_stock = True,
-        gender="Womens"
+        gender = "Womens",
+        user_id = 3
     )
 ]
