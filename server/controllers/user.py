@@ -27,7 +27,7 @@ def signup():
     except ValidationError as e:
         return { 'errors': e.messages, 'messages': 'Something went wrong.' }
     user.save()
-    return user_schema.jsonify(user)
+    return user_schema.jsonify(user), 201
 
 @router.route('/login', methods=['POST'])
 def login():
@@ -57,7 +57,7 @@ def edit_user(user_id):
     except ValidationError as e:
         return { 'errors': e.messages, 'messages': 'Something went wrong - you can\'t edit your profile' }
     user.save()
-    return user_schema.jsonify(user), 201
+    return user_schema.jsonify(user), 200
 
 
 @router.route("/users/<int:user_id>", methods=["DELETE"]) 
