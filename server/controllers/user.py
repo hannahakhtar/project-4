@@ -44,6 +44,10 @@ def login():
 def edit_user(user_id):
     user_to_update = User.query.get(user_id)
     user_dictionary = request.json
+
+    if user_to_update != g.current_user:
+        return {'errors': 'Sorry - you can not edit this user'}, 402
+
     try:
         user = user_schema.load(
             user_dictionary,
@@ -60,5 +64,9 @@ def edit_user(user_id):
 @secure_route   
 def remove_user(user_id):
     user = User.query.get(user_id)    
+
+    if user != g.current_user:
+        return {'errors': 'Sorry - you can not delete this user'}, 402
+
     user.remove()
     return { "message": "User deleted successfully" }, 200

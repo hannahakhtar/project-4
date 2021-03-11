@@ -20,6 +20,6 @@ class Product(db.Model, BaseModel):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
 
 
-    user = db.relationship('User', backref='product1', cascade="all, delete")
+    user = db.relationship('User', backref='product1')
     wishlist = db.relationship('Wishlist', backref='product', cascade="all, delete")
     order_history = db.relationship('OrderHistory', backref='product', cascade="all, delete")
