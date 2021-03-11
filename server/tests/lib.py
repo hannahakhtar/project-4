@@ -1,12 +1,12 @@
 from app import app, db
 from data.product_data import list_product
 from data.user_data import list_users
+from data.wishlist_data import list_wishlist
 from data.order_history_data import list_order_history
 import json
 
 def login(client):
-    # ! Login
-    login_data = {"password": "hannah123", "email": "hannah@hannah.com"}
+    login_data = {"password": "jake123", "email": "jake@jake.com"}
     login_response = client.post(
         "/api/login", data=json.dumps(login_data), content_type="application/json"
     )
@@ -20,12 +20,15 @@ def setup_db():
 
             db.create_all()
 
-            # ! Add some users
             db.session.add_all(list_users)
 
             db.session.commit()
 
             db.session.add_all(list_product)
+
+            db.session.commit()
+
+            db.session.add_all(list_wishlist)
 
             db.session.commit()
 
