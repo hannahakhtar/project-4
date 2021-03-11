@@ -16,6 +16,7 @@ pyjwt = "*"
 marshmallow = "*"
 datetime = "*"
 blueprint = "*"
+pytest = "*"
 
 [requires]
 python_version = "3.9"
