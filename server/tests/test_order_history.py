@@ -1,8 +1,8 @@
-# from app import app, db
-# import json
-# from tests.lib import login
+from app import app, db
+import json
+from tests.lib import login
 
-# def test_get_all_order_history():
+def test_get_all_order_history():
 
     client = app.test_client()
     token = login(client)

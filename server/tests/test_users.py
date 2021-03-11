@@ -7,7 +7,7 @@ def test_get_user():
     client = app.test_client()
     response = client.get("/api/users")
 
-    assert len(response.json) == 3
+    assert len(response.json) == 4
     assert response.status_code == 200
 
 def test_single_user():
@@ -48,13 +48,42 @@ def test_login():
 
 def test_delete_user():
 
-    client = app.test_client()  
+    client = app.test_client()
 
-    token = login(client)  
+    login_data = {"password": "ben123", "email": "ben@ben.com"}
+    login_response = client.post(
+        "/api/login", data=json.dumps(login_data), content_type="application/json"
+    )
+    token = login_response.json["token"]
 
+    user_data = {"username": "ben", "email": "ben@ben.com", "password": "ben123", "first_name": "Ben", "last_name": "Simpson", "image": "TODO", "location": "London"}
     request_headers = {"Authorization": f"Bearer {token}"}
-    product_response = client.post(
-        "/api/products",
+
+    user_response = client.delete(
+        "/api/users/4",
+        data=json.dumps(user_data),
         content_type="application/json",
         headers=request_headers,
-    )        
+    )
+
+    assert user_response.json['message'] == 'User deleted successfully'
+    assert user_response.status_code == 200
+
+def test_update_user():
+
+    client = app.test_client()  
+
+    token = login(client)
+
+    update_request = {"location": "Sydney"}
+    request_headers = {"Authorization": f"Bearer {token}"}
+    user_response = client.put(
+        "/api/users/2",
+        data=json.dumps(update_request),
+        content_type="application/json",
+        headers=request_headers,
+    )
+
+    assert user_response.json["location"] == "Sydney"
+    assert user_response.status_code == 200
+  
