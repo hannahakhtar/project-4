@@ -16,3 +16,16 @@ def test_get_all_order_history():
     assert response.status_code == 200
     assert response.json[0]["product"].get("brand") == "Puma"
 
+def test_get_one_order_history():
+    
+    client = app.test_client()
+    token = login(client)
+    request_headers = {"Authorization": f"Bearer {token}"}
+    response = client.get(
+        "/api/users/2/order-history/3",
+        headers=request_headers,
+        )
+
+    assert len(response.json) == 1
+    assert response.status_code == 200
+    assert response.json[0]["product"].get("brand") == "Puma"
