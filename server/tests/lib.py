@@ -1,6 +1,7 @@
 from app import app, db
 from data.product_data import list_product
 from data.user_data import list_users
+from data.wishlist_data import list_wishlist
 from data.order_history_data import list_order_history
 import json
 
@@ -24,6 +25,10 @@ def setup_db():
             db.session.commit()
 
             db.session.add_all(list_product)
+
+            db.session.commit()
+
+            db.session.add_all(list_wishlist)
 
             db.session.commit()
 

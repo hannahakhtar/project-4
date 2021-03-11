@@ -1,8 +1,8 @@
 from app import app, db
 from data.user_data import list_users
 from data.product_data import list_product
-from data.wishlist_data import list_wishlist
 from data.order_history_data import list_order_history
+from data.wishlist_data import list_wishlist
 
 with app.app_context():
 
