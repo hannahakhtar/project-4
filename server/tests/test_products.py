@@ -24,7 +24,7 @@ def test_post_product():
 
     token = login(client)
 
-    product_data = {"product_name": "Nike running shoe", "brand": "Nike", "category": "Shoes", "condition": "Used", "description": "Black running shoe", "gender": "Unisex", "in_stock": True, "price": 15.99, "product_image": "Shoe image"}
+    product_data = {"product_name": "Nike running shoe", "brand": "Nike", "category": "Shoes", "condition": "Used", "description": "Black running shoe", "gender": "Unisex", "in_stock": True, "price": 15.99, "product_image": "Shoe image", "size": "8"}
     request_headers = {"Authorization": f"Bearer {token}"}
     product_response = client.post(
         "/api/products",
