@@ -39,6 +39,11 @@ class User(db.Model, BaseModel):
             "iat": datetime.utcnow(),
             "exp": datetime.utcnow() + timedelta(days=1)
         } 
+        print(jwt)
+        print(type(jwt))
+        print("after 43")
+        print(jwt.encode)
+        print("dfgdfg")
         token = jwt.encode(payload, secret, 'HS256')
         return token
 
