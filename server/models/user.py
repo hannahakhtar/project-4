@@ -22,7 +22,7 @@ class User(db.Model, BaseModel):
     location = db.Column(db.Text, nullable=False)
 
     wishlist = db.relationship('Wishlist', backref='users', cascade="all, delete")
-    product = db.relationship('Product', backref='users', cascade="all, delete")
+    product = db.relationship('Product', backref='user', cascade="all, delete")
     order_history = db.relationship('OrderHistory', backref='users', cascade="all, delete")
 
     @hybrid_property
