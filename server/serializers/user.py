@@ -15,4 +15,14 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
     #! IMPORT PRODUCT SCHEMA LATER
 
     product = fields.Nested('ProductSchema', many=True)
-    #wishlist = fields.Nested('WishlistSchema', many=True)
+    order_history = fields.Nested('OrderHistorySchema', many=True)
+    wishlist = fields.Nested('WishlistSchema', many=True)
+
+    class SimpleUserSchema(ma.SQLAlchemyAutoSchema):
+        class Meta:
+            model = User
+            load_instance = True
+            exclude = ('password_hash', 'first_name', 'last_name', 'location', 'created_at')
+            load_only = ('email', 'password')
+
+        password = fields.String(required=True)

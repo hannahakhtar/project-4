@@ -10,9 +10,14 @@ router = Blueprint(__name__, "order_history")
 
 # ! get all previous orders
 
+@router.route('/order-history', methods=["GET"])
+def get_all_users_order_history():
+    orders = OrderHistory.query.all()
+    return order_history_schema.jsonify(orders, many=True), 200
+
 @router.route('/users/<int:user_id>/order-history', methods=["GET"])
 def get_all_order_history(user_id):
-    orders = OrderHistory.query.get(user_id)
+    orders = OrderHistory.query.filter_by(user_id = user_id)
     return order_history_schema.jsonify(orders, many=True), 200
 
 # ! get a specific previous order

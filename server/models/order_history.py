@@ -12,3 +12,4 @@ class OrderHistory(db.Model, BaseModel):
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id", ondelete="CASCADE"))
     product_id = db.Column(db.Integer, db.ForeignKey("product.id", ondelete="CASCADE"))
+

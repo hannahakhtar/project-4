@@ -2,6 +2,7 @@
 from app import db, bcrypt
 from models.base import BaseModel
 from models.wishlist import Wishlist
+from models.order_history import OrderHistory
 from sqlalchemy.ext.hybrid import hybrid_property
 import jwt
 from datetime import *
@@ -20,7 +21,9 @@ class User(db.Model, BaseModel):
     image = db.Column(db.Text, nullable=True)
     location = db.Column(db.Text, nullable=False)
 
+    wishlist = db.relationship('Wishlist', backref='users', cascade="all, delete")
     product = db.relationship('Product', backref='users', cascade="all, delete")
+    order_history = db.relationship('OrderHistory', backref='users', cascade="all, delete")
 
     @hybrid_property
     def password(self):
