@@ -13,3 +13,6 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
     password = fields.String(required=True)
 
     #! IMPORT PRODUCT SCHEMA LATER
+
+    product = fields.Nested('ProductSchema', many=True)
+    #wishlist = fields.Nested('WishlistSchema', many=True)

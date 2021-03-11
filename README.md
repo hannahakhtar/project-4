@@ -20,16 +20,30 @@
 
 ### Development tools:
 - VS code
-- NPM 
+- Pipenv/npm
 - Insomnia
 - Git
 - Github
 - Google Chrome dev tools
 - Heroku (deployment)
+- Trello Board (planning and timeline)
+- PhotoShop (wireframing)
+- Zoom
+- Slack
 
 ## Approach taken
 
 ### Day 1 - Planning
+
+As a group we decided very quickly on the idea of Garms for this project and that we all wanted to be involved in the full-stack development of the app. We also decided early on that we should develop it to be fully responsive initially built mobile first. With that in mind we used photoshop to create a storyboard/wireframe as well QuickDBD for the models we required and the relationships between them.
+
+Placeholder image of plan
+  
+Placeholder image of plan
+  
+We decided early on to keep a high level of communication throughout the project. We started each day with a 30-minute stand up discussion where we would talk about our current tasks and if we had any blockers. We were then on a Zoom meeting and Slack throughout the day so we could keep in contact should we need any quick bug fixing etc. We used Git and GitHub for version control and decided for the first few days to do our pushes and pulls together to aviod any potential Git issues or merge conflicts that may arise. We delegated the work evenly between us and used Trello to create a to-do list that we would all keep on top of throughout the project.
+
+Placeholder image of plan
 
 ### Back-end - Day 2 & 3
 
