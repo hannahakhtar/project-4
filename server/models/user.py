@@ -20,10 +20,7 @@ class User(db.Model, BaseModel):
     image = db.Column(db.Text, nullable=True)
     location = db.Column(db.Text, nullable=False)
 
-
-    # wishlist = db.relationship('Wishlist', backref='users', cascade="all, delete")
     product = db.relationship('Product', backref='users', cascade="all, delete")
-
 
     @hybrid_property
     def password(self):
