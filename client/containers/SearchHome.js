@@ -1,12 +1,16 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
+// ! current issues:
+// ! 1) when user clicks enter if typing in input, page reloads - stop this from happening
+// ! 2) when featured products are populated, ensure that the logged in user's products do not show
+// ! 3) does state need updating for search bar - page isn't reloading when user clicks back arrow from search-results endpoint
+// ! 4) categories - we need to finalise a list of categories and decide how to display (via front or backend) - and then populate using cards? Pagination, carosel or display all?
 
 function SearchHome() {
 
-  // const [search, updateState] = useState('')
+  const [search, updateSearch] = useState('')
   // const [categories, updateCategories] = useState('')
   const [featuredItems, updateFeaturedItems] = useState([])
 
@@ -14,7 +18,6 @@ function SearchHome() {
     const { data } = await axios.get('/api/products')
     const shuffledItems = data.sort(() => 0.5 - Math.random())
     const featuredItems = shuffledItems.slice(0, 6)
-    console.log(featuredItems)
     updateFeaturedItems(featuredItems)
   }
 
@@ -22,6 +25,7 @@ function SearchHome() {
     fetchFeaturedItems()
   }, [])
 
+  console.log(search)
   return <>
     <div>
       <h1>Search Page</h1>
@@ -31,16 +35,19 @@ function SearchHome() {
       <form>
         <label>
           Search:
-          <input type="text" name="Search here" />
+          <input type="text" placeholder="search Garms" onChange={(e) => updateSearch(e.target.value)}/>
         </label>
-        <Link className="button" value="Search" to}>Search</Link>
+        <Link className="button" value="Search" to={{
+          pathname: '/search-results',
+          state: { search }
+        }}>Search</Link>
       </form>
     </section>
 
     <section>
       <h4>Categories</h4>
     </section>
-    
+
     <section>
       <h4>Featured Items</h4>
       <div className="section">
@@ -67,7 +74,7 @@ function SearchHome() {
                         </div>
                       </div>
                       <div className="content">
-                        £{item.price}
+              £{item.price}
                       </div>
                     </div>
                   </div>
@@ -79,14 +86,6 @@ function SearchHome() {
       </div>
     </section>
   </>
-=======
-import React from 'react'
-
-function SearchHome() {
-  return <div>
-    Search Home
-  </div>
->>>>>>> 951a809cdbfd1a6d669323869a55b39eb8d30af9
 }
 
 export default SearchHome
