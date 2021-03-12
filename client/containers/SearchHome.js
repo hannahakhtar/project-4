@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
@@ -78,6 +79,14 @@ function SearchHome() {
       </div>
     </section>
   </>
+=======
+import React from 'react'
+
+function SearchHome() {
+  return <div>
+    Search Home
+  </div>
+>>>>>>> 951a809cdbfd1a6d669323869a55b39eb8d30af9
 }
 
 export default SearchHome
