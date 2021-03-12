@@ -1,8 +1,7 @@
 import React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import validateField from '../lib/validateField'
-
-import { Form } from 'react-bootstrap'
+// import { Form } from 'react-bootstrap'
 import Select from 'react-select'
 
 const FormGenerator = ({ config, controls, onChange, onFileChange, onSelectChange, classes }) => {
@@ -29,7 +28,7 @@ const FormGenerator = ({ config, controls, onChange, onFileChange, onSelectChang
           control={control}
           name={field}
           render={() => (
-            <Form.Control
+            <input
               onChange={e => onChange(e)}
               value={config[field].value}
               type={config[field].type}
@@ -46,7 +45,7 @@ const FormGenerator = ({ config, controls, onChange, onFileChange, onSelectChang
           name={field}
           placeholder={config[field].type}
           render={() => (
-            <Form.Control as='textarea'
+            <input as='textarea'
               name={field}
               onChange={e => onChange(e)}
               value={config[field].value}
