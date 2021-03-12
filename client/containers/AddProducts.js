@@ -9,10 +9,10 @@ export default function EditProducts() {
   const [errorbox, updateErrorbox] = useState('')
 
 
+
+  
   async function onSubmit(data) {
-
     updateErrorbox('')
-
     const formdata = {
       'product_name': data.product_name,
       'size': data.size,
@@ -25,16 +25,12 @@ export default function EditProducts() {
       'product_image': data.product_image,
       'in_stock': true
     }
-
     console.log(formdata)
-
     try {
-
-      const { data } = await axios.post('/api/products', data, {
+      const { data } = await axios.post('/api/products', formdata, {
         // headers: { Authorization: `Bearer ${token}` }
         headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
       })
-
       if (data.errors) {
         updateErrorbox('Sorry - could not save your data')
       }
@@ -43,6 +39,7 @@ export default function EditProducts() {
       console.log(err)
     }
   }
+
 
 
 
@@ -60,7 +57,7 @@ export default function EditProducts() {
             className={`input ${errors.product_name && 'is-danger'}`}
             name='product_name'
             placeholder='Name'
-            defaultValue=''
+            defaultValue='dfgdfggf'
             ref={register({ required: true })}
           />
           {errors.product_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
@@ -84,7 +81,7 @@ export default function EditProducts() {
             type='number'
             name='price'
             placeholder='Price'
-            defaultValue=''
+            defaultValue='11'
             ref={register({ required: true, valueAsNumber: true })}
           />
           {errors.price && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
@@ -95,8 +92,8 @@ export default function EditProducts() {
             className={`input ${errors.brand && 'is-danger'}`}
             name='brand'
             placeholder='Brand'
-            defaultValue=''
-            ref={register({ required: true, valueAsNumber: true })}
+            defaultValue='dfgdfggf'
+            ref={register({ required: true })}
           />
           {errors.brand && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
         </div>
@@ -107,8 +104,8 @@ export default function EditProducts() {
             className={`input ${errors.description && 'is-danger'}`}
             name='description'
             placeholder='Description'
-            defaultValue=''
-            ref={register({ required: true, valueAsNumber: true })}
+            defaultValue='dfgdfggf'
+            ref={register({ required: true })}
           />
           {errors.description && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
         </div>
@@ -118,7 +115,7 @@ export default function EditProducts() {
             className={`input ${errors.size && 'is-danger'}`}
             name='size'
             placeholder='Size'
-            defaultValue=''
+            defaultValue='dfgdfggf'
             ref={register({ required: true })}
           />
           {errors.size && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
@@ -189,7 +186,7 @@ export default function EditProducts() {
             className={`input ${errors.product_image && 'is-danger'}`}
             name='product_image'
             placeholder='Image'
-            defaultValue=''
+            defaultValue='dfgdfggf'
             ref={register({ required: true })}
           />
           {errors.product_image && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
