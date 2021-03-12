@@ -3,16 +3,15 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { getLoggedInUserId } from '../lib/auth.js'
 
-export default function ProductForm({ match }) {
+export default function ProductForm({ match, history }) {
   const LoggedInUserId = getLoggedInUserId()
   const { register, handleSubmit, errors } = useForm()
   const [errorbox, updateErrorbox] = useState('')
   const [populateForm, updatePopulateForm] = useState('')
-  const [gender, updateGender] = useState('Unisex')
+  const [loading, updateLoading] = useState(true)
 
 
   useEffect(() => {
-
 
     async function fetchProduct() {
       if (match.params.productId) {
@@ -22,21 +21,29 @@ export default function ProductForm({ match }) {
             headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
           })
           if (data.errors) {
-            updateErrorbox('Sorry - could not fetch your data')
+            updateErrorbox('Sorry - could not find that product')
           }
           updatePopulateForm(data)
-          console.log(data)
+          updateLoading(false)
+          //console.log(data)
         } catch (err) {
           console.log(err)
+          updateErrorbox('Sorry - could not find that product')
+          updateLoading(false)
         }
+      } else {
+        updateLoading(false)
       }
     }
     fetchProduct()
 
   }, [])
 
+
+
+
+
   async function onSubmit(data) {
-    updateErrorbox('')
     const formdata = {
       'product_name': data.product_name,
       'size': data.size,
@@ -49,19 +56,38 @@ export default function ProductForm({ match }) {
       'product_image': data.product_image,
       'in_stock': true
     }
-    console.log(formdata)
-    try {
-      const { data } = await axios.post('/api/products', formdata, {
-        // headers: { Authorization: `Bearer ${token}` }
-        headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
-      })
-      if (data.errors) {
-        updateErrorbox('Sorry - could not save your data')
+
+
+    if (match.params.productId) {
+      try {
+        const { data } = await axios.put(`/api/products/${match.params.productId}`, formdata, {
+          // headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
+        })
+        if (data.errors) {
+          updateErrorbox('Sorry - could not save your data')
+        }
+        //console.log(data)
+        history.push(`/productform/${match.params.productId}`)
+      } catch (err) {
+        console.log(err)
       }
-      console.log(data)
-    } catch (err) {
-      console.log(err)
+    } else {
+      try {
+        const { data } = await axios.post('/api/products', formdata, {
+          // headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
+        })
+        if (data.errors) {
+          updateErrorbox('Sorry - could not save your data')
+        }
+        //console.log(data)
+        history.push(`/productform/${data.id}`)
+      } catch (err) {
+        console.log(err)
+      }
     }
+
   }
 
 
@@ -70,9 +96,13 @@ export default function ProductForm({ match }) {
 
   return (
     <div className='container'>
-      <h1>ADD/EDIT PRODUCT</h1>
 
-      {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
+
+      <h1 className='title'>{match.params.productId ? 'Edit product' : 'List a new product'}</h1>
+
+      {errorbox && <div className='box mt-4 has-background-danger has-text-white'>{errorbox}</div>}
+
+    
 
       <form onSubmit={handleSubmit(onSubmit)} >
 
@@ -94,6 +124,7 @@ export default function ProductForm({ match }) {
           <input
             className={`input ${errors.price && 'is-danger'}`}
             type='number'
+            step='.01'
             name='price'
             placeholder='Price'
             defaultValue={populateForm.price}
@@ -138,64 +169,69 @@ export default function ProductForm({ match }) {
 
 
 
+        {!loading &&
+          <div className='field'>
+            <div className={`is-fullwidth select ${errors.gender && 'is-danger'}`}>
 
-        <div className='field'>
-          <div className={`is-fullwidth select ${errors.gender && 'is-danger'}`}>
-            <select name='gender'
-              value={populateForm.gender}
-              ref={register({
-                required: 'select one option'
-              })}>
-              <option value=''>Item gender</option>
-              <option value='Unisex'>Unisex</option>
-              <option value='Male'>Male</option>
-              <option value='Female'>Female</option>
-            </select>
+              <select name='gender'
+                defaultValue={populateForm.gender}
+                ref={register({
+                  required: 'select one option'
+                })}>
+                <option value=''>Item gender</option>
+                <option value='Unisex'>Unisex</option>
+                <option value='Male'>Male</option>
+                <option value='Female'>Female</option>
+              </select>
+
+            </div>
+            {errors.gender && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
           </div>
-          {errors.gender && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-        </div>
+        }
 
 
 
-        <div className='field'>
-          <div className={`is-fullwidth select ${errors.category && 'is-danger'}`}>
+        {!loading &&
+          <div className='field'>
+            <div className={`is-fullwidth select ${errors.category && 'is-danger'}`}>
 
-            <select name='category'
-              value={populateForm.category}
-              ref={register({
-                required: 'select one option'
-              })}>
-              <option value=''>Item category</option>
-              <option value='Outerwear'>Outerwear</option>
-              <option value='Accessories'>Accessories</option>
-              <option value='Tops'>Tops</option>
-              <option value='Trousers'>Trousers</option>
-              <option value='Skirts'>Skirts</option>
-              <option value='Dresses'>Dresses</option>
-            </select>
+              <select name='category'
+                defaultValue={populateForm.category}
+                ref={register({
+                  required: 'select one option'
+                })}>
+                <option value=''>Item category</option>
+                <option value='Outerwear'>Outerwear</option>
+                <option value='Accessories'>Accessories</option>
+                <option value='Tops'>Tops</option>
+                <option value='Trousers'>Trousers</option>
+                <option value='Skirts'>Skirts</option>
+                <option value='Dresses'>Dresses</option>
+              </select>
+            </div>
+            {errors.category && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
           </div>
-          {errors.category && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-        </div>
+        }
 
+        {!loading &&
+          <div className='field'>
+            <div className={`is-fullwidth select ${errors.condition && 'is-danger'}`}>
 
-        <div className='field'>
-          <div className={`is-fullwidth select ${errors.condition && 'is-danger'}`}>
-
-            <select name='condition'
-              value={populateForm.condition}
-              ref={register({
-                required: 'select one option'
-              })}>
-              <option value=''>Item condition</option>
-              <option value='Brand new with tags'>Brand new with tags</option>
-              <option value='New without tags'>New without tags</option>
-              <option value='Worn occasionally - good condition'>Worn occasionally - good condition</option>
-              <option value='Worn often - some damage/wear'>Worn often - some damage/wear</option>
-            </select>
+              <select name='condition'
+                defaultValue={populateForm.condition}
+                ref={register({
+                  required: 'select one option'
+                })}>
+                <option value=''>Item condition</option>
+                <option value='Brand new with tags'>Brand new with tags</option>
+                <option value='New without tags'>New without tags</option>
+                <option value='Worn occasionally - good condition'>Worn occasionally - good condition</option>
+                <option value='Worn often - some damage/wear'>Worn often - some damage/wear</option>
+              </select>
+            </div>
+            {errors.condition && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
           </div>
-          {errors.condition && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-        </div>
-
+        }
 
 
         <div className='field'>
@@ -210,15 +246,6 @@ export default function ProductForm({ match }) {
         </div>
 
 
-        <div className='field'>
-          <input
-            className='mr-1'
-            type='checkbox'
-            placeholder='in_stock'
-            name='in_stock'
-            ref={register} />
-            In stock
-        </div>
 
         <input
           className='button is-primary'
