@@ -1,16 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { getLoggedInUserId } from '../lib/auth.js'
 
-export default function EditProducts() {
+export default function ProductForm({ match }) {
   const LoggedInUserId = getLoggedInUserId()
   const { register, handleSubmit, errors } = useForm()
   const [errorbox, updateErrorbox] = useState('')
+  const [populateForm, updatePopulateForm] = useState('')
+  const [gender, updateGender] = useState('Unisex')
 
 
+  useEffect(() => {
 
-  
+
+    async function fetchProduct() {
+      if (match.params.productId) {
+        try {
+          const { data } = await axios.get(`/api/products/${match.params.productId}`, {
+            // headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
+          })
+          if (data.errors) {
+            updateErrorbox('Sorry - could not fetch your data')
+          }
+          updatePopulateForm(data)
+          console.log(data)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    }
+    fetchProduct()
+
+  }, [])
+
   async function onSubmit(data) {
     updateErrorbox('')
     const formdata = {
@@ -57,21 +81,12 @@ export default function EditProducts() {
             className={`input ${errors.product_name && 'is-danger'}`}
             name='product_name'
             placeholder='Name'
-            defaultValue='dfgdfggf'
+            defaultValue={populateForm.product_name}
             ref={register({ required: true })}
           />
           {errors.product_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
         </div>
 
-        <div className='field'>
-          <input
-            className='mr-1'
-            type='checkbox'
-            placeholder='in_stock'
-            name='in_stock'
-            ref={register} />
-            In stock
-        </div>
 
 
 
@@ -81,7 +96,7 @@ export default function EditProducts() {
             type='number'
             name='price'
             placeholder='Price'
-            defaultValue='11'
+            defaultValue={populateForm.price}
             ref={register({ required: true, valueAsNumber: true })}
           />
           {errors.price && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
@@ -92,7 +107,7 @@ export default function EditProducts() {
             className={`input ${errors.brand && 'is-danger'}`}
             name='brand'
             placeholder='Brand'
-            defaultValue='dfgdfggf'
+            defaultValue={populateForm.brand}
             ref={register({ required: true })}
           />
           {errors.brand && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
@@ -100,11 +115,11 @@ export default function EditProducts() {
 
 
         <div className='field'>
-          <input
-            className={`input ${errors.description && 'is-danger'}`}
+          <textarea
+            className={`textarea ${errors.description && 'is-danger'}`}
             name='description'
             placeholder='Description'
-            defaultValue='dfgdfggf'
+            defaultValue={populateForm.description}
             ref={register({ required: true })}
           />
           {errors.description && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
@@ -115,7 +130,7 @@ export default function EditProducts() {
             className={`input ${errors.size && 'is-danger'}`}
             name='size'
             placeholder='Size'
-            defaultValue='dfgdfggf'
+            defaultValue={populateForm.size}
             ref={register({ required: true })}
           />
           {errors.size && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
@@ -126,8 +141,8 @@ export default function EditProducts() {
 
         <div className='field'>
           <div className={`is-fullwidth select ${errors.gender && 'is-danger'}`}>
-
             <select name='gender'
+              value={populateForm.gender}
               ref={register({
                 required: 'select one option'
               })}>
@@ -146,6 +161,7 @@ export default function EditProducts() {
           <div className={`is-fullwidth select ${errors.category && 'is-danger'}`}>
 
             <select name='category'
+              value={populateForm.category}
               ref={register({
                 required: 'select one option'
               })}>
@@ -166,6 +182,7 @@ export default function EditProducts() {
           <div className={`is-fullwidth select ${errors.condition && 'is-danger'}`}>
 
             <select name='condition'
+              value={populateForm.condition}
               ref={register({
                 required: 'select one option'
               })}>
@@ -186,10 +203,21 @@ export default function EditProducts() {
             className={`input ${errors.product_image && 'is-danger'}`}
             name='product_image'
             placeholder='Image'
-            defaultValue='dfgdfggf'
+            defaultValue={populateForm.product_image}
             ref={register({ required: true })}
           />
           {errors.product_image && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+        </div>
+
+
+        <div className='field'>
+          <input
+            className='mr-1'
+            type='checkbox'
+            placeholder='in_stock'
+            name='in_stock'
+            ref={register} />
+            In stock
         </div>
 
         <input
