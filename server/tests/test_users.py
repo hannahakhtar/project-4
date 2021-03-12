@@ -46,7 +46,7 @@ def test_login():
     print(response.json)
 
     assert response.json["message"] == "Welcome back!"
-    assert user_response.status_code == 200
+    assert response.status_code == 200
 
 def test_delete_user():
 
