@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 
+
 function EditProduct() {
+
   const [imageUrl, updateImageUrl] = useState(undefined)
 
   function handleImageUpload() {
     const { files } = document.querySelector('input[type="file"]')
+
     const formData = new FormData()
     formData.append('file', files[0])
     formData.append('upload_preset', 'imagepreset')
+
     const options = {
       method: 'POST',
       body: formData
@@ -20,20 +24,19 @@ function EditProduct() {
       .catch(err => console.log(err))
   }
 
-  console.log(imageUrl)
+
   return <div>
-    Image:
-    {imageUrl && (
-      <img src={imageUrl} alt='' className="displayed-image" />
-    )}
     <form>
-      <div className="form-group">
-        <input type="file" />
-      </div>
-      <button type="button" className="btn" onClick={handleImageUpload}>Upload</button>
+      <input type="file" />
+
+
+      <button type="button" className="btn" onClick={handleImageUpload}>Submit</button>
+
+
+      {imageUrl && (
+        <img src={imageUrl} className="displayed-image" />
+      )}
     </form>
-
-
   </div>
 }
 
