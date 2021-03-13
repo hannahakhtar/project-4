@@ -1,9 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import './styles/style.scss'
-import axios from 'axios'
 import 'bulma'
-
 
 import Home from './containers/Home'
 import Login from './containers/Login'
