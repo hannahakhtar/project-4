@@ -9,21 +9,24 @@ export default function ProductForm({ match, history }) {
   const [errorbox, updateErrorbox] = useState('')
   const [populateForm, updatePopulateForm] = useState('')
   const [loading, updateLoading] = useState(true)
-
+  const [imageUrl, updateImageUrl] = useState(undefined)
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
 
     async function fetchProduct() {
+
       if (match.params.productId) {
         try {
           const { data } = await axios.get(`/api/products/${match.params.productId}`, {
-            // headers: { Authorization: `Bearer ${token}` }
-            headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
+            headers: { Authorization: `Bearer ${token}` }
+            // headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
           })
           if (data.errors) {
             updateErrorbox('Sorry - could not find that product')
           }
           updatePopulateForm(data)
+          updateImageUrl(data.product_image)
           updateLoading(false)
           //console.log(data)
         } catch (err) {
@@ -41,9 +44,30 @@ export default function ProductForm({ match, history }) {
 
 
 
-
+  function handleImageUpload() {
+    updateErrorbox('')
+    const { files } = document.querySelector('input[type="file"]')
+    if (files[0]) {
+      const formData = new FormData()
+      formData.append('file', files[0])
+      formData.append('upload_preset', 'imagepreset')
+      const options = {
+        method: 'POST',
+        body: formData
+      }
+      return fetch('https://api.cloudinary.com/v1_1/ikalff/image/upload', options)
+        .then(res => res.json())
+        .then(res => {
+          updateImageUrl(res.secure_url)
+        })
+        .catch(err => console.log(err))
+    } else {
+      updateErrorbox('Please select an image to upload')
+    }
+  }
 
   async function onSubmit(data) {
+
     const formdata = {
       'product_name': data.product_name,
       'size': data.size,
@@ -53,36 +77,43 @@ export default function ProductForm({ match, history }) {
       'condition': data.condition,
       'gender': data.gender,
       'price': data.price,
-      'product_image': data.product_image,
+      'product_image': imageUrl,
       'in_stock': true
     }
-
 
     if (match.params.productId) {
       try {
         const { data } = await axios.put(`/api/products/${match.params.productId}`, formdata, {
-          // headers: { Authorization: `Bearer ${token}` }
-          headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
+          headers: { Authorization: `Bearer ${token}` }
+          // headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
-        if (data.errors) {
+        console.log(data)
+        if (!imageUrl) {
+          updateErrorbox('Please upload an image')
+        } else if (data.errors) {
           updateErrorbox('Sorry - could not save your data')
+        } else {
+          history.push(`/products/${match.params.productId}`)
+          updateErrorbox('')
         }
-        //console.log(data)
-        history.push(`/productform/${match.params.productId}`)
       } catch (err) {
         console.log(err)
       }
     } else {
       try {
         const { data } = await axios.post('/api/products', formdata, {
-          // headers: { Authorization: `Bearer ${token}` }
-          headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTU1MTc4NiwiZXhwIjoxNjE1NjM4MTg2fQ.-bmpBtd9pGSjRHwxbdh9Roekv3Ev3I2UjCEnsUzUu_w' }
+          headers: { Authorization: `Bearer ${token}` }
+          //headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
-        if (data.errors) {
+        console.log(data)
+        if (!imageUrl) {
+          updateErrorbox('Please upload an image')
+        } else if (data.errors) {
           updateErrorbox('Sorry - could not save your data')
+        } else {
+          history.push(`/products/${data.id}`)
+          updateErrorbox('')
         }
-        //console.log(data)
-        history.push(`/productform/${data.id}`)
       } catch (err) {
         console.log(err)
       }
@@ -95,14 +126,14 @@ export default function ProductForm({ match, history }) {
 
 
   return (
-    <div className='container'>
+    <div className='container mx-4 mt-4 mb4'>
 
 
       <h1 className='title'>{match.params.productId ? 'Edit product' : 'List a new product'}</h1>
 
       {errorbox && <div className='box mt-4 has-background-danger has-text-white'>{errorbox}</div>}
 
-    
+
 
       <form onSubmit={handleSubmit(onSubmit)} >
 
@@ -234,15 +265,22 @@ export default function ProductForm({ match, history }) {
         }
 
 
-        <div className='field'>
-          <input
-            className={`input ${errors.product_image && 'is-danger'}`}
-            name='product_image'
-            placeholder='Image'
-            defaultValue={populateForm.product_image}
-            ref={register({ required: true })}
-          />
-          {errors.product_image && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+        <div className='box mt-4 mb-4'>
+          <h5 className='title is-size-5'>Upload an image</h5>
+
+          <div className='columns is-vcentered'>
+
+            <div className='column is-narrow'>
+              <img src={imageUrl ? imageUrl : 'http://placehold.it/400x400?text=IMAGE'} className="displayed-image" width='100' />
+            </div>
+
+            <div className='column is-narrow'>
+              <input type='file' className='fileinput button' />
+            </div>
+            <div className='column is-narrow'>
+              <button type='button' className='button' onClick={handleImageUpload}>Upload</button></div>
+          </div>
+
         </div>
 
 

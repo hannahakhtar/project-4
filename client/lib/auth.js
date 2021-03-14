@@ -4,7 +4,7 @@ export function getLoggedInUserId() {
   if (!token) return false
   const payloadAsString = atob(token.split('.')[1])
   const payloadAsObject = JSON.parse(payloadAsString)
-  return payloadAsObject.userId
+  return payloadAsObject.sub
 }
 
 export function isCreator(userIdToCompare) {

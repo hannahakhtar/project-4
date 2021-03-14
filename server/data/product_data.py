@@ -3,7 +3,7 @@ from models.product import Product
 list_product = [
     Product(
         product_name="White Trainers",
-        product_image="trainers image",
+        product_image="http://placehold.it/600x400",
         brand="Puma",
         size="8",
         description="White Puma trainers - only used a few times",
@@ -16,7 +16,7 @@ list_product = [
     ),
     Product(
         product_name="Khaki Dress",
-        product_image="dress image",
+        product_image="http://placehold.it/600x400",
         brand="Zara",
         size="12",
         description="Khaki coloured dress - never worn",
@@ -29,7 +29,7 @@ list_product = [
     ),
     Product(
         product_name="Wooly jacket",
-        product_image="jacket image",
+        product_image="http://placehold.it/600x400",
         brand="Zara",
         size="12",
         description="Teddy bear-like jacket from Zara with big pockets",
@@ -42,7 +42,7 @@ list_product = [
     ),
     Product(
         product_name="Cowboy Boots",
-        product_image="boots image",
+        product_image="http://placehold.it/600x400",
         brand="Sendra",
         size="7",
         description="Cowboy boots in size 7",
@@ -55,7 +55,7 @@ list_product = [
     ),
     Product(
         product_name="Nike socks",
-        product_image="socks image",
+        product_image="http://placehold.it/600x400",
         brand="Nike",
         size="8",
         description="Black ankle scoks",
@@ -68,7 +68,7 @@ list_product = [
     ),
     Product(
         product_name="Leather jacket",
-        product_image="jacket image",
+        product_image="http://placehold.it/600x400",
         brand="All Saints",
         size="M",
         description="Biker jacket",
@@ -81,7 +81,7 @@ list_product = [
     ),
     Product(
         product_name="North Face T-shirt",
-        product_image="T-shirt image",
+        product_image="http://placehold.it/600x400",
         brand="North Face",
         size="Large",
         description="Blue North Face T-shirt with logo on the front and back",
@@ -94,7 +94,7 @@ list_product = [
     ),
     Product(
         product_name="Black jeans",
-        product_image="Jeans image",
+        product_image="http://placehold.it/600x400",
         brand="Pull & Bear",
         size="32 Regular",
         description="Black slim fit jeans",
@@ -107,7 +107,7 @@ list_product = [
     ),
     Product(
         product_name="Grey oversize hoodie",
-        product_image="Hoodie image",
+        product_image="http://placehold.it/600x400",
         brand="Ralph Lauren",
         size="Large",
         description="Grey oversized Ralph Lauren hoddie with large logo on the front",
@@ -120,7 +120,7 @@ list_product = [
     ),
     Product(
         product_name="White t-shirt",
-        product_image="t-shirt image",
+        product_image="http://placehold.it/600x400",
         brand="Zara",
         size="12 ",
         description="Plain white t-shirt",
@@ -134,7 +134,7 @@ list_product = [
 
     Product(
         product_name="Red jumper",
-        product_image="red jumper image",
+        product_image="http://placehold.it/600x400",
         brand="Zara",
         size="12",
         description="Red jumper with puffy sleeves",
@@ -147,7 +147,7 @@ list_product = [
     ),
     Product(
         product_name="Black Dress",
-        product_image="dress image",
+        product_image="http://placehold.it/600x400",
         brand="Ted Baker",
         size="12",
         description="Little black dress",
@@ -160,7 +160,7 @@ list_product = [
     ),
     Product(
         product_name="Light blue jeans",
-        product_image="jeans image",
+        product_image="http://placehold.it/600x400",
         brand="Topshop",
         size="12 Long",
         description="Topshop tall jeans - very worn (may have a couple of holes)",
@@ -173,7 +173,7 @@ list_product = [
     ),
     Product(
         product_name="New York baseball cap",
-        product_image="Hat image",
+        product_image="http://placehold.it/600x400",
         brand="New Era",
         size="One size fits all",
         description="Black New York Yankies cap",
