@@ -26,7 +26,7 @@ const App = () => {
         <Route exact path="/productform/:productId" component={ProductForm} />
         <Route exact path="/search-home" component={SearchHome} />
         <Route exact path="/search-results" component={SearchResults} />
-        <Route exact path="/profile/:userId" component={Profile} />
+        <Route exact path="/users/:userId" component={Profile} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/products/:id" component={SingleProduct} />
       </Switch>

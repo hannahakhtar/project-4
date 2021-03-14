@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { getLoggedInUserId } from '../lib/auth.js'
 import ProductCard from '../components/ProductCard.js'
+import { Link } from 'react-router-dom'
 const token = localStorage.getItem('token')
 
 
 function Profile({ match, history }) {
   const [userData, updateUserData] = useState('')
-  const [isIsOwner, updateIsOwner] = useState(false)
+  const [isOwner, updateIsOwner] = useState(false)
   const [loading, updateLoading] = useState(true)
   const [errorbox, updateErrorbox] = useState('')
   const LoggedInUserId = getLoggedInUserId()
@@ -50,7 +51,7 @@ function Profile({ match, history }) {
   return <div className='container mx-4 mt-4 mb4'>
 
     {userData &&
-      <div className='columns'>
+      <div className='columns is-vcentered'>
         <div className='column is-narrow'>
           <img src={userData.image} className='profile-image'></img>
         </div>
@@ -59,6 +60,7 @@ function Profile({ match, history }) {
           <h1 className='title mb-1'>{userData.username}</h1>
 
           <p><i className='fas fa-map-marker-alt mr-1'></i> {userData.location}</p>
+          {isOwner && <Link to={`editprofile/${userData.id}`} className='mt-2 button is-primary'>Edit your profile</Link>}
         </div>
       </div>
     }
@@ -68,7 +70,20 @@ function Profile({ match, history }) {
 
 
     {userData.product && <div className='box'>
-      <h5 className='title is-size-5'>Listings</h5>
+
+
+      <div className='columns is-vcentered'>
+
+        <div className='column'>
+          <h5 className='title is-size-5'>Listings</h5>
+        </div>
+      
+        {isOwner && <div className='column is-narrow'>
+          <Link to='/productform' className='button is-primary'>Add listing</Link>
+        </div>}
+        
+      </div>
+
       {userData.product.length === 0 ?
         <p>No products listed yet</p>
         :
@@ -92,7 +107,7 @@ function Profile({ match, history }) {
 
     </div>
     }
-    {isIsOwner && <div className='box'>
+    {isOwner && <div className='box'>
       <h5 className='title is-size-5'>Order history</h5>
       {userData.order_history && <div>
         {userData.order_history.length === 0 ?
@@ -118,7 +133,7 @@ function Profile({ match, history }) {
       </div>}
     </div>
     }
-    {isIsOwner && <div className='box'>
+    {isOwner && <div className='box'>
       <h5 className='title is-size-5'>Wishlist</h5>
       {userData.order_history && <div>
         {userData.order_history.length === 0 ?

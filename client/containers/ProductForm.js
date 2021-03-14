@@ -93,7 +93,7 @@ export default function ProductForm({ match, history }) {
         } else if (data.errors) {
           updateErrorbox('Sorry - could not save your data')
         } else {
-          history.push(`/productform/${match.params.productId}`)
+          history.push(`/products/${match.params.productId}`)
           updateErrorbox('')
         }
       } catch (err) {
@@ -111,7 +111,7 @@ export default function ProductForm({ match, history }) {
         } else if (data.errors) {
           updateErrorbox('Sorry - could not save your data')
         } else {
-          history.push(`/productform/${data.id}`)
+          history.push(`/products/${data.id}`)
           updateErrorbox('')
         }
       } catch (err) {
