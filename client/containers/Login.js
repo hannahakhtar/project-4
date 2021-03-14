@@ -16,7 +16,7 @@ function Login({ history }) {
       'password': data.password
     }
 
-    console.log(formdata)
+    // console.log(formdata)
 
     try {
       const { data } = await axios.post('/api/login', formdata,)

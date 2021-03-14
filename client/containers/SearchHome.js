@@ -2,40 +2,52 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-// ! current issues:
-// ! 1) when user clicks enter if typing in input, page reloads - stop this from happening
-// ! 2) when featured products are populated, ensure that the logged in user's products do not show
-// ! 3) does state need updating for search bar - page isn't reloading when user clicks back arrow from search-results endpoint
-// ! 4) categories - we need to finalise a list of categories and decide how to display (via front or backend) - and then populate using cards? Pagination, carosel or display all?
+// * current bugs:
+// * 1) enter button doesn't work to search
+// * 2) when featured products are populated, ensure that the logged in user's products do not show
+// * 3) categories - we need to finalise a list of categories - and then populate using cards? Pagination, carosel or display all?
+// * 4) on click, take user through to page with categories that match the category they click on - do we need to create all the endpoints?
 
 function SearchHome() {
 
   const [search, updateSearch] = useState('')
-  // const [categories, updateCategories] = useState('')
   const [featuredItems, updateFeaturedItems] = useState([])
+  const [allCategories, updateAllCategories] = useState([])
 
   async function fetchFeaturedItems() {
     const { data } = await axios.get('/api/products')
-    const shuffledItems = data.sort(() => 0.5 - Math.random())
+    const categories = data.map(result => {
+      return result.category
+    })
+    const uniqueCategories = new Set(categories)
+    const uniqueCategoriesArray = [...uniqueCategories]
+    const inStock = data.filter(result => {
+      return result.in_stock === true
+    })
+    const shuffledItems = inStock.sort(() => 0.5 - Math.random())
     const featuredItems = shuffledItems.slice(0, 6)
     updateFeaturedItems(featuredItems)
+    updateAllCategories(uniqueCategoriesArray)
   }
 
   useEffect(() => {
     fetchFeaturedItems()
   }, [])
 
-  console.log(search)
+  function handleSubmit(event) {
+    event.preventDefault()
+  }
+
   return <>
     <div>
       <h1>Search Page</h1>
     </div>
     <section>
       <h4>Search</h4>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Search:
-          <input type="text" placeholder="search Garms" onChange={(e) => updateSearch(e.target.value)}/>
+          <input type="text" placeholder="search Garms for items and brands" onChange={(e) => updateSearch(e.target.value)} />
         </label>
         <Link className="button" value="Search" to={{
           pathname: '/search-results',
@@ -46,6 +58,32 @@ function SearchHome() {
 
     <section>
       <h4>Categories</h4>
+      <div className="section">
+        <div className="container">
+          <div className="columns is-multiline is-mobile">
+            {allCategories.map((item, index) => {
+              return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile">
+                <Link key={item} to={{
+                  pathname: `/products/${item}`,
+                  state: { item }
+                }}>
+                  <div className="card">
+                    <div className="card-content">
+                      <div className="media">
+                        <div className="media-content">
+                          <h2 className="title is-6 is-centered">
+                            {item}
+                          </h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            })}
+          </div>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -74,7 +112,7 @@ function SearchHome() {
                         </div>
                       </div>
                       <div className="content">
-              £{item.price}
+                        £{item.price}
                       </div>
                     </div>
                   </div>

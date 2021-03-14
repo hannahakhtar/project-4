@@ -30,7 +30,7 @@ function SingleProduct({ match }) {
   //   }, [])
   // }
 
-  console.log(product)
+  // console.log(product)
 
   const imageStyle = {
     width: '32px',

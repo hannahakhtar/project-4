@@ -23,7 +23,7 @@ list_product = [
         category="Dresses",
         price=20.00,
         condition="New",
-        in_stock=True,
+        in_stock=False,
         gender="Womens",
         user_id=1
     ),
@@ -36,7 +36,7 @@ list_product = [
         category="Jackets",
         price=25.00,
         condition="New",
-        in_stock=False,
+        in_stock=True,
         gender="Womens",
         user_id=1
     ),
