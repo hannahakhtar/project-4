@@ -5,14 +5,15 @@ import { Link } from 'react-router-dom'
 // * current bugs:
 // * 1) enter button doesn't work to search
 // * 2) when featured products are populated, ensure that the logged in user's products do not show
-// * 3) categories - we need to finalise a list of categories - and then populate using cards? Pagination, carosel or display all?
-// * 4) on click, take user through to page with categories that match the category they click on - do we need to create all the endpoints?
+// * 3) pagination on categories
+// * 4) on click, take user through to results page with items that match the categories - current onclick isn't passing through state.
 
 function SearchHome() {
 
   const [search, updateSearch] = useState('')
   const [featuredItems, updateFeaturedItems] = useState([])
   const [allCategories, updateAllCategories] = useState([])
+  const [categoryChosen, updateCategoryChosen] = useState('')
 
   async function fetchFeaturedItems() {
     const { data } = await axios.get('/api/products')
@@ -47,12 +48,12 @@ function SearchHome() {
       <form onSubmit={handleSubmit}>
         <label>
           Search:
-          <input type="text" placeholder="search Garms for items and brands" onChange={(e) => updateSearch(e.target.value)} />
+          <input type="text" placeholder="search Garms" onChange={(e) => updateSearch(e.target.value)} />
         </label>
-        <Link className="button" value="Search" to={{
+        <Link className="button" value="search" to={{
           pathname: '/search-results',
           state: { search }
-        }}>Search</Link>
+        }}>Click to search</Link>
       </form>
     </section>
 
@@ -61,18 +62,18 @@ function SearchHome() {
       <div className="section">
         <div className="container">
           <div className="columns is-multiline is-mobile">
-            {allCategories.map((item, index) => {
-              return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile">
-                <Link key={item} to={{
-                  pathname: `/products/${item}`,
-                  state: { item }
+            {allCategories.map((category, index) => {
+              return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile" onClick={() => updateCategoryChosen(category)}>
+                <Link key={category} to={{
+                  pathname: '/search-results',
+                  state: { categoryChosen }
                 }}>
                   <div className="card">
                     <div className="card-content">
                       <div className="media">
                         <div className="media-content">
                           <h2 className="title is-6 is-centered">
-                            {item}
+                            {category}
                           </h2>
                         </div>
                       </div>
@@ -87,7 +88,7 @@ function SearchHome() {
     </section>
 
     <section>
-      <h4>Featured Items</h4>
+      <h4>Our favourites!</h4>
       <div className="section">
         <div className="container">
           <div className="columns is-multiline is-mobile">

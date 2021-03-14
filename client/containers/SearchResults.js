@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom'
 // ? 1) do not return any results that are owned by logged in user
 // ? 2) make prices filter better to group them and sort them from high to low
 // ? 3) make all filters alphabetical order
+// ? 4) on hover on filters, change colour to blue or something else
+// ? 5) change on click to hover instead? what happens if onclick remains? If after certain amount of time, dropdown goes back.
 
 function SearchResults({ location }) {
 
   const [filteredResults, updateFilteredResults] = useState([])
   const [furtherFilteredResults, updateFurtherFilteredResults] = useState([])
-  const [isLoading, updateIsLoading] = useState(true)
+  // const [isLoading, updateIsLoading] = useState(true)
   const [gender, updateGender] = useState([])
   const [brands, updateBrands] = useState([])
   const [sizes, updateSizes] = useState([])
@@ -19,6 +21,7 @@ function SearchResults({ location }) {
   const [prices, updatePrices] = useState([])
   const [conditions, updateConditions] = useState([])
   const searchResults = location.state.search
+  console.log(location.state)
 
   async function fetchAllProducts() {
     const { data } = await axios.get('/api/products')
@@ -31,36 +34,38 @@ function SearchResults({ location }) {
     const inStockArray = removingUndefinedArray.filter(result => {
       return result.in_stock === true
     })
-    const genders = inStockArray.map(result => {
+
+    const genders = data.map(result => {
       return result.gender
     })
     const uniqueGenders = new Set(genders)
     const uniqueGendersArray = [...uniqueGenders]
-    const brands = inStockArray.map(result => {
+    const brands = data.map(result => {
       return result.brand
     })
     const uniqueBrands = new Set(brands)
     const uniqueBrandsArray = [...uniqueBrands]
-    const sizes = inStockArray.map(result => {
+    const sizes = data.map(result => {
       return result.size
     })
     const uniqueSizes = new Set(sizes)
     const uniqueSizesArray = [...uniqueSizes]
-    const categories = inStockArray.map(result => {
+    const categories = data.map(result => {
       return result.category
     })
     const uniqueCategories = new Set(categories)
     const uniqueCategoriesArray = [...uniqueCategories]
-    const prices = inStockArray.map(result => {
+    const prices = data.map(result => {
       return result.price
     })
     const uniquePrices = new Set(prices)
     const uniquePricesArray = [...uniquePrices]
-    const conditions = inStockArray.map(result => {
+    const conditions = data.map(result => {
       return result.condition
     })
     const uniqueContitions = new Set(conditions)
     const uniqueContitionsArray = [...uniqueContitions]
+
     updateGender(uniqueGendersArray)
     updateBrands(uniqueBrandsArray)
     updateSizes(uniqueSizesArray)
@@ -69,7 +74,7 @@ function SearchResults({ location }) {
     updateConditions(uniqueContitionsArray)
     updateFilteredResults(inStockArray)
     updateFurtherFilteredResults(inStockArray)
-    updateIsLoading(false)
+    // updateIsLoading(false)
   }
 
   useEffect(() => {
@@ -149,32 +154,32 @@ function SearchResults({ location }) {
   }
 
   function handleGenderDropdownClick() {
-    const dropdown = document.querySelector('.genderdropdown')
+    const dropdown = document.querySelector('.genderDropdown')
     dropdown.classList.toggle('is-active')
   }
 
   function handleBrandDropdownClick() {
-    const dropdown = document.querySelector('.branddropdown')
+    const dropdown = document.querySelector('.brandDropdown')
     dropdown.classList.toggle('is-active')
   }
 
   function handleSizeDropdownClick() {
-    const dropdown = document.querySelector('.sizedropdown')
+    const dropdown = document.querySelector('.sizeDropdown')
     dropdown.classList.toggle('is-active')
   }
 
   function handleCategoryDropdownClick() {
-    const dropdown = document.querySelector('.categorydropdown')
+    const dropdown = document.querySelector('.categoryDropdown')
     dropdown.classList.toggle('is-active')
   }
 
   function handlePriceDropdownClick() {
-    const dropdown = document.querySelector('.pricedropdown')
+    const dropdown = document.querySelector('.priceDropdown')
     dropdown.classList.toggle('is-active')
   }
 
   function handleConditionDropdownClick() {
-    const dropdown = document.querySelector('.conditiondropdown')
+    const dropdown = document.querySelector('.conditionDropdown')
     dropdown.classList.toggle('is-active')
   }
 
@@ -237,17 +242,17 @@ function SearchResults({ location }) {
     </>
   }
 
-  if (isLoading) {
-    return <>
-      <p>Loading...</p>
-    </>
-  }
+  // if (isLoading) {
+  //   return <>
+  //     <p>Loading...</p>
+  //   </>
+  // }
 
   return <>
     <h2>Search Results</h2>
     <h4>Your search results for <strong>{searchResults}</strong></h4>
     <section>
-      <div className="genderdropdown dropdown">
+      <div className="genderDropdown dropdown">
         <div className="dropdown-trigger">
           <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleGenderDropdownClick()}>
             <span>Gender</span>
@@ -264,7 +269,7 @@ function SearchResults({ location }) {
           </div>
         </div>
       </div>
-      <div className="branddropdown dropdown">
+      <div className="brandDropdown dropdown">
         <div className="dropdown-trigger">
           <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleBrandDropdownClick()}>
             <span>Brand</span>
@@ -281,7 +286,7 @@ function SearchResults({ location }) {
           </div>
         </div>
       </div>
-      <div className="sizedropdown dropdown">
+      <div className="sizeDropdown dropdown">
         <div className="dropdown-trigger">
           <button className=" button" aria-haspopup="true" aria-controls="dropdown-menu"onClick={() => handleSizeDropdownClick()}>
             <span>Size</span>
@@ -298,7 +303,7 @@ function SearchResults({ location }) {
           </div>
         </div>
       </div>
-      <div className="categorydropdown dropdown">
+      <div className="categoryDropdown dropdown">
         <div className="dropdown-trigger">
           <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleCategoryDropdownClick()}>
             <span>Category</span>
@@ -315,7 +320,7 @@ function SearchResults({ location }) {
           </div>
         </div>
       </div>
-      <div className="pricedropdown dropdown">
+      <div className="priceDropdown dropdown">
         <div className="dropdown-trigger">
           <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handlePriceDropdownClick()}>
             <span>Price</span>
@@ -332,7 +337,7 @@ function SearchResults({ location }) {
           </div>
         </div>
       </div>
-      <div className="conditiondropdown dropdown">
+      <div className="conditionDropdown dropdown">
         <div className="dropdown-trigger">
           <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleConditionDropdownClick()}>
             <span>Condition</span>
