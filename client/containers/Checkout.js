@@ -8,6 +8,7 @@ function Checkout({ location, history }) {
   const product = location.state
   const { register, handleSubmit, errors } = useForm()
   const [errorbox, updateErrorbox] = useState('')
+  const token = localStorage.getItem('token')
   // const [checkout, updateCheckout] = useState('')
   // const [showModal, updateShowModal] = useState(false)
 
@@ -38,9 +39,7 @@ function Checkout({ location, history }) {
 
   async function handleSubmitProduct() {
     const { data } = await axios.put(`/api/products/${product.product.id}`, purchased, {
-      // headers: { Authorization: `Bearer ${token}` }
-      headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTYxNTgxNTkwNywiZXhwIjoxNjE1OTAyMzA3fQ.tgZmZZ8sFG9cBVxUzZKAU12ojcPNdZ_04GivWiBF03w' }
-      
+      headers: { Authorization: `Bearer ${token}` }      
     })
     console.log(data)
     history.push('/search-home')
