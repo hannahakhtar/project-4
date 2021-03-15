@@ -43,7 +43,12 @@ function Profile({ match, history }) {
     }
     fetchProduct()
 
+ 
+
   }, [])
+
+
+
 
 
 
