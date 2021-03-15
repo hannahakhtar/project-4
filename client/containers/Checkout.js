@@ -8,6 +8,7 @@ function Checkout({ location, history }) {
   const product = location.state
   const { register, handleSubmit, errors } = useForm()
   const [errorbox, updateErrorbox] = useState('')
+  // const [checkout, updateCheckout] = useState('')
   // const [showModal, updateShowModal] = useState(false)
 
   const shipping = 3.99
@@ -32,27 +33,45 @@ function Checkout({ location, history }) {
   }
 
   async function handleSubmitProduct() {
-    const { data } = await axios.delete(`/api/product${product.product.id}`)
-    console.log(data._id)
-    history.push('/search-home')
+    const { data } = await axios.put(`/api/products/${product.product.id}`, {
+      // headers: { Authorization: `Bearer ${token}` }
+      headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTYxNTczMTY1MywiZXhwIjoxNjE1ODE4MDUzfQ.ParT6j_bybVcxm1flYt1mPG7CLj9CzjvxWciZyJEqTc' }
+    })
+    const jsonRequest = { "in_stock": false }
+    return data.in_stock = jsonRequest
+    // history.push('/search-home')
   }
 
-  console.log(product)
+  const imageStyle = {
+    borderRadius: '5%'
+  }
 
   return (<div className="m-4">
     <div>
-      <h1 className="title has-text-centered">Shipping Details</h1>
+      <h1 className="title has-text-centered m-5">Shipping Details</h1>
     </div>
-    <div className='container'>
-      <h3>{product.product.product_name}</h3>
-      <h3>{product.product.product_image}</h3>
-      <h3>£{product.product.price}</h3>
+    <div className='container mb-4'>
+      <div className="card">
+        <div className="card-content">
+          <div className="media-left p-0 m-0">
+            <figure>
+              <img className="image" src={'https://cdn.shopify.com/s/files/1/1074/5128/products/vb1713977_Winter-2020---Knitwear---JJ-117_865b831c-b398-4646-bb6e-a0ee0e24d911_1200x.jpg?v=1602769681'} style={imageStyle} />
+            </figure>
+          </div>
+          <div className="media-content mt-2">
+            <h3>{product.product.product_name}</h3>
+            <h3>£{product.product.price}</h3>
+          </div>
+        </div>
+      </div>
     </div>
     <div className='container'>
 
       {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
 
-      <form onSubmit={handleSubmit(onSubmit)} >
+      <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
+
+        <h3 className="mt-3 mb-3">Enter your address details</h3>
 
         <div className='field'>
           <input
@@ -114,7 +133,7 @@ function Checkout({ location, history }) {
           {errors.phone && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
         </div>
 
-        <h3>Enter your card details</h3>
+        <h3 className="mt-3 mb-3">Enter your card details</h3>
 
         <div className='field'>
           <input
@@ -164,18 +183,19 @@ function Checkout({ location, history }) {
           {errors.security && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
         </div>
 
+        <h3>Shipping: £{shipping}</h3>
         <h3>Total plus shipping:</h3>
         <h3>£{(product.product.price + shipping).toFixed(2)}</h3>
 
       </form >
       {product.product.id && <button
-        className='button is-primary'
+        className='button is-primary mr-3'
         onClick={handleSubmitProduct}
       >
         Continue
       </button>}
       <Link to={`products/${product.product.id}`}><button className='button is-primary'>Continue Shopping</button></Link>
-      <div>
+      <div className='mt-4'>
         <small>Please note, this is just a project and real card details should not be entered</small>
       </div>
     </div>
