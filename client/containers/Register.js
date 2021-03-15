@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import Navbar from '../components/Navbar.js'
 
 function Register({ history }) {
   const { register, handleSubmit, errors } = useForm()
@@ -8,9 +9,7 @@ function Register({ history }) {
   // const [showModal, updateShowModal] = useState(false)
 
   async function onSubmit(data) {
-
     updateErrorbox('')
-
     const formdata = {
       'username': data.username,
       'email': data.email,
@@ -21,40 +20,19 @@ function Register({ history }) {
       'image': data.image
     }
 
-    console.log(formdata)
-
     try {
       const { data } = await axios.post('/api/signup', formdata,)
-      console.log(data._id)
-      // history.push('/login')
+      if (data.id) {
+        history.push('/login/success')
+      } else {
+        updateErrorbox('Unable to register user. Username and email address must be unique.')
+      }
     } catch (err) {
       console.log(err.response.data)
     }
   }
 
-  // const modalFormControls = {
-  //   submit: {
-  //     handler: async () => {
-  //       try {
-  //         const formData = {}
-  //         for (const field in formdata) {
-  //           formData[field] = formdata[field].value
-  //         }
-  //         formData.isTravelling = formdata.isTravelling.value.value
-  //         formData.isPublic = formdata.isPublic.value.value
-  //         await axios.post('/api/register', formData)
-  //           .then(({ data }) => {
-  //             console.log('I have registered', data)
-  //           })
-  //         updateShowModal(false)
-  //         history.push('/login')
-  //       } catch (err) {
-  //         console.log(err)
-  //       }
-  //     },
-  //     label: 'Sign Up'
-  //   }
-  // }
+
 
   const backgroundStyle = {
     height: '100vh',
@@ -62,10 +40,11 @@ function Register({ history }) {
     backgroundSize: 'cover'
   }
 
-  return (
-    <div className='container'>
+  return <>
+    <Navbar />
+    <div className='container mx-4 mt-4 mb4'>
       <div className="hero is-fullheight-with-navbar is-primary">
-        <div className="hero-body" style={backgroundStyle}>
+        <div className='px-4 pt-4 pb-4' style={backgroundStyle}>
           <h1 className="title has-text-centered">Getting started</h1>
 
           {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
@@ -87,6 +66,50 @@ function Register({ history }) {
               {errors.username && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
 
+
+
+            <div className='field'>
+              <label>
+                <p>First name</p>
+              </label>
+              <input
+                className={`input ${errors.first_name && 'is-danger'}`}
+                name='first_name'
+                placeholder='First Name'
+                defaultValue=''
+                ref={register({ required: true })}
+              />
+              {errors.first_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+            </div>
+
+            <div className='field'>
+              <label>
+                <p>Last name</p>
+              </label>
+              <input
+                className={`input ${errors.last_name && 'is-danger'}`}
+                name='last_name'
+                placeholder='Last Name'
+                defaultValue=''
+                ref={register({ required: true })}
+              />
+              {errors.last_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+            </div>
+
+
+            <div className='field'>
+              <label>
+                <p>Location</p>
+              </label>
+              <input
+                className={`input ${errors.location && 'is-danger'}`}
+                name='location'
+                placeholder='Location'
+                defaultValue=''
+                ref={register({ required: true })}
+              />
+              {errors.location && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+            </div>
             <div className='field'>
               <label>
                 <p>Email</p>
@@ -116,19 +139,14 @@ function Register({ history }) {
               />
               {errors.password && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
-          </form >
-          <button
-            className='button is-primary'
-            // onClick={updateShowModal(true)}
-          >
-            Continue
-          </button>
 
+            <button className='button is-primary'>Register</button>
+          </form >
 
         </div>
       </div>
     </div >
-  )
+  </>
 }
 
 export default Register
