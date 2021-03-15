@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { getLoggedInUserId } from '../lib/auth.js'
+import Navbar from '../components/Navbar.js'
 
 export default function ProductForm({ match, history }) {
   const LoggedInUserId = getLoggedInUserId()
@@ -125,7 +126,8 @@ export default function ProductForm({ match, history }) {
 
 
 
-  return (
+  return <>
+    <Navbar />
     <div className='container mx-4 mt-4 mb4'>
 
 
@@ -291,7 +293,7 @@ export default function ProductForm({ match, history }) {
         />
       </form >
     </div>
-  )
+  </>
 
 
 
