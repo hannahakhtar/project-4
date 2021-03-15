@@ -12,6 +12,7 @@ import SearchResults from './containers/SearchResults'
 import Profile from './containers/Profile'
 import Checkout from './containers/Checkout'
 import SingleProduct from './containers/SingleProduct'
+import EditUser from './containers/EditUser'
 
 
 const App = () => {
@@ -25,7 +26,10 @@ const App = () => {
         <Route exact path="/productform/:productId" component={ProductForm} />
         <Route exact path="/search-home" component={SearchHome} />
         <Route exact path="/search-results/:id" component={SearchResults} />
+        <Route exact path="/users" component={Profile} />
         <Route exact path="/users/:userId" component={Profile} />
+        <Route exact path="/edituser/" component={EditUser} />
+        <Route exact path="/edituser/:userId" component={EditUser} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/products/:id" component={SingleProduct} />
         
