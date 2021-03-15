@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
-import Navbar from '../components/Navbar.js'
 
 function Login({ match, history }) {
   const { register, handleSubmit, errors } = useForm()
@@ -35,11 +34,10 @@ function Login({ match, history }) {
   }
 
   return <>
-    <Navbar />
-    <div className='container mx-4 mt-4 mb4'>
+    <div className='container'>
       <div className="hero is-fullheight-with-navbar is-primary">
         <div className='px-4 pt-4 pb-4' style={backgroundStyle}>
-          <h1 className="title has-text-centered">Login</h1>
+          <h1 className="title has-text-centered mt-5">Login</h1>
 
           {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
           {match.params.message === 'success' && <div className='box has-background-success has-text-white'>Registration sucessful. Log in to continue.</div>}
@@ -78,7 +76,7 @@ function Login({ match, history }) {
             </div>
 
             <input
-              className='button is-primary'
+              className='button is-primary mt-3'
               type='submit'
             />
 

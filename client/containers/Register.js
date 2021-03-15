@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
-import Navbar from '../components/Navbar.js'
 
 function Register({ history }) {
   const { register, handleSubmit, errors } = useForm()
   const [errorbox, updateErrorbox] = useState('')
-  // const [showModal, updateShowModal] = useState(false)
 
   async function onSubmit(data) {
     updateErrorbox('')
@@ -32,8 +30,6 @@ function Register({ history }) {
     }
   }
 
-
-
   const backgroundStyle = {
     height: '100vh',
     background: 'url(https://i.pinimg.com/736x/a1/1e/ae/a11eae81ff3fd4da53e676cd64d876cf.jpg)',
@@ -41,8 +37,7 @@ function Register({ history }) {
   }
 
   return <>
-    <Navbar />
-    <div className='container mx-4 mt-4 mb4'>
+    <div className='container'>
       <div className="hero is-fullheight-with-navbar is-primary">
         <div className='px-4 pt-4 pb-4' style={backgroundStyle}>
           <h1 className="title is-size-1 has-text-centered">Register</h1>
@@ -65,8 +60,6 @@ function Register({ history }) {
               />
               {errors.username && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
-
-
 
             <div className='field'>
               <label>
@@ -140,7 +133,7 @@ function Register({ history }) {
               {errors.password && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
 
-            <button className='button is-primary'>Register</button>
+            <button className='button is-primary mt-3'>Register</button>
           </form >
 
         </div>

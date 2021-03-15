@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import RandomSelection from '../components/randomSelection'
 import { getLoggedInUserId } from '../lib/auth.js'
 import Navbar from '../components/Navbar'
+import { findLastKey } from 'lodash'
 
 function SingleProduct({ match, history }) {
 
@@ -13,6 +14,7 @@ function SingleProduct({ match, history }) {
   const loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
   const [product, updateProduct] = useState({})
+  const [user, updateUser] = useState({})
 
 
   async function fetchProductData() {
@@ -20,20 +22,33 @@ function SingleProduct({ match, history }) {
     updateProduct(data)
   }
 
+  async function fetchUserData() {
+    const { data } = await axios.get(`/api/users/${loggedInUserId}`)
+    updateUser(data)
+  }
+
   useEffect(() => {
     fetchProductData()
+    fetchUserData()
   }, [])
 
-  // const wishlist = {
-  //   'in_stock': false
-  // }
+  // console.log(user.wishlist && user.wishlist.map(item => item.product.id === product.id))
 
-  // async function handleWishlist() {
-  //   const { data } = await axios.post(`/users/${loggedInUserId}/wishlist/${productId}>`, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //   updateProduct(data)
-  // }
+  user.wishlist && user.wishlist.map(item => item.product.id === product.id) ? console.log('Item already in your wishlist') : console.log('Item not in wishlist')
+
+  // user.wishlist && user.wishlist.map(item => {
+  //   if (item.product.id === product.id) {
+  //     console.log('Item already in your wishlist')
+  //   }
+  // })
+
+
+  async function handleWishlist() {
+    const { data } = await axios.post(`/users/${loggedInUserId}/wishlist/${productId}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    console.log(data)
+  }
 
   async function handleDelete() {
     await axios.delete(`/api/products/${productId}`, {
@@ -76,6 +91,7 @@ function SingleProduct({ match, history }) {
   }
 
   return <>
+    <Navbar />
     <div className="container">
       <section className="content is-flex mt-3 mb-2">
         {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 is-rounded ml-4 m-2" src={'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'} /></Link>}
@@ -92,7 +108,7 @@ function SingleProduct({ match, history }) {
             ? product.in_stock === false ? <></>
               : <Link to={`/productform/${productId}`}><button className="mb-3 mr-1">Edit</button></Link>
             : product.in_stock === true
-              ? <button className="mb-3">Wishlist</button>
+              ? <button className="mb-3" onClick={handleWishlist}>Wishlist</button>
               : <></>}
           {product.user && loggedInUserId === product.user.id
             ? product.in_stock === false ? <></>
@@ -124,7 +140,6 @@ function SingleProduct({ match, history }) {
         <RandomSelection />
       </section>
     </div>
-    <Navbar />
   </>
 }
 
