@@ -10,15 +10,17 @@ export default function ProductForm({ match, history }) {
   const [populateForm, updatePopulateForm] = useState('')
   const [loading, updateLoading] = useState(true)
   const [imageUrl, updateImageUrl] = useState(undefined)
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
 
     async function fetchProduct() {
+
       if (match.params.productId) {
         try {
           const { data } = await axios.get(`/api/products/${match.params.productId}`, {
-            // headers: { Authorization: `Bearer ${token}` }
-            headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
+            headers: { Authorization: `Bearer ${token}` }
+            // headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
           })
           if (data.errors) {
             updateErrorbox('Sorry - could not find that product')
@@ -82,8 +84,8 @@ export default function ProductForm({ match, history }) {
     if (match.params.productId) {
       try {
         const { data } = await axios.put(`/api/products/${match.params.productId}`, formdata, {
-          // headers: { Authorization: `Bearer ${token}` }
-          headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
+          headers: { Authorization: `Bearer ${token}` }
+          // headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
         console.log(data)
         if (!imageUrl) {
@@ -91,7 +93,7 @@ export default function ProductForm({ match, history }) {
         } else if (data.errors) {
           updateErrorbox('Sorry - could not save your data')
         } else {
-          history.push(`/productform/${match.params.productId}`)
+          history.push(`/products/${match.params.productId}`)
           updateErrorbox('')
         }
       } catch (err) {
@@ -100,8 +102,8 @@ export default function ProductForm({ match, history }) {
     } else {
       try {
         const { data } = await axios.post('/api/products', formdata, {
-          // headers: { Authorization: `Bearer ${token}` }
-          headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
+          headers: { Authorization: `Bearer ${token}` }
+          //headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
         console.log(data)
         if (!imageUrl) {
@@ -109,7 +111,7 @@ export default function ProductForm({ match, history }) {
         } else if (data.errors) {
           updateErrorbox('Sorry - could not save your data')
         } else {
-          history.push(`/productform/${data.id}`)
+          history.push(`/products/${data.id}`)
           updateErrorbox('')
         }
       } catch (err) {
@@ -124,7 +126,7 @@ export default function ProductForm({ match, history }) {
 
 
   return (
-    <div className='container'>
+    <div className='container mx-4 mt-4 mb4'>
 
 
       <h1 className='title'>{match.params.productId ? 'Edit product' : 'List a new product'}</h1>
@@ -264,7 +266,7 @@ export default function ProductForm({ match, history }) {
 
 
         <div className='box mt-4 mb-4'>
-          <h4 className='title is-size-5'>Upload an image</h4>
+          <h5 className='title is-size-5'>Upload an image</h5>
 
           <div className='columns is-vcentered'>
 

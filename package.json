@@ -27,11 +27,17 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@splidejs/splide": "^2.4.21",
     "axios": "^0.21.1",
     "babel": "^6.23.0",
     "bulma": "^0.9.2",
+    "bulma-divider": "^0.2.0",
+    "fontawesome": "^5.6.3",
+    "lodash": "^4.17.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-fontawesome": "^1.7.1",
     "react-hook-form": "^6.15.4",
     "react-notify-toast": "^0.5.1",
     "react-router-dom": "^5.2.0"
