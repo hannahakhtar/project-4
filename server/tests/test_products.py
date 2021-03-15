@@ -7,7 +7,7 @@ def test_get_products():
     client = app.test_client()
     response = client.get("/api/products")
 
-    assert len(response.json) == 14
+    assert len(response.json) == 18
     assert response.status_code == 200
 
 def test_get_single_product():
@@ -48,6 +48,7 @@ def test_delete_product():
         content_type="application/json",
         headers=request_headers,
     )
+    print(product_response.json)
 
     assert product_response.json['message'] == 'Product deleted successfully'
     assert product_response.status_code == 200  

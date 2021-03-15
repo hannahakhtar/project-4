@@ -44,8 +44,8 @@ function Register({ history }) {
     <Navbar />
     <div className='container mx-4 mt-4 mb4'>
       <div className="hero is-fullheight-with-navbar is-primary">
-        <div className='px-4 pt-4 pb-4' style={backgroundStyle}>
-          <h1 className="title has-text-centered">Getting started</h1>
+        <div className="hero-body is-felx is-flex-direction-column" style={backgroundStyle}>
+          <h1 className="title is-size-1 has-text-centered">Getting started</h1>
 
           {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
 
@@ -139,6 +139,13 @@ function Register({ history }) {
               />
               {errors.password && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
+          </form >
+          <button
+            className='button is-primary m-5'
+            // onClick={updateShowModal(true)}
+          >
+            Continue
+          </button>
 
             <button className='button is-primary'>Register</button>
           </form >

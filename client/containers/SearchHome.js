@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import { getLoggedInUserId } from '../lib/auth'
+import Navbar from '../components/Navbar'
 
 // * current bugs:
 // * 1) enter button doesn't work to search
-// * 2) when featured products are populated, ensure that the logged in user's products do not show
-// * 3) pagination on categories
-// * 4) on click, take user through to results page with items that match the categories - current onclick isn't passing through state.
 
 function SearchHome() {
 
+  const currentUser = getLoggedInUserId()
   const [search, updateSearch] = useState('')
   const [featuredItems, updateFeaturedItems] = useState([])
   const [allCategories, updateAllCategories] = useState([])
@@ -25,7 +27,7 @@ function SearchHome() {
     const inStock = data.filter(result => {
       return result.in_stock === true
     })
-    const shuffledItems = inStock.sort(() => 0.5 - Math.random())
+    const shuffledItems = inStock.sort(() => 0.5 - Math.random()).filter(x => x.id !== currentUser)
     const featuredItems = shuffledItems.slice(0, 6)
     updateFeaturedItems(featuredItems)
     updateAllCategories(uniqueCategoriesArray)
@@ -40,6 +42,7 @@ function SearchHome() {
   }
 
   return <>
+    <Navbar />
     <div>
       <h1>Search Page</h1>
     </div>
@@ -51,8 +54,8 @@ function SearchHome() {
           <input type="text" placeholder="search Garms" onChange={(e) => updateSearch(e.target.value)} />
         </label>
         <Link className="button" value="search" to={{
-          pathname: '/search-results',
-          state: { search }
+          pathname: `/search-results/${search}`
+          // state: { search }
         }}>Click to search</Link>
       </form>
     </section>
@@ -62,26 +65,29 @@ function SearchHome() {
       <div className="section">
         <div className="container">
           <div className="columns is-multiline is-mobile">
-            {allCategories.map((category, index) => {
-              return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile" onClick={() => updateCategoryChosen(category)}>
-                <Link key={category} to={{
-                  pathname: '/search-results',
-                  state: { categoryChosen }
-                }}>
-                  <div className="card">
-                    <div className="card-content">
-                      <div className="media">
-                        <div className="media-content">
-                          <h2 className="title is-6 is-centered">
-                            {category}
-                          </h2>
+            <div className="carousel-wrapper">
+              <Carousel infiniteLoop autoPlay showArrows showStatus={false} centerMode showThumbs={false} show={3}>
+                {allCategories.map((category, index) => {
+                  return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile" onClick={() => updateCategoryChosen(category)}>
+                    <Link key={category} to={{
+                      pathname: `/search-results/${category}`
+                    }}>
+                      <div className="card" >
+                        <div className="card-content">
+                          <div className="media">
+                            <div className="media-content">
+                              <h2 className="title is-6 is-centered">
+                                {category}
+                              </h2>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
-                </Link>
-              </div>
-            })}
+                })}
+              </Carousel>
+            </div>
           </div>
         </div>
       </div>

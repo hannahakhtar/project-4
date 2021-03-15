@@ -32,14 +32,18 @@ function Checkout({ location, history }) {
     console.log(formdata)
   }
 
+  const purchased = {
+    'in_stock': false
+  }
+
   async function handleSubmitProduct() {
-    const { data } = await axios.put(`/api/products/${product.product.id}`, {
+    const { data } = await axios.put(`/api/products/${product.product.id}`, purchased, {
       // headers: { Authorization: `Bearer ${token}` }
-      headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTYxNTczMTY1MywiZXhwIjoxNjE1ODE4MDUzfQ.ParT6j_bybVcxm1flYt1mPG7CLj9CzjvxWciZyJEqTc' }
+      headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTYxNTgxNTkwNywiZXhwIjoxNjE1OTAyMzA3fQ.tgZmZZ8sFG9cBVxUzZKAU12ojcPNdZ_04GivWiBF03w' }
+      
     })
-    const jsonRequest = { "in_stock": false }
-    return data.in_stock = jsonRequest
-    // history.push('/search-home')
+    console.log(data)
+    history.push('/search-home')
   }
 
   const imageStyle = {
@@ -189,12 +193,12 @@ function Checkout({ location, history }) {
 
       </form >
       {product.product.id && <button
-        className='button is-primary mr-3'
+        className='button is-info mr-3'
         onClick={handleSubmitProduct}
       >
         Continue
       </button>}
-      <Link to={`products/${product.product.id}`}><button className='button is-primary'>Continue Shopping</button></Link>
+      <Link to={`products/${product.product.id}`}><button className='button is-info'>Continue Shopping</button></Link>
       <div className='mt-4'>
         <small>Please note, this is just a project and real card details should not be entered</small>
       </div>

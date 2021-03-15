@@ -16,8 +16,6 @@ function Login({ match, history }) {
       'password': data.password
     }
 
-    // console.log(formdata)
-
     try {
       const { data } = await axios.post('/api/login', formdata,)
       if (localStorage) {
