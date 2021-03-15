@@ -16,8 +16,6 @@ function Login({ history }) {
       'password': data.password
     }
 
-    // console.log(formdata)
-
     try {
       const { data } = await axios.post('/api/login', formdata,)
       if (localStorage) {
@@ -38,8 +36,8 @@ function Login({ history }) {
   return (
     <div className='container'>
       <div className="hero is-fullheight-with-navbar is-primary">
-        <div className="hero-body" style={backgroundStyle}>
-          <h1 className="title has-text-centered">Login</h1>
+        <div className="hero-body is-felx is-flex-direction-column" style={backgroundStyle}>
+          <h1 className="title has-text-centered is-size-1">Login</h1>
 
           {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
 

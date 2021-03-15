@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import Navbar from './components/Navbar'
 
 function Home() {
 
@@ -18,7 +17,7 @@ function Home() {
             <h1 className="title is-size-1 mb-6">GARMS</h1>
             <div className="field">
               <div className="control">
-                <Link className="button is-link is-primary is-size-6  has-text-centered is-fullwidth" to={'/register'}>
+                <Link className="button is-primary is-size-6  has-text-centered is-fullwidth" to={'/register'}>
                   Sign up
                 </Link>
               </div>
@@ -30,9 +29,6 @@ function Home() {
         </div>
       </div>
     </header>
-    <div>
-      {/* <Navbar /> */}
-    </div>
   </>
 }
 

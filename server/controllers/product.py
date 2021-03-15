@@ -41,8 +41,8 @@ def post_product():
 def update_product(product_id):
     existing_product = Product.query.get(product_id)
 
-    if existing_product.user != g.current_user:
-        return {'errors': 'Sorry - you can not edit this product'}, 402
+    # if existing_product.user != g.current_user:
+    #     return {'errors': 'Sorry - you can not edit this product'}, 402
 
     try:
         product = product_schema.load(

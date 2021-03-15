@@ -65,8 +65,8 @@ function Register({ history }) {
   return (
     <div className='container'>
       <div className="hero is-fullheight-with-navbar is-primary">
-        <div className="hero-body" style={backgroundStyle}>
-          <h1 className="title has-text-centered">Getting started</h1>
+        <div className="hero-body is-felx is-flex-direction-column" style={backgroundStyle}>
+          <h1 className="title is-size-1 has-text-centered">Getting started</h1>
 
           {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
 
@@ -118,7 +118,7 @@ function Register({ history }) {
             </div>
           </form >
           <button
-            className='button is-primary'
+            className='button is-primary m-5'
             // onClick={updateShowModal(true)}
           >
             Continue
