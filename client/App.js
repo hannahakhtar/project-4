@@ -13,6 +13,7 @@ import Profile from './containers/Profile'
 import Checkout from './containers/Checkout'
 import SingleProduct from './containers/SingleProduct'
 
+
 const App = () => {
   return <>
     <BrowserRouter>
@@ -23,10 +24,11 @@ const App = () => {
         <Route exact path="/productform" component={ProductForm} />
         <Route exact path="/productform/:productId" component={ProductForm} />
         <Route exact path="/search-home" component={SearchHome} />
-        <Route exact path="/search-results" component={SearchResults} />
+        <Route exact path="/search-results/:id" component={SearchResults} />
         <Route exact path="/users/:userId" component={Profile} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/products/:id" component={SingleProduct} />
+        
       </Switch>
     </BrowserRouter>
   </>

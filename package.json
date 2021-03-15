@@ -40,6 +40,8 @@
     "react-fontawesome": "^1.7.1",
     "react-hook-form": "^6.15.4",
     "react-notify-toast": "^0.5.1",
-    "react-router-dom": "^5.2.0"
+    "react-responsive-carousel": "^3.2.14",
+    "react-router-dom": "^5.2.0",
+    "react-slick": "^0.28.1"
   }
 }
