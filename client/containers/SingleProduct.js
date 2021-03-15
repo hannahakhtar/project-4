@@ -24,8 +24,6 @@ function SingleProduct({ match }) {
     fetchProductData()
   }, [])
 
-  console.log(product)
-
   function handleWishlist() {
     useEffect(() => {
       async function fetchData() {
@@ -40,29 +38,37 @@ function SingleProduct({ match }) {
   }
 
   function handleInStock() {
-    if (product.in_stock === true) {
-      return <>
-        <Link to={{
-          pathname: '/checkout',
-          state: {
-            product: product
-          }
-        }}><button className="button is-info mt-3">Buy now</button></Link>
-      </>
+    if (loggedInUserId === (product.user && product.user.id)) {
+      return
     } else {
-      return <>
-        <h3>Sold</h3>
-      </>
+      if (product.in_stock === true) {
+        return <>
+          <Link to={{
+            pathname: '/checkout',
+            state: {
+              product: product
+            }
+          }}><button className="button is-info mt-3">Buy now</button></Link>
+        </>
+      } else {
+        return <>
+          <h3>Sold</h3>
+        </>
+      }
     }
   }
 
-  // function handleIsUser() {
-  //   if (product.user && product.user.id === loggedInUserId) {
-  //     return <button>Edit</button>
-  //   } else {
-  //     return <button onClick={handleWishlist()}>Wishlist</button>
-  //   }
-  // }
+  function handleIsUser() {
+    if (loggedInUserId === (product.user && product.user.id)  && (product.in_stock === false)) {
+      return <>
+      <button>Edit</button>
+    </>
+    } else {
+      return <>
+        <button onClick={handleWishlist()}>Wishlist</button>
+      </>
+    }
+  }
 
   function handleInStockImage() {
     if (product.in_stock === false) {
@@ -99,7 +105,7 @@ function SingleProduct({ match }) {
       </section>
       <section className="content m-4">
         <div>
-          {/* {handleIsUser()} */}
+          {handleIsUser()}
           {product.user && <Link to={`/users/${product.user.id}`}><img src={userPng} /></Link>}
         </div>
         <div>
