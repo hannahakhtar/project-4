@@ -23,7 +23,7 @@ list_product = [
         category="Dresses",
         price=20.00,
         condition="New",
-        in_stock=False,
+        in_stock=True,
         gender="Womens",
         user_id=1
     ),
@@ -156,7 +156,7 @@ list_product = [
         condition="Used",
         in_stock=True,
         gender="Womens",
-        user_id=3
+        user_id=2
     ),
     Product(
         product_name="Light blue jeans",
@@ -169,7 +169,7 @@ list_product = [
         condition="New",
         in_stock=True,
         gender="Womens",
-        user_id=3
+        user_id=1
     ),
     Product(
         product_name="New York baseball cap",
@@ -195,7 +195,7 @@ list_product = [
         condition="New",
         in_stock=True,
         gender="Mens",
-        user_id=3
+        user_id=2
     ),
     Product(
         product_name="Michael Kors brown handbag",
@@ -208,7 +208,7 @@ list_product = [
         condition="Used",
         in_stock=True,
         gender="Womens",
-        user_id=3
+        user_id=1
     ),
     Product(
         product_name="Mango long silver necklace",
