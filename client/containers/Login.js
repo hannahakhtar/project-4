@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import Navbar from '../components/Navbar.js'
 
 function Login({ match, history }) {
   const { register, handleSubmit, errors } = useForm()
@@ -20,7 +21,7 @@ function Login({ match, history }) {
       const { data } = await axios.post('/api/login', formdata,)
       if (localStorage) {
         localStorage.setItem('token', data.token)
-      }      
+      }
       history.push('/search-home')
     } catch (err) {
       console.log(err.response.data)
@@ -33,8 +34,9 @@ function Login({ match, history }) {
     backgroundSize: 'cover'
   }
 
-  return (
-    <div className='container'>
+  return <>
+    <Navbar />
+    <div className='container mx-4 mt-4 mb4'>
       <div className="hero is-fullheight-with-navbar is-primary">
         <div className='px-4 pt-4 pb-4' style={backgroundStyle}>
           <h1 className="title has-text-centered">Login</h1>
@@ -84,7 +86,7 @@ function Login({ match, history }) {
         </div>
       </div>
     </div >
-  )
+  </>
 }
 
 export default Login
