@@ -1,9 +1,12 @@
 @import "../../node_modules/bulma/bulma.sass";
 
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700&display=swap");
 
-
-.profile-image{width: 80px; height: 80px; border-radius: 50%;}
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
 
 // body {
 //   font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -126,6 +129,10 @@ nav .profile-image {
   background-color: #5332db !important;
 }
 
+.purpletext {
+  color: #5332db !important;
+}
+
 .nostackcolumns {
   width: 100%;
   display: flex;
@@ -152,7 +159,8 @@ footer .logo {
   max-width: 360px !important;
 }
 
-.login .container, .register .container {
+.login .container,
+.register .container {
   max-width: 460px !important;
 }
 

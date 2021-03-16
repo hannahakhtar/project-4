@@ -18,7 +18,7 @@ const ProductCard = ({ location, productId, productName, productImage, productPr
         <div className='content'>
           <a href={`/products/${productId}`}><h5 className='title is-size-5 mb-2'>{productName}</h5></a>
           <p className='is-size-7'>Size: {productSize}</p>
-          <h5 className='title is-size-4 has-text-danger'>£{productPrice}</h5>
+          <h5 className='title is-size-4 purpletext'>£{productPrice}</h5>
           {purchaseDate &&
             <p className='is-size-7'>
               Purchased on: {moment(purchaseDate).format('LLLL')}
@@ -29,15 +29,15 @@ const ProductCard = ({ location, productId, productName, productImage, productPr
 
       <footer className='card-footer'>
 
-        <a href={`/products/${productId}`} className='card-footer-item'>View</a>
+        <a href={`/products/${productId}`} className='card-footer-item purpletext'>View</a>
 
         {location === 'Listings' && <>
           {parseInt(getLoggedInUserId()) === parseInt(userId) &&
-            <a href={`/productform/${productId}`} className='card-footer-item'>Edit</a>
+            <a href={`/productform/${productId}`} className='card-footer-item purpletext'>Edit</a>
           }
         </>}
 
-        {location === 'Wishlist' && <a className='card-footer-item' onClick={() => removeFromWishlist(productId, userId)}>Remove</a>}
+        {location === 'Wishlist' && <a className='card-footer-item purpletext' onClick={() => removeFromWishlist(productId, userId)}>Remove</a>}
       </footer>
     </div>
   </div>
