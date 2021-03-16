@@ -16,11 +16,12 @@ function Register({ history }) {
       'first_name': data.first_name,
       'last_name': data.last_name,
       'location': data.location,
-      'image': data.image
+      'image': 'https://i.ibb.co/6Zyw6CD/garms-icon.png'
     }
 
     try {
       const { data } = await axios.post('/api/signup', formdata,)
+      //console.log(data)
       if (data.id) {
         history.push('/login/success')
       } else {
