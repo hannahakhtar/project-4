@@ -10,6 +10,9 @@ function Footer() {
     <div className='container px-4 pt-4 pb-4'>
       <div className='nostackcolumns'>
         <div>
+          <Link to={'/about'} className='has-text-white'>About</Link>
+        </div>
+        <div>
           <Link to={'/search-home'}><img src='https://i.ibb.co/2ZSffTJ/logo-garms-white.png' alt='Garms logo' className='logo'></img></Link>
         </div>
         <div className='right'>

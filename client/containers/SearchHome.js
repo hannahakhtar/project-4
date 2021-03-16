@@ -6,6 +6,7 @@ import { getLoggedInUserId } from '../lib/auth'
 import Navbar from '../components/Navbar'
 import ProductCard from '../components/ProductCard.js'
 import Carousel from '../components/Carousel.js'
+// import { parseConnectionUrl } from 'nodemailer/lib/shared'
 
 
 function SearchHome() {
@@ -56,9 +57,9 @@ function SearchHome() {
         <div className="container carousel-container">
           <div className="columns is-multiline is-mobile">
             <div className="carousel-wrapper">
-              <Carousel show={4}>
+              <Carousel show={3}>
                 {allCategories.map((category, index) => {
-                  return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile categories cat-button">
+                  return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile categories">
                     <Link key={category} to={{
                       pathname: `/search-results/${category}`
                     }}>
@@ -66,7 +67,7 @@ function SearchHome() {
                         <div className="card-content">
                           <div className="media">
                             <div className="media-content">
-                              <h2 className="title is-5 is-centered">
+                              <h2 className="title is-centered category-card">
                                 {category}
                               </h2>
                             </div>
@@ -89,20 +90,19 @@ function SearchHome() {
         <div className="container">
           <div className="columns is-multiline">
             {featuredItems.map((item, index) => {
-              return <>
-                  < ProductCard
-                    key={index}
-                    productId={item.id}
-                    productName={item.product_name}
-                    productImage={item.product_image}
-                    productPrice={item.price}
-                    productSize={item.size}
-                    productCategory={item.category}
-                    productCondition={item.condition}
-                    productGender={item.gender}
-                    productDescription={item.description}
-                  />
-              </>
+              return < ProductCard
+                key={index}
+                productId={item.id}
+                productName={item.product_name}
+                productImage={item.product_image}
+                productPrice={item.price}
+                productSize={item.size}
+                productCategory={item.category}
+                productCondition={item.condition}
+                productGender={item.gender}
+                productDescription={item.description}
+              />
+
             })}
           </div>
         </div>

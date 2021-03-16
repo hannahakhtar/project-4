@@ -32,11 +32,6 @@ font-family: 'M PLUS Rounded 1c', sans-serif;
   text-align: center;
 }
 
-.cat-button { 
-  color: white;
-
-}
-
 // ! search results styling
 
 .cat-dropdown {
@@ -191,4 +186,55 @@ footer .logo {
 
 .order-confirmation-button {
   margin-top: 10px;
+}
+
+.tech-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tech-card {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-basis: 25%;
+  margin: 30px;
+}
+
+.tech-card img {
+
+  height: 80px;
+  overflow: hidden;
+}
+
+.about-page {
+  text-align: center;
+}
+
+.about-h2 {
+  font-size: 30px;
+}
+
+.about-p {
+  margin-top: 5px;
+}
+
+.about-page-box-1 {
+  margin-top: 20px;
+}
+
+.about-page-box-3 {
+  margin-bottom: 20px;
+}
+
+h2.category-card {
+  font-size: 1.25em;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 767px) {
+  h2.category-card {
+    font-size: 0.5em;
+    font-weight: 800;
+  }
 }
