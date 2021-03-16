@@ -108,6 +108,8 @@ function Profile({ match }) {
           {tab === 'Listings' &&
             <>
               {userData.product &&
+
+
                 <div className='box'>
                   <div className='columns is-vcentered'>
                     <div className='column'>
@@ -130,7 +132,7 @@ function Profile({ match }) {
                         resultsPerPage={resultsPerPage}
                       />
                       <div className='columns is-multiline'>
-                        {userData.product.slice((pageNumListings - 1) * resultsPerPage, ((pageNumListings - 1) * resultsPerPage) + resultsPerPage).map((product, index) => {
+                        {userData.product.filter(product => product.in_stock === true).slice((pageNumListings - 1) * resultsPerPage, ((pageNumListings - 1) * resultsPerPage) + resultsPerPage).map((product, index) => {
                           return <ProductCard
                             key={index}
                             location='Listings'
@@ -152,6 +154,62 @@ function Profile({ match }) {
                   }
 
                 </div>
+
+
+              }
+
+
+
+              {isOwner &&
+                <>
+                  {userData.product &&
+
+
+                    <div className='box'>
+                      <div className='columns is-vcentered'>
+                        <div className='column'>
+                          <h5 className='title is-size-3'>Sold items</h5>
+                        </div> 
+                      </div>
+
+                      {userData.product.length === 0 ?
+                        <p>No products sold yet</p>
+                        :
+                        <div>
+                          <Paginate
+                            onChange={handlePageChange}
+                            pageNum={pageNumListings}
+                            location='Listings'
+                            totalResults={userData.product.length}
+                            resultsPerPage={resultsPerPage}
+                          />
+                          <div className='columns is-multiline'>
+                            {userData.product.filter(product => product.in_stock === false).slice((pageNumListings - 1) * resultsPerPage, ((pageNumListings - 1) * resultsPerPage) + resultsPerPage).map((product, index) => {
+                              return <ProductCard
+                                key={index}
+                                location='Sold'
+                                productId={product.id}
+                                productName={product.product_name}
+                                productImage={product.product_image}
+                                productPrice={product.price}
+                                productSize={product.size}
+                                productCategory={product.category}
+                                productCondition={product.condition}
+                                productGender={product.gender}
+                                productDescription={product.description}
+                                userId={match.params.userId}
+                                removeFromWishlist={removeFromWishlist}
+                              />
+                            })}
+                          </div>
+                        </div>
+                      }
+
+                    </div>
+
+
+                  }
+                </>
               }
             </>
           }
