@@ -15,7 +15,7 @@ function Profile({ match }) {
   const [pageNumListings, updatePageNumListings] = useState(1)
   const [pageNumOrders, updatePageNumOrders] = useState(1)
   const [pageNumWishlist, updatePageNumWishlist] = useState(1)
-  const [tab, updateTab] = useState('Wishlist')
+  const [tab, updateTab] = useState('Listings')
   const resultsPerPage = 4
   const LoggedInUserId = getLoggedInUserId()
 
@@ -89,13 +89,16 @@ function Profile({ match }) {
               <div className='column is-narrow'>
                 <h1 className='title is-size-3 mb-1'>{userData.username}</h1>
 
-                <p><i className='fas fa-map-marker-alt mr-1'></i> {userData.location}</p>
+                <p><i className='fas fa-map-marker-alt mr-1'></i> {userData.location} 
+                  {isOwner && <span className='purpletext'><i className='fas fa-pen mr-1 ml-4'></i><Link className='mt-2 is-primary purpletext' to={`/edituser/${userData.id}`}>Edit profile</Link></span>}
+                </p>
                 {isOwner &&
                   <div className='buttons'>
-                    <Link className='mt-2 button is-primary' to={`/edituser/${userData.id}`}>Edit your profile</Link>
-                    <button className={`mt-2 button ${tab !== 'Listings' && 'is-primary'}`} onClick={() => updateTab('Listings')}>Listings</button>
-                    <button className={`mt-2 button ${tab !== 'Orders' && 'is-primary'}`} onClick={() => updateTab('Orders')}>Order history</button>
-                    <button className={`mt-2 button ${tab !== 'Wishlist' && 'is-primary'}`} onClick={() => updateTab('Wishlist')}>Wishlist</button>
+
+                    <button className={`mt-2 button ${tab === 'Listings' && 'is-primary'}`} onClick={() => updateTab('Listings')}>Listings</button>
+                    <button className={`mt-2 button ${tab === 'Sold' && 'is-primary'}`} onClick={() => updateTab('Sold')}>Sold items</button>
+                    <button className={`mt-2 button ${tab === 'Orders' && 'is-primary'}`} onClick={() => updateTab('Orders')}>Order history</button>
+                    <button className={`mt-2 button ${tab === 'Wishlist' && 'is-primary'}`} onClick={() => updateTab('Wishlist')}>Wishlist</button>
                   </div>
                 }
               </div>
@@ -120,7 +123,7 @@ function Profile({ match }) {
                     </div>}
                   </div>
 
-                  {userData.product.length === 0 ?
+                  {userData.product.filter(product => product.in_stock === true).length === 0 ?
                     <p>No products listed yet</p>
                     :
                     <div>
@@ -128,7 +131,7 @@ function Profile({ match }) {
                         onChange={handlePageChange}
                         pageNum={pageNumListings}
                         location='Listings'
-                        totalResults={userData.product.length}
+                        totalResults={userData.product.filter(product => product.in_stock === true).length}
                         resultsPerPage={resultsPerPage}
                       />
                       <div className='columns is-multiline'>
@@ -157,62 +160,57 @@ function Profile({ match }) {
 
 
               }
+            </>
+          }
 
 
-
+          {tab === 'Sold' &&
+            <>
               {isOwner &&
-                <>
-                  {userData.product &&
-
-
-                    <div className='box'>
-                      <div className='columns is-vcentered'>
-                        <div className='column'>
-                          <h5 className='title is-size-3'>Sold items</h5>
-                        </div> 
-                      </div>
-
-                      {userData.product.length === 0 ?
-                        <p>No products sold yet</p>
-                        :
-                        <div>
-                          <Paginate
-                            onChange={handlePageChange}
-                            pageNum={pageNumListings}
-                            location='Listings'
-                            totalResults={userData.product.length}
-                            resultsPerPage={resultsPerPage}
-                          />
-                          <div className='columns is-multiline'>
-                            {userData.product.filter(product => product.in_stock === false).slice((pageNumListings - 1) * resultsPerPage, ((pageNumListings - 1) * resultsPerPage) + resultsPerPage).map((product, index) => {
-                              return <ProductCard
-                                key={index}
-                                location='Sold'
-                                productId={product.id}
-                                productName={product.product_name}
-                                productImage={product.product_image}
-                                productPrice={product.price}
-                                productSize={product.size}
-                                productCategory={product.category}
-                                productCondition={product.condition}
-                                productGender={product.gender}
-                                productDescription={product.description}
-                                userId={match.params.userId}
-                                removeFromWishlist={removeFromWishlist}
-                              />
-                            })}
-                          </div>
+                <div className='box'>
+                  <h5 className='title is-size-3'>Sold items</h5>
+                  {userData.product && <div>
+                    {userData.product.filter(product => product.in_stock === false).length === 0 ?
+                      <p>No products sold yet</p>
+                      :
+                      <div>
+                        <Paginate
+                          onChange={handlePageChange}
+                          pageNum={pageNumOrders}
+                          location='Orders'
+                          totalResults={userData.product.filter(product => product.in_stock === false).length}
+                          resultsPerPage={resultsPerPage}
+                        />
+                        <div className='columns is-multiline'>
+                          {userData.product.filter(product => product.in_stock === false).slice((pageNumOrders - 1) * resultsPerPage, ((pageNumOrders - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
+                            return <ProductCard
+                              key={index}
+                              location='Orders'
+                              productId={item.id}
+                              productName={item.product_name}
+                              productImage={item.product_image}
+                              productPrice={item.price}
+                              productSize={item.size}
+                              productCategory={item.category}
+                              productCondition={item.condition}
+                              productGender={item.gender}
+                              productDescription={item.description}
+                              purchaseDate={item.created_at}
+                              userId={match.params.userId}
+                            />
+                          })}
                         </div>
-                      }
-
-                    </div>
-
-
-                  }
-                </>
+                      </div>
+                    }
+                  </div>}
+                </div>
               }
             </>
           }
+
+
+
+
           {tab === 'Orders' &&
             <>
               {isOwner &&
@@ -264,7 +262,7 @@ function Profile({ match }) {
                 <div className='box'>
                   <h5 className='title is-size-3'>Wishlist</h5>
                   {userData.wishlist && <div>
-                    {userData.wishlist.length === 0 ?
+                    {userData.wishlist.filter(product => product.product.in_stock === true).length === 0 ?
                       <p>No products saved to wishlist</p>
                       :
                       <div>
@@ -272,11 +270,11 @@ function Profile({ match }) {
                           onChange={handlePageChange}
                           pageNum={pageNumWishlist}
                           location='Wishlist'
-                          totalResults={userData.wishlist.length}
+                          totalResults={userData.wishlist.filter(product => product.product.in_stock === true).length}
                           resultsPerPage={resultsPerPage}
                         />
                         <div className='columns is-multiline'>
-                          {userData.wishlist.slice((pageNumWishlist - 1) * resultsPerPage, ((pageNumWishlist - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
+                          {userData.wishlist.filter(product => product.product.in_stock === true).slice((pageNumWishlist - 1) * resultsPerPage, ((pageNumWishlist - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
                             return <ProductCard
                               key={index}
                               location='Wishlist'

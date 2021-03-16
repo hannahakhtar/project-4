@@ -172,3 +172,23 @@ footer .logo {
 .bm--card-equal-height .card-footer {
   margin-top: auto;
 }
+
+.order-confirmation-div {
+  margin-top: 250px;
+  margin-bottom: -250px;
+}
+
+.order-confirmation-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.order-confirmation {
+  font-size: 25px;
+  margin: 10px;
+}
+
+.order-confirmation-button {
+  margin-top: 10px;
+}
