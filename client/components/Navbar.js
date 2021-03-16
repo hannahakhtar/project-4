@@ -40,7 +40,7 @@ function Navbar({ history }) {
     history.push('/login')
   }
 
- 
+
 
   return <nav className='navbar' role='navigation' aria-label='main navigation'>
 

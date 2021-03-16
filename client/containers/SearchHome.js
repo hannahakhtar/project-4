@@ -59,11 +59,11 @@ function SearchHome() {
             <div className="carousel-wrapper">
               <Carousel infiniteLoop autoPlay showArrows showStatus={false} centerMode showThumbs={false} show={4}>
                 {allCategories.map((category, index) => {
-                  return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile categories">
+                  return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile categories cat-button">
                     <Link key={category} to={{
                       pathname: `/search-results/${category}`
                     }}>
-                      <div className="card" >
+                      <div className="card">
                         <div className="card-content">
                           <div className="media">
                             <div className="media-content">
