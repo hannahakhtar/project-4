@@ -9,13 +9,8 @@ list_product = [
         description="White Puma trainers - only used a few times",
         category="Shoes",
         price=20.00,
-<<<<<<< HEAD
-        condition="Used",
-        in_stock=False,
-=======
         condition="Worn occasionally - good condition",
         in_stock=True,
->>>>>>> development
         gender="Unisex",
         user_id=1
     ),
@@ -27,13 +22,8 @@ list_product = [
         description="Khaki coloured dress - never worn",
         category="Dresses",
         price=20.00,
-<<<<<<< HEAD
-        condition="New",
-        in_stock=False,
-=======
         condition="Brand new with tags",
         in_stock=True,
->>>>>>> development
         gender="Womens",
         user_id=1
     ),
@@ -189,18 +179,13 @@ list_product = [
         description="Black New York Yankies cap",
         category="Other",
         price=20.00,
-<<<<<<< HEAD
-        condition="New",
-        in_stock=False,
-=======
         condition="Worn occasionally - good condition",
         in_stock=True,
->>>>>>> development
         gender="Unisex",
         user_id=3
     ),
         Product(
-        product_name="Unworn Calvin Klien boxers - three pack",
+        product_name="Unworn Calvin Klein boxers - three pack",
         product_image="http://placehold.it/600x400",
         brand="Calvin Klien",
         size="Large",
