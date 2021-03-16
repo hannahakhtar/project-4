@@ -14,6 +14,7 @@ import Checkout from './containers/Checkout'
 import SingleProduct from './containers/SingleProduct'
 import EditUser from './containers/EditUser'
 import OrderConfirmation from './containers/OrderConfirmation'
+import About from './containers/About'
 import Footer from './components/Footer'
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/order-confirmation" component={OrderConfirmation} />
+        <Route exact path="/about" component={About} />
       </Switch>
       <Footer></Footer>
     </BrowserRouter>

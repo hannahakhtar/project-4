@@ -89,20 +89,19 @@ function SearchHome() {
         <div className="container">
           <div className="columns is-multiline">
             {featuredItems.map((item, index) => {
-              return <>
-                  < ProductCard
-                    key={index}
-                    productId={item.id}
-                    productName={item.product_name}
-                    productImage={item.product_image}
-                    productPrice={item.price}
-                    productSize={item.size}
-                    productCategory={item.category}
-                    productCondition={item.condition}
-                    productGender={item.gender}
-                    productDescription={item.description}
-                  />
-              </>
+              return < ProductCard
+                key={index}
+                productId={item.id}
+                productName={item.product_name}
+                productImage={item.product_image}
+                productPrice={item.price}
+                productSize={item.size}
+                productCategory={item.category}
+                productCondition={item.condition}
+                productGender={item.gender}
+                productDescription={item.description}
+              />
+
             })}
           </div>
         </div>
