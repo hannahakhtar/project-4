@@ -3,11 +3,12 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
-function Checkout({ location, history }) {
+function Checkout({ location }) {
 
   const product = location.state
   const { register, handleSubmit, errors } = useForm()
   const [errorbox, updateErrorbox] = useState('')
+  const token = localStorage.getItem('token')
   // const [checkout, updateCheckout] = useState('')
   // const [showModal, updateShowModal] = useState(false)
 
@@ -36,14 +37,20 @@ function Checkout({ location, history }) {
     'in_stock': false
   }
 
+  // End point needed for posting to order history
+
+  // async function saveToOrderHistory() {
+  //   const { data } = await axios.post(``, {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   })
+  //   console.log(data)
+  // }
+
   async function handleSubmitProduct() {
     const { data } = await axios.put(`/api/products/${product.product.id}`, purchased, {
-      // headers: { Authorization: `Bearer ${token}` }
-      headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlhdCI6MTYxNTgxNTkwNywiZXhwIjoxNjE1OTAyMzA3fQ.tgZmZZ8sFG9cBVxUzZKAU12ojcPNdZ_04GivWiBF03w' }
-      
+      headers: { Authorization: `Bearer ${token}` }
     })
     console.log(data)
-    history.push('/search-home')
   }
 
   const imageStyle = {
@@ -191,13 +198,15 @@ function Checkout({ location, history }) {
         <h3>Total plus shipping:</h3>
         <h3>£{(product.product.price + shipping).toFixed(2)}</h3>
 
+        {product.product.id && <Link to={'/search-home'}><button
+          className='button is-info mr-3'
+          onClick={handleSubmitProduct}
+        >
+          Continue
+        </button></Link>}
+
       </form >
-      {product.product.id && <button
-        className='button is-info mr-3'
-        onClick={handleSubmitProduct}
-      >
-        Continue
-      </button>}
+
       <Link to={`products/${product.product.id}`}><button className='button is-info'>Continue Shopping</button></Link>
       <div className='mt-4'>
         <small>Please note, this is just a project and real card details should not be entered</small>

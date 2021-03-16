@@ -141,7 +141,7 @@ function Profile({ match }) {
                         productCondition={product.condition}
                         productGender={product.gender}
                         productDescription={product.description}
-                        userId={LoggedInUserId}
+                        userId={match.params.userId}
                         removeFromWishlist={removeFromWishlist}
                       />
                     })}
@@ -185,7 +185,7 @@ function Profile({ match }) {
                           productGender={item.product.gender}
                           productDescription={item.product.description}
                           purchaseDate={item.created_at}
-                          userId={LoggedInUserId}
+                          userId={match.params.userId}
                           removeFromWishlist={removeFromWishlist}
                         />
                       })}
@@ -229,7 +229,7 @@ function Profile({ match }) {
                           productCondition={item.product.condition}
                           productGender={item.product.gender}
                           productDescription={item.product.description}
-                          userId={LoggedInUserId}
+                          userId={match.params.userId}
                           removeFromWishlist={removeFromWishlist}
                         />
                       })}

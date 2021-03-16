@@ -1,11 +1,9 @@
 import React from 'react'
-import Moment from 'moment' 
+import { getLoggedInUserId } from '../lib/auth.js'
 
-const ProductCard = ({ location, productId, productName, productImage, productPrice, productSize, productCategory, productCondition, productGender, productDescription, purchaseDate, userId, removeFromWishlist }) => {
+const ProductCard = ({ location, productId, productName, productImage, productPrice, productSize, productDescription, purchaseDate, userId, removeFromWishlist }) => {
 
   var moment = require('moment')
-
- 
 
   return <div className='column is-one-quarter'>
 
@@ -33,7 +31,11 @@ const ProductCard = ({ location, productId, productName, productImage, productPr
 
         <a href={`/products/${productId}`} className='card-footer-item'>View</a>
 
-        {location === 'Listings' && <a href={`/productform/${productId}`} className='card-footer-item'>Edit</a>}
+        {location === 'Listings' && <>
+          {parseInt(getLoggedInUserId()) === parseInt(userId) &&
+            <a href={`/productform/${productId}`} className='card-footer-item'>Edit</a>
+          }
+        </>}
 
         {location === 'Wishlist' && <a className='card-footer-item' onClick={() => removeFromWishlist(productId, userId)}>Remove</a>}
       </footer>

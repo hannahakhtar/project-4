@@ -62,7 +62,7 @@ list_product = [
         category="Other",
         price=5.00,
         condition="New",
-        in_stock=True,
+        in_stock=False,
         gender="Unisex",
         user_id=2
     ),
