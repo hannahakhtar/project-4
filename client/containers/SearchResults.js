@@ -316,15 +316,15 @@ function SearchResults({ match }) {
 
   if (filteredResults.length === 0) {
     displaySearchResults = <>
-      <p>Sorry, there are no results matching your search. Try again?</p>
-      <Link className="button" to={{ pathname: '/search-home' }}>Back to search</Link>
+      <p className="no-search-results">Sorry, there are no results matching your search. Try again?</p>
+      <button className="button is-primary" to={{ pathname: '/search-home' }}>Back to search</button>
     </>
   }
 
   if (furtherFilteredResults.length === 0) {
     displaySearchResults = <>
-      <p>Sorry, there are no results matching your search. Try again?</p>
-      <Link className="button" to={{ pathname: '/search-home' }}>Back to search</Link>
+      <p className="no-search-results">Sorry, there are no results matching your search. Try again?</p>
+      <button className="button is-primary" to={{ pathname: '/search-home' }}>Back to search</button>
     </>
   }
 
@@ -440,9 +440,9 @@ function SearchResults({ match }) {
           </div>}
         </div>
       </div>
-      <button className="button" onClick={clearFilters}>Clear filters</button>
+      <button className="button is-primary" onClick={clearFilters}>Clear filters</button>
     </section>
-    <section>
+    <section className="display-search-results">
       {displaySearchResults}
     </section>
   </>
