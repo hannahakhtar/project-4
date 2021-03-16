@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-// import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { getLoggedInUserId } from '../lib/auth'
 import Navbar from '../components/Navbar'
@@ -57,7 +56,7 @@ function SearchHome() {
         <div className="container carousel-container">
           <div className="columns is-multiline is-mobile">
             <div className="carousel-wrapper">
-              <Carousel infiniteLoop autoPlay showArrows showStatus={false} centerMode showThumbs={false} show={4}>
+              <Carousel show={4}>
                 {allCategories.map((category, index) => {
                   return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile categories cat-button">
                     <Link key={category} to={{

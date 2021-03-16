@@ -41,7 +41,6 @@ function Navbar({ history }) {
   }
 
 
-
   return <nav className='navbar' role='navigation' aria-label='main navigation'>
 
 
