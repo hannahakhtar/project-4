@@ -43,7 +43,7 @@ function SearchHome() {
     <Navbar />
     <section>
       <form className="search-home-form" onSubmit={handleSubmit}>
-        <input className="input" type="text" placeholder="search Garms" onChange={(e) => updateSearch(e.target.value)} />
+        <input className="input" type="text" placeholder="Search Garms" onChange={(e) => updateSearch(e.target.value)} />
         <Link className="button is-primary search-home-button" value="search" to={{
           pathname: `/search-results/${search}`
         }}>Click to search</Link>
