@@ -7,7 +7,6 @@ function Login({ match, history }) {
   const { register, handleSubmit, errors } = useForm()
   const [errorbox, updateErrorbox] = useState('')
 
-
   async function onSubmit(data) {
 
     updateErrorbox('')
@@ -29,7 +28,6 @@ function Login({ match, history }) {
       console.log(err.response.data)
     }
   }
-
 
   return <>
     <Navbar />
