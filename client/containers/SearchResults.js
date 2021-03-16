@@ -22,6 +22,7 @@ function SearchResults({ match }) {
   const [categoryIsShown, updateCategoryIsShown] = useState(false)
   const [priceIsShown, updatePriceIsShown] = useState(false)
   const [conditionIsShown, updateConditionIsShown] = useState(false)
+  const [sortByIsShown, updateSortByIsShown] = useState(false)
 
   const currentUser = getLoggedInUserId()
   const priceRanges = [
@@ -30,6 +31,7 @@ function SearchResults({ match }) {
     { 'displayPrice': '£25 - £49.99', 'minPrice': 25, 'maxPrice': 49.99 },
     { 'displayPrice': '£50+', 'minPrice': 50, 'maxPrice': 10000 }
   ]
+  const sortingResults = ['Low - High', 'High - Low']
 
   async function fetchAllProducts() {
     const { data } = await axios.get('/api/products')
@@ -160,6 +162,26 @@ function SearchResults({ match }) {
     }
   }
 
+  function handleSortByHover(result) {
+    console.log(result)
+    console.log(furtherFilteredResults)
+    try {
+      if (result === 'Low - High') {
+        furtherFilteredResults.sort(function (a, b) {
+          return a.price - b.price
+        })
+      } 
+      if (result === 'High - Low') {
+        furtherFilteredResults.sort(function (a, b) {
+          return b.price - a.price
+        })
+      } 
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+
   function handleGenderButtonMouseEnter() {
     if (!genderIsShown) {
       updateGenderIsShown(true)
@@ -224,7 +246,16 @@ function SearchResults({ match }) {
     const dropdown = document.querySelector('.conditionDropdown')
     dropdown.classList.toggle('is-active')
     updateConditionIsShown(true)
+  }
 
+  function handleSortByButtonMouseEnter() {
+    if (!sortByIsShown) {
+      updateSortByIsShown(true)
+    } else {
+      updateSortByIsShown(false)
+    }
+    const dropdown = document.querySelector('.sortByDropdown')
+    dropdown.classList.toggle('is-active')
   }
 
   function genderNoOfItems(gender) {
@@ -290,26 +321,26 @@ function SearchResults({ match }) {
 
   if (furtherFilteredResults.length > 0) {
     displaySearchResults = <>
-        <div className="container search-results-container">
-          <div className="columns is-multiline">
-            {furtherFilteredResults.map((item, index) => {
-              return <>
-                  < ProductCard
-                    key={index}
-                    productId={item.id}
-                    productName={item.product_name}
-                    productImage={item.product_image}
-                    productPrice={item.price}
-                    productSize={item.size}
-                    productCategory={item.category}
-                    productCondition={item.condition}
-                    productGender={item.gender}
-                    productDescription={item.description}
-                  />
-              </>
-            })}
-          </div>
+      <div className="container search-results-container">
+        <div className="columns is-multiline">
+          {furtherFilteredResults.map((item, index) => {
+            return <>
+              < ProductCard
+                key={index}
+                productId={item.id}
+                productName={item.product_name}
+                productImage={item.product_image}
+                productPrice={item.price}
+                productSize={item.size}
+                productCategory={item.category}
+                productCondition={item.condition}
+                productGender={item.gender}
+                productDescription={item.description}
+              />
+            </>
+          })}
         </div>
+      </div>
     </>
   }
 
@@ -434,6 +465,23 @@ function SearchResults({ match }) {
             <div className="dropdown-content">
               {conditions.map((condition, index) => {
                 return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleConditionHover(condition)}>{condition} ({conditionNoOfItems(condition)})</div>
+              })}
+            </div>
+          </div>}
+        </div>
+      </div>
+      <div className="sortByDropdown dropdown">
+        <div className="dropdown-trigger">
+          <button className="button is-primary cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleSortByButtonMouseEnter()}>
+            <span>Sort results</span>
+            <span className="icon is-small">
+              <i className="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+          {sortByIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleSortByButtonMouseEnter()}>
+            <div className="dropdown-content">
+              {sortingResults.map((result, index) => {
+                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleSortByHover(result)}>{result}</div>
               })}
             </div>
           </div>}
