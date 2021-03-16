@@ -27,12 +27,12 @@ function randomSelection() {
         <div className="columns is-multiline is-mobile">
           {featuredItems.map((item, index) => {
             return <div key={index} className="column is-one-third-desktop is-one-third-tablet is-half-mobile">
-              <Link to={`/products/${item.id}`}>
+              <Link to={`/products/${item.id}`} >
                 <section>
                   <div className="card">
                     <div className="card-image pt-5">
                       <figure className="image is-4by3 mr-5 ml-5">
-                        <img src={item.product_image} alt={item.product_image} />
+                        <img src={item.product_image} alt={item.product_name} />
                       </figure>
                     </div>
                     <div className="card-content">
