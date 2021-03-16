@@ -27,7 +27,7 @@ function randomSelection() {
         <div className="columns is-multiline is-mobile">
           {featuredItems.map((item, index) => {
             return <div key={index} className="column is-one-third-desktop is-one-third-tablet is-half-mobile">
-              <Link to={`/products/${item.id}`}>
+              <Link to={`/products/${item.id}`} >
                 <section>
                   <div className="card">
                     <div className="card-image pt-5">

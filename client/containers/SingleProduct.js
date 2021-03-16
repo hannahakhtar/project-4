@@ -28,7 +28,7 @@ function SingleProduct({ match, history }) {
   useEffect(() => {
     fetchProductData()
     fetchUserData()
-  }, [])
+  }, [match.params.id])
 
   // user.wishlist && user.wishlist.filter(item => item.product.id === product.id) ? <></> : <button className="button is-primary mb-3" onClick={handleWishlist}>Wishlist</button>
 
