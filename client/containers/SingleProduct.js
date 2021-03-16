@@ -121,7 +121,7 @@ function SingleProduct({ match, history }) {
         </div>
         <div>
           <h3 className="title"><strong>{product.product_name}</strong></h3>
-          <p><strong>Description:</strong>{product.description}</p>
+          <p><strong>Description:</strong> {product.description}</p>
         </div>
         <div>
           <p><strong>Size:</strong> {product.size}</p>
