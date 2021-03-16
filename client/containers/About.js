@@ -63,7 +63,7 @@ function About() {
         </div>
         <div className="box about-page">
           <h2 className="about-h2">Founders</h2>
-          <p className="about-p">Garms was founded by <a href="https://github.com/hannahakhtar">Hannah Akhtar</a>, <a href="https://github.com/ikalff">India Kalff</a> & <a href="https://github.com/Jacobaston">Jake Aston</a> for project 4 of <a href="https://generalassemb.ly/">General Assembly’s</a> Software Engeering Immersive.</p>
+          <p className="about-p">Garms was founded by <a href="https://github.com/hannahakhtar">Hannah Akhtar</a>, <a href="https://github.com/ikalff">India</a> & <a href="https://github.com/Jacobaston">Jake Aston</a> for project 4 of <a href="https://generalassemb.ly/">General Assembly’s</a> Software Engeering Immersive.</p>
         </div>
         <div className="box about-page about-page-box-3">
           <h2 className="about-h2">Technologies</h2>
