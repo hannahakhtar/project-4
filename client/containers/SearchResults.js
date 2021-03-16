@@ -167,12 +167,15 @@ function SearchResults({ match }) {
     console.log(furtherFilteredResults)
     try {
       if (result === 'Low - High') {
-        const lowToHigh = furtherFilteredResults.map(result => {
-          return
+        furtherFilteredResults.sort(function (a, b) {
+          return a.price - b.price
         })
-        return lowToHigh
-      }
-
+      } 
+      if (result === 'High - Low') {
+        furtherFilteredResults.sort(function (a, b) {
+          return b.price - a.price
+        })
+      } 
     } catch (err) {
       console.log(err)
     }
