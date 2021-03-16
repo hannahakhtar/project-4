@@ -9,13 +9,8 @@ list_product = [
         description="White Puma trainers - only used a few times",
         category="Shoes",
         price=20.00,
-<<<<<<< HEAD
-        condition="Used",
-        in_stock=False,
-=======
         condition="Worn occasionally - good condition",
-        in_stock=True,
->>>>>>> development
+        in_stock=False,
         gender="Unisex",
         user_id=1
     ),
@@ -27,13 +22,8 @@ list_product = [
         description="Khaki coloured dress - never worn",
         category="Dresses",
         price=20.00,
-<<<<<<< HEAD
-        condition="New",
-        in_stock=False,
-=======
         condition="Brand new with tags",
-        in_stock=True,
->>>>>>> development
+        in_stock=False,
         gender="Womens",
         user_id=1
     ),
@@ -97,7 +87,7 @@ list_product = [
         description="Blue North Face T-shirt with logo on the front and back",
         category="Tops",
         price=11.99,
-        condition="Used",
+        condition="New without tags",
         in_stock=True,
         gender="Mens",
         user_id=2
@@ -110,7 +100,7 @@ list_product = [
         description="Black slim fit jeans",
         category="Bottoms",
         price=14.99,
-        condition="Used",
+        condition="Worn often - some damage/wear",
         in_stock=True,
         gender="Mens",
         user_id=2
@@ -123,7 +113,7 @@ list_product = [
         description="Grey oversized Ralph Lauren hoddie with large logo on the front",
         category="Tops",
         price=34.99,
-        condition="Used",
+        condition="Worn occasionally - good condition",
         in_stock=False,
         gender="Mens",
         user_id=2
@@ -137,7 +127,7 @@ list_product = [
         category="Tops",
         price=5.00,
         condition="Worn occasionally - good condition",
-        in_stock=True,
+        in_stock=False,
         gender="Womens",
         user_id=3
     ),
@@ -189,13 +179,8 @@ list_product = [
         description="Black New York Yankies cap",
         category="Other",
         price=20.00,
-<<<<<<< HEAD
-        condition="New",
-        in_stock=False,
-=======
         condition="Worn occasionally - good condition",
-        in_stock=True,
->>>>>>> development
+        in_stock=False,
         gender="Unisex",
         user_id=3
     ),

@@ -21,33 +21,27 @@ function randomSelection() {
     fetchFeaturedItems()
   }, [])
 
-  const cardStyle = {
-    height: '155px'
-  }
-
   return <>
     <div className="section p-1">
       <div className="container">
         <div className="columns is-multiline is-mobile">
           {featuredItems.map((item, index) => {
-            return <div key={index} className="column is-one-third-desktop is-half-tablet is-half-mobile">
+            return <div key={index} className="column is-one-third-desktop is-one-third-tablet is-half-mobile">
               <Link to={`/products/${item.id}`}>
-                <div className="card" style={cardStyle}>
-                  <div className="card-image">
-                    <figure className="image is 4by3">
-                      <img src={item.product_image} alt={item.product_image} />
-                    </figure>
-                  </div>
-                  <div className="card-content">
-                    <div className="media">
-                      <div className="media-content">
-                        <h2 className="title is-6 is-centered">
-                          {item.product_name}
-                        </h2>
+                <section>
+                  <div className="card">
+                    <div className="card-image pt-5">
+                      <figure className="image is-4by3 mr-5 ml-5">
+                        <img src={item.product_image} alt={item.product_image} />
+                      </figure>
+                    </div>
+                    <div className="card-content">
+                      <div className="content">
+                        <h2 className="title is-6 is-centered">{item.product_name}</h2>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </div >
+                </section>
               </Link>
             </div>
           })}
@@ -58,3 +52,4 @@ function randomSelection() {
 }
 
 export default randomSelection
+

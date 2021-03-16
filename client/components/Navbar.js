@@ -15,8 +15,8 @@ function Navbar({ history }) {
   useEffect(() => {
     async function fetchData() {
       loggedInUserId = getLoggedInUserId()
-      console.log('id:')
-      console.log(loggedInUserId)
+      // console.log('id:')
+      // console.log(loggedInUserId)
       if (!isNaN(loggedInUserId)) {
         try {
           const { data } = await axios.get(`/api/users/${loggedInUserId}`, {
@@ -42,8 +42,8 @@ function Navbar({ history }) {
     history.push('/login')
   }
 
-  console.log('logged in?"')
-  console.log(loggedIn)
+  // console.log('logged in?"')
+  // console.log(loggedIn)
 
   return <nav className='navbar' role='navigation' aria-label='main navigation'>
 
