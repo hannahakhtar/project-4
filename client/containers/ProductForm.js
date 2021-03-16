@@ -138,7 +138,7 @@ export default function ProductForm({ match, history }) {
 
 
 
-          <form handleSubmit={handleSubmit(onSubmit)} >
+          <form onSubmit={handleSubmit(onSubmit)} >
 
             <div className='field'>
               <input
