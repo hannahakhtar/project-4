@@ -13,7 +13,6 @@ function SearchResults({ match }) {
   const [brands, updateBrands] = useState([])
   const [sizes, updateSizes] = useState([])
   const [categories, updateCategories] = useState([])
-  const [prices, updatePrices] = useState([])
   const [conditions, updateConditions] = useState([])
   const [searchResults, updateSearchResults] = useState(match.params.id)
   const [genderIsShown, updateGenderIsShown] = useState(false)
@@ -68,14 +67,6 @@ function SearchResults({ match }) {
     const uniqueCategories = new Set(categories.sort())
     const uniqueCategoriesArray = [...uniqueCategories]
 
-    const prices = inStockArray.map(result => {
-      return result.price
-    })
-    const uniquePrices = new Set(prices.sort(function (a, b) {
-      return a - b
-    }))
-    const uniquePricesArray = [...uniquePrices]
-
     const conditions = inStockArray.map(result => {
       return result.condition
     })
@@ -86,7 +77,6 @@ function SearchResults({ match }) {
     updateBrands(uniqueBrandsArray)
     updateSizes(uniqueSizesArray)
     updateCategories(uniqueCategoriesArray)
-    updatePrices(uniquePricesArray)
     updateConditions(uniqueContitionsArray)
     updateFilteredResults(inStockArray)
     updateFurtherFilteredResults(inStockArray)
