@@ -13,7 +13,7 @@ function SingleProduct({ match, history }) {
   const token = localStorage.getItem('token')
   const [product, updateProduct] = useState({})
   const [user, updateUser] = useState({})
-
+  const [wishlistButton, updateWishlistButton] = useState(true)
 
   async function fetchProductData() {
     const { data } = await axios.get(`/api/products/${productId}`)
