@@ -86,9 +86,6 @@ function SingleProduct({ match, history }) {
     border: '2px solid black'
   }
 
-  console.log(product)
-  console.log(user)
-
   return <>
     <Navbar />
     <div className="container">
@@ -97,7 +94,7 @@ function SingleProduct({ match, history }) {
         {product.user && <Link to={`/users/${product.user.id}`}><h4 className="sub-title m-3 p-1">{product.user.username}</h4></Link>}
       </section>
       <div className="columns is-tablet">
-        <div className="column ml-2 mr-2 pb-0">
+        <div className="column ml-3 mr-3 pb-0">
           <section className="card">
             <div className="card-image">
               <figure className="image is-square">
@@ -114,7 +111,7 @@ function SingleProduct({ match, history }) {
                 : product.in_stock === true
                   ? user.wishlist && user.wishlist.find(item => item.product.id === product.id)
                     ? <></>
-                    : <button className="button is-primary mb-3" onClick={handleWishlist}>Wishlist</button>
+                    : <button className="button is-primary mb-3" onClick={handleWishlist}>Add To Wishlist</button>
                   : <></>}
               {product.user && loggedInUserId === product.user.id
                 ? product.in_stock === false ? <></>
@@ -124,7 +121,7 @@ function SingleProduct({ match, history }) {
           </section>
         </div>
         <div className="column pt-0">
-          <section className="content m-4">
+          <section className="content m-3">
             <div>
               <h3 className="title"><strong>{product.product_name}</strong></h3>
               <p><strong>Description:</strong> {product.description}</p>
@@ -147,7 +144,7 @@ function SingleProduct({ match, history }) {
           <h6 className="has-text-centered mt-3 mb-3 mr-3 p-2">All in app purchases are covered by Buyer Protection</h6>
         </div>
       </section>
-      <section className="content m-4">
+      <section className="content m-3">
         <h4>More things you might like</h4>
         <RandomSelection />
       </section>
