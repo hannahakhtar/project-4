@@ -185,14 +185,14 @@ list_product = [
         user_id=3
     ),
         Product(
-        product_name="Unworn Calvin Klein boxers - three pack",
+        product_name="Calvin Klein boxers - three pack",
         product_image="https://i.ibb.co/qpdZbsj/boxers.jpg",
         brand="Calvin Klien",
         size="Large",
         description="Three pairs of black CK boxers in box - unopened",
         category="Underwear",
         price=20.00,
-        condition="Worn often - some damage/wear",
+        condition="Brand new with tags",
         in_stock=True,
         gender="Mens",
         user_id=2

@@ -96,44 +96,50 @@ function SingleProduct({ match, history }) {
         {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 is-rounded ml-4 m-2 p-1" src={user.image} /></Link>}
         {product.user && <Link to={`/users/${product.user.id}`}><h4 className="sub-title m-3 p-1">{product.user.username}</h4></Link>}
       </section>
-      <div className="columns">
-        <section className="card">
-          <div className="card-image">
-            <figure className="image is-square">
-              <img src={product.product_image} alt={product.product_name} />
-            </figure>
-            {product.in_stock === false ? <h4 className="has-text-centered"><strong className="is-size-1 has-text-danger">Sold</strong></h4> : <></>}
-          </div>
-        </section>
-        <section className="content m-4">
-          <div>
-            {product.user && loggedInUserId === product.user.id
-              ? product.in_stock === false ? <></>
-                : <Link to={`/productform/${productId}`}><button className="button is-primary mb-3 mr-1">Edit</button></Link>
-              : product.in_stock === true
-                ? user.wishlist && user.wishlist.find(item => item.product.id === product.id)
-                  ? <></>
-                  : <button className="button is-primary mb-3" onClick={handleWishlist}>Wishlist</button>
+      <div className="columns is-tablet">
+        <div className="column ml-2 mr-2 pb-0">
+          <section className="card">
+            <div className="card-image">
+              <figure className="image is-square">
+                <img src={product.product_image} alt={product.product_name} />
+              </figure>
+              {product.in_stock === false ? <h4 className="has-text-centered"><strong className="is-size-1 has-text-danger">Sold</strong></h4> : <></>}
+            </div>
+          </section>
+          <section className="content mt-4 mb-4">
+            <div>
+              {product.user && loggedInUserId === product.user.id
+                ? product.in_stock === false ? <></>
+                  : <Link to={`/productform/${productId}`}><button className="button is-primary mb-3 mr-1">Edit</button></Link>
+                : product.in_stock === true
+                  ? user.wishlist && user.wishlist.find(item => item.product.id === product.id)
+                    ? <></>
+                    : <button className="button is-primary mb-3" onClick={handleWishlist}>Wishlist</button>
+                  : <></>}
+              {product.user && loggedInUserId === product.user.id
+                ? product.in_stock === false ? <></>
+                  : <button className="button is-primary mb-3" onClick={handleDelete}>Delete</button>
                 : <></>}
-            {product.user && loggedInUserId === product.user.id
-              ? product.in_stock === false ? <></>
-                : <button className="button is-primary mb-3" onClick={handleDelete}>Delete</button>
-              : <></>}
-          </div>
-          <div>
-            <h3 className="title"><strong>{product.product_name}</strong></h3>
-            <p><strong>Description:</strong> {product.description}</p>
-          </div>
-          <div>
-            <p><strong>Size:</strong> {product.size}</p>
-            <p><strong>Condition:</strong> {product.condition}</p>
-            <p><strong>Brand:</strong> {product.brand}</p>
-          </div>
-          <div>
-            <strong><p>Price: £{product.price}</p></strong>
-          </div>
-          <div>{handleInStock()}</div>
-        </section>
+            </div>
+          </section>
+        </div>
+        <div className="column pt-0">
+          <section className="content m-4">
+            <div>
+              <h3 className="title"><strong>{product.product_name}</strong></h3>
+              <p><strong>Description:</strong> {product.description}</p>
+            </div>
+            <div>
+              <p><strong>Size:</strong> {product.size}</p>
+              <p><strong>Condition:</strong> {product.condition}</p>
+              <p><strong>Brand:</strong> {product.brand}</p>
+            </div>
+            <div>
+              <strong><p>Price: £{product.price}</p></strong>
+            </div>
+            <div>{handleInStock()}</div>
+          </section>
+        </div>
       </div>
       <section className="content" style={boxStyle}>
         <div className="content m-4 is-flex" style={borderStyle}>
