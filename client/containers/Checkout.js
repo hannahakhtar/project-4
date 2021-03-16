@@ -110,7 +110,7 @@ function Checkout({ location }) {
 
         {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
+        <form onSubmit={handleSubmit(onSubmit), handleSubmitProduct()} className="mb-4">
 
           <h3 className="mt-3 mb-3">Enter your address details</h3>
 
@@ -231,7 +231,7 @@ function Checkout({ location }) {
           {/* {product.product.id && <Link to={'/search-home'}> */}
           <button
             className='button is-info mr-3'
-            onClick={handleSubmitProduct}
+            // onSubmit={handleSubmitProduct}
           >
             Continue
           </button>
