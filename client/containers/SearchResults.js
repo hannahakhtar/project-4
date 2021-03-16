@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { getLoggedInUserId } from '../lib/auth'
 import Navbar from '../components/Navbar'
+import ProductCard from '../components/ProductCard.js'
 
 function SearchResults({ match }) {
 
@@ -290,34 +291,22 @@ function SearchResults({ match }) {
     displaySearchResults = <>
       <div className="section">
         <div className="container">
-          <div className="columns is-multiline is-mobile">
+          <div className="columns is-multiline">
             {furtherFilteredResults.map((item, index) => {
-              return <div key={index} className="column is-one-third-desktop is-half-tablet is-full-mobile">
-                <Link key={item.id} to={{
-                  pathname: `/products/${item.id}`,
-                  state: { item }
-                }}>
-                  <div className="card">
-                    <div className="card-image">
-                      <figure className="image is 4by3">
-                        <img src={item.product_image} alt={item.product_image} />
-                      </figure>
-                    </div>
-                    <div className="card-content">
-                      <div className="media">
-                        <div className="media-content">
-                          <h2 className="title is-6 is-centered">
-                            {item.product_name}
-                          </h2>
-                        </div>
-                      </div>
-                      <div className="content">
-                        £{item.price}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </div>
+              return <>
+                  < ProductCard
+                    key={index}
+                    productId={item.id}
+                    productName={item.product_name}
+                    productImage={item.product_image}
+                    productPrice={item.price}
+                    productSize={item.size}
+                    productCategory={item.category}
+                    productCondition={item.condition}
+                    productGender={item.gender}
+                    productDescription={item.description}
+                  />
+              </>
             })}
           </div>
         </div>

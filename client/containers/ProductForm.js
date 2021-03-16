@@ -222,8 +222,6 @@ export default function ProductForm({ match, history }) {
           </div>
         }
 
-
-
         {!loading &&
           <div className='field'>
             <div className={`is-fullwidth select ${errors.category && 'is-danger'}`}>
