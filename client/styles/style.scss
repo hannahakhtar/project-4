@@ -1,3 +1,52 @@
 @import "../../node_modules/bulma/bulma.sass";
 
+$light-grey: #f4f5f7;
+$primary: #b139f6;
+$secondary: #fafbfc;
+$text-subtle: #ffffff;
+$warning: #FF5454;
+$default-radius: 30px;
+$font-primary: 'Nunito', sans-serif;
+
+
 .profile-image{width: 80px; height: 80px; border-radius: 50%;}
+
+// ! search home styling
+
+.search-home-form {
+  display: flex;
+  margin: 20px;
+}
+
+.search-home-button {
+  margin-left: 10px;
+}
+
+.search-home-headings {
+  text-align: center;
+  font-size: 30px;
+}
+
+.carousel-container {
+  border: 1px solid black;
+}
+
+// ! search results styling
+
+.search-results-filters-div {
+  display: flex;
+}
+
+.search-results-filters {
+  display: flex;
+}
+
+.search-results-searched-word {
+  text-align: center;
+  font-size: 30px;
+  margin: 30px;
+}
+
+.search-results-dropdown:hover {
+  background-color: lightblue;
+}
