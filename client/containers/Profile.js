@@ -94,6 +94,7 @@ function Profile({ match }) {
                   <div className='buttons'>
                     <Link className='mt-2 button is-primary' to={`/edituser/${userData.id}`}>Edit your profile</Link>
                     <button className={`mt-2 button ${tab !== 'Listings' && 'is-primary'}`} onClick={() => updateTab('Listings')}>Listings</button>
+                    <button className={`mt-2 button ${tab !== 'Sold' && 'is-primary'}`} onClick={() => updateTab('Sold')}>Sold items</button>
                     <button className={`mt-2 button ${tab !== 'Orders' && 'is-primary'}`} onClick={() => updateTab('Orders')}>Order history</button>
                     <button className={`mt-2 button ${tab !== 'Wishlist' && 'is-primary'}`} onClick={() => updateTab('Wishlist')}>Wishlist</button>
                   </div>
@@ -157,62 +158,57 @@ function Profile({ match }) {
 
 
               }
+            </>
+          }
 
 
-
+          {tab === 'Sold' &&
+            <>
               {isOwner &&
-                <>
-                  {userData.product &&
-
-
-                    <div className='box'>
-                      <div className='columns is-vcentered'>
-                        <div className='column'>
-                          <h5 className='title is-size-3'>Sold items</h5>
-                        </div> 
-                      </div>
-
-                      {userData.product.filter(product => product.in_stock === false).length === 0 ?
-                        <p>No products sold yet</p>
-                        :
-                        <div>
-                          <Paginate
-                            onChange={handlePageChange}
-                            pageNum={pageNumListings}
-                            location='Listings'
-                            totalResults={userData.product.filter(product => product.in_stock === false).length}
-                            resultsPerPage={resultsPerPage}
-                          />
-                          <div className='columns is-multiline'>
-                            {userData.product.filter(product => product.in_stock === false).slice((pageNumListings - 1) * resultsPerPage, ((pageNumListings - 1) * resultsPerPage) + resultsPerPage).map((product, index) => {
-                              return <ProductCard
-                                key={index}
-                                location='Sold'
-                                productId={product.id}
-                                productName={product.product_name}
-                                productImage={product.product_image}
-                                productPrice={product.price}
-                                productSize={product.size}
-                                productCategory={product.category}
-                                productCondition={product.condition}
-                                productGender={product.gender}
-                                productDescription={product.description}
-                                userId={match.params.userId}
-                                removeFromWishlist={removeFromWishlist}
-                              />
-                            })}
-                          </div>
+                <div className='box'>
+                  <h5 className='title is-size-3'>Sold items</h5>
+                  {userData.product && <div>
+                    {userData.product.filter(product => product.in_stock === false).length === 0 ?
+                      <p>No products sold yet</p>
+                      :
+                      <div>
+                        <Paginate
+                          onChange={handlePageChange}
+                          pageNum={pageNumOrders}
+                          location='Orders'
+                          totalResults={userData.product.filter(product => product.in_stock === false).length}
+                          resultsPerPage={resultsPerPage}
+                        />
+                        <div className='columns is-multiline'>
+                          {userData.product.filter(product => product.in_stock === false).slice((pageNumOrders - 1) * resultsPerPage, ((pageNumOrders - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
+                            return <ProductCard
+                              key={index}
+                              location='Orders'
+                              productId={item.id}
+                              productName={item.product_name}
+                              productImage={item.product_image}
+                              productPrice={item.price}
+                              productSize={item.size}
+                              productCategory={item.category}
+                              productCondition={item.condition}
+                              productGender={item.gender}
+                              productDescription={item.description}
+                              purchaseDate={item.created_at}
+                              userId={match.params.userId}
+                            />
+                          })}
                         </div>
-                      }
-
-                    </div>
-
-
-                  }
-                </>
+                      </div>
+                    }
+                  </div>}
+                </div>
               }
             </>
           }
+
+
+
+
           {tab === 'Orders' &&
             <>
               {isOwner &&
