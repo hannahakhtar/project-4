@@ -89,14 +89,16 @@ function Profile({ match }) {
               <div className='column is-narrow'>
                 <h1 className='title is-size-3 mb-1'>{userData.username}</h1>
 
-                <p><i className='fas fa-map-marker-alt mr-1'></i> {userData.location}</p>
+                <p><i className='fas fa-map-marker-alt mr-1'></i> {userData.location} 
+                  {isOwner && <span className='purpletext'><i className='fas fa-pen mr-1 ml-4'></i><Link className='mt-2 is-primary purpletext' to={`/edituser/${userData.id}`}>Edit profile</Link></span>}
+                </p>
                 {isOwner &&
                   <div className='buttons'>
-                    <Link className='mt-2 button is-primary' to={`/edituser/${userData.id}`}>Edit your profile</Link>
-                    <button className={`mt-2 button ${tab !== 'Listings' && 'is-primary'}`} onClick={() => updateTab('Listings')}>Listings</button>
-                    <button className={`mt-2 button ${tab !== 'Sold' && 'is-primary'}`} onClick={() => updateTab('Sold')}>Sold items</button>
-                    <button className={`mt-2 button ${tab !== 'Orders' && 'is-primary'}`} onClick={() => updateTab('Orders')}>Order history</button>
-                    <button className={`mt-2 button ${tab !== 'Wishlist' && 'is-primary'}`} onClick={() => updateTab('Wishlist')}>Wishlist</button>
+
+                    <button className={`mt-2 button ${tab === 'Listings' && 'is-primary'}`} onClick={() => updateTab('Listings')}>Listings</button>
+                    <button className={`mt-2 button ${tab === 'Sold' && 'is-primary'}`} onClick={() => updateTab('Sold')}>Sold items</button>
+                    <button className={`mt-2 button ${tab === 'Orders' && 'is-primary'}`} onClick={() => updateTab('Orders')}>Order history</button>
+                    <button className={`mt-2 button ${tab === 'Wishlist' && 'is-primary'}`} onClick={() => updateTab('Wishlist')}>Wishlist</button>
                   </div>
                 }
               </div>
