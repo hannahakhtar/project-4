@@ -39,17 +39,13 @@
 
 // ! search results styling
 
-// .search-results-container {
-//   margin-top: -60px;
-// }
-
 .cat-dropdown {
   margin-top: 5px;
 }
 .search-results-filters-div {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .search-results-filters {
