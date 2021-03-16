@@ -32,7 +32,7 @@ function randomSelection() {
                   <div className="card">
                     <div className="card-image pt-5">
                       <figure className="image is-4by3 mr-5 ml-5">
-                        <img src={item.product_image} alt={item.product_image} />
+                        <img src={item.product_image} alt={item.product_name} />
                       </figure>
                     </div>
                     <div className="card-content">

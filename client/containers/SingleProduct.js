@@ -86,17 +86,20 @@ function SingleProduct({ match, history }) {
     border: '2px solid black'
   }
 
+  console.log(product)
+  console.log(user)
+
   return <>
     <Navbar />
     <div className="container">
       <section className="content is-flex mb-0">
-        {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 is-rounded ml-4 m-2 p-1" src={'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'} /></Link>}
+        {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 is-rounded ml-4 m-2 p-1" src={user.image} /></Link>}
         {product.user && <Link to={`/users/${product.user.id}`}><h4 className="sub-title m-3 p-1">{product.user.username}</h4></Link>}
       </section>
       <section className="card">
         <div className="card-image">
           <figure className="image is-square">
-            <img src={'https://www.crewclothing.co.uk/images/products/large/MLC004_MIDGRYMRL.jpg'} alt="Placeholder image" />
+            <img src={product.product_image} alt={product.product_name} />
           </figure>
           {product.in_stock === false ? <h4 className="has-text-centered"><strong className="is-size-1 has-text-danger">Sold</strong></h4> : <></>}
         </div>
