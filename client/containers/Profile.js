@@ -15,7 +15,7 @@ function Profile({ match }) {
   const [pageNumListings, updatePageNumListings] = useState(1)
   const [pageNumOrders, updatePageNumOrders] = useState(1)
   const [pageNumWishlist, updatePageNumWishlist] = useState(1)
-  const [tab, updateTab] = useState('Listings')
+  const [tab, updateTab] = useState('Wishlist')
   const resultsPerPage = 4
   const LoggedInUserId = getLoggedInUserId()
 
@@ -57,9 +57,9 @@ function Profile({ match }) {
     }
   }
 
-  async function removeFromWishlist(productId, userId) {
+  async function removeFromWishlist(WishlistItemId, userId) {
     try {
-      const { data } = await axios.delete(`/api/users/${userId}/wishlist/${productId}`, {
+      const { data } = await axios.delete(`/api/users/${userId}/wishlist/${WishlistItemId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       if (data.errors) {
@@ -280,7 +280,7 @@ function Profile({ match }) {
                             return <ProductCard
                               key={index}
                               location='Wishlist'
-                              productId={item.id}
+                              productId={item.product.id}
                               productName={item.product.product_name}
                               productImage={item.product.product_image}
                               productPrice={item.product.price}
@@ -291,6 +291,7 @@ function Profile({ match }) {
                               productDescription={item.product.description}
                               userId={match.params.userId}
                               removeFromWishlist={removeFromWishlist}
+                              WishlistItemId={item.id}
                             />
                           })}
                         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { getLoggedInUserId } from '../lib/auth.js'
 
-const ProductCard = ({ location, productId, productName, productImage, productPrice, productSize, productDescription, purchaseDate, userId, removeFromWishlist }) => {
+const ProductCard = ({ location, productId, productName, productImage, productPrice, productSize, productDescription, purchaseDate, userId, removeFromWishlist, WishlistItemId }) => {
 
   var moment = require('moment')
 
@@ -37,7 +37,7 @@ const ProductCard = ({ location, productId, productName, productImage, productPr
           }
         </>}
 
-        {location === 'Wishlist' && <a className='card-footer-item purpletext' onClick={() => removeFromWishlist(productId, userId)}>Remove</a>}
+        {location === 'Wishlist' && <a className='card-footer-item purpletext' onClick={() => removeFromWishlist(WishlistItemId, userId)}>Remove</a>}
       </footer>
     </div>
   </div>

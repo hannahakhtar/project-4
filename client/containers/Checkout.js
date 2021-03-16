@@ -6,7 +6,7 @@ import { getLoggedInUserId } from '../lib/auth.js'
 import Navbar from '../components/Navbar'
 // import nodemailer from 'nodemailer'
 
-function Checkout({ location }) {
+function Checkout({ location, history }) {
 
   const product = location.state
   const { register, handleSubmit, errors } = useForm()
@@ -31,8 +31,9 @@ function Checkout({ location }) {
       'name': data.name,
       'security': data.security
     }
-
-    console.log(formdata)
+    handleSubmitProduct()
+    saveToOrderHistory()
+    history.push('/order-confirmation')
   }
 
   const purchased = {
@@ -50,7 +51,7 @@ function Checkout({ location }) {
     const { data } = await axios.put(`/api/products/${product.product.id}`, purchased, {
       headers: { Authorization: `Bearer ${token}` }
     })
-    saveToOrderHistory()
+    
     // email()
     console.log(data)
   }
@@ -110,7 +111,7 @@ function Checkout({ location }) {
 
         {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
 
-        <form onSubmit={handleSubmit(onSubmit), handleSubmitProduct()} className="mb-4">
+        <form onSubmit={handleSubmit(onSubmit)} className="mb-4">
 
           <h3 className="mt-3 mb-3">Enter your address details</h3>
 
@@ -228,18 +229,10 @@ function Checkout({ location }) {
           <h3>Total plus shipping:</h3>
           <h3>£{(product.product.price + shipping).toFixed(2)}</h3>
 
-          {/* {product.product.id && <Link to={'/search-home'}> */}
-          <button
-            className='button is-info mr-3'
-            // onSubmit={handleSubmitProduct}
-          >
-            Continue
-          </button>
-          {/* </Link>} */}
-
+          <button className="button is-primary">Buy Now</button>
         </form >
 
-        <Link to={`products/${product.product.id}`}><button className='button is-info'>Continue Shopping</button></Link>
+        <Link to={`products/${product.product.id}`}><button className='button is-primary'>Continue Shopping</button></Link>
         <div className='mt-4'>
           <small>Please note, this is just a project and real card details should not be entered</small>
         </div>
