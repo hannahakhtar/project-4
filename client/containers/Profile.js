@@ -76,116 +76,73 @@ function Profile({ match }) {
 
   return <>
     <Navbar />
-    <div className='container'>
-      <div className='mx-4 mt-5 mb-6'>
+    <div className="hero is-fullheight-with-navbar">
+      <div>
+        <div className="container pt-5 pb-5 px-4">
 
-        {userData &&
-          <div className='columns is-vcentered mb-5'>
-            <div className='column is-narrow'>
-              <img src={userData.image} className='profile-image'></img>
-            </div>
+          {userData &&
+            <div className='columns is-vcentered mb-5'>
+              <div className='column is-narrow'>
+                <img src={userData.image} className='profile-image'></img>
+              </div>
 
-            <div className='column is-narrow'>
-              <h1 className='title mb-1'>{userData.username}</h1>
+              <div className='column is-narrow'>
+                <h1 className='title is-size-3 mb-1'>{userData.username}</h1>
 
-              <p><i className='fas fa-map-marker-alt mr-1'></i> {userData.location}</p>
-              {isOwner &&
-                <div className='buttons'>
-                  <Link className='mt-2 button is-primary' to={`/edituser/${userData.id}`}>Edit your profile</Link>
-                  <button className={`mt-2 button ${tab !== 'Listings' && 'is-primary'}`} onClick={() => updateTab('Listings')}>Listings</button>
-                  <button className={`mt-2 button ${tab !== 'Orders' && 'is-primary'}`} onClick={() => updateTab('Orders')}>Order history</button>
-                  <button className={`mt-2 button ${tab !== 'Wishlist' && 'is-primary'}`} onClick={() => updateTab('Wishlist')}>Wishlist</button>
-                </div>
-              }
-            </div>
-          </div>
-        }
-
-
-        {errorbox && <div className='box mt-4 has-background-danger has-text-white'>{errorbox}</div>}
-
-        {tab === 'Listings' &&
-          <>
-            {userData.product &&
-              <div className='box'>
-                <div className='columns is-vcentered'>
-                  <div className='column'>
-                    <h5 className='title is-size-5'>Listings</h5>
-                  </div>
-                  {isOwner && <div className='column is-narrow'>
-                    <Link to='/productform' className='button is-primary'>Add listing</Link>
-                  </div>}
-                </div>
-
-                {userData.product.length === 0 ?
-                  <p>No products listed yet</p>
-                  :
-                  <div>
-                    <Paginate
-                      onChange={handlePageChange}
-                      pageNum={pageNumListings}
-                      location='Listings'
-                      totalResults={userData.product.length}
-                      resultsPerPage={resultsPerPage}
-                    />
-                    <div className='columns is-multiline'>
-                      {userData.product.slice((pageNumListings - 1) * resultsPerPage, ((pageNumListings - 1) * resultsPerPage) + resultsPerPage).map((product, index) => {
-                        return <ProductCard
-                          key={index}
-                          location='Listings'
-                          productId={product.id}
-                          productName={product.product_name}
-                          productImage={product.product_image}
-                          productPrice={product.price}
-                          productSize={product.size}
-                          productCategory={product.category}
-                          productCondition={product.condition}
-                          productGender={product.gender}
-                          productDescription={product.description}
-                          userId={match.params.userId}
-                          removeFromWishlist={removeFromWishlist}
-                        />
-                      })}
-                    </div>
+                <p><i className='fas fa-map-marker-alt mr-1'></i> {userData.location}</p>
+                {isOwner &&
+                  <div className='buttons'>
+                    <Link className='mt-2 button is-primary' to={`/edituser/${userData.id}`}>Edit your profile</Link>
+                    <button className={`mt-2 button ${tab !== 'Listings' && 'is-primary'}`} onClick={() => updateTab('Listings')}>Listings</button>
+                    <button className={`mt-2 button ${tab !== 'Orders' && 'is-primary'}`} onClick={() => updateTab('Orders')}>Order history</button>
+                    <button className={`mt-2 button ${tab !== 'Wishlist' && 'is-primary'}`} onClick={() => updateTab('Wishlist')}>Wishlist</button>
                   </div>
                 }
-
               </div>
-            }
-          </>
-        }
-        {tab === 'Orders' &&
-          <>
-            {isOwner &&
-              <div className='box'>
-                <h5 className='title is-size-5'>Order history</h5>
-                {userData.order_history && <div>
-                  {userData.order_history.length === 0 ?
-                    <p>No products purchased yet</p>
+            </div>
+          }
+
+
+          {errorbox && <div className='box mt-4 has-background-danger has-text-white'>{errorbox}</div>}
+
+          {tab === 'Listings' &&
+            <>
+              {userData.product &&
+                <div className='box'>
+                  <div className='columns is-vcentered'>
+                    <div className='column'>
+                      <h5 className='title is-size-3'>Listings</h5>
+                    </div>
+                    {isOwner && <div className='column is-narrow'>
+                      <Link to='/productform' className='button is-primary'>Add listing</Link>
+                    </div>}
+                  </div>
+
+                  {userData.product.length === 0 ?
+                    <p>No products listed yet</p>
                     :
                     <div>
                       <Paginate
                         onChange={handlePageChange}
-                        pageNum={pageNumOrders}
-                        location='Orders'
-                        totalResults={userData.order_history.length}
+                        pageNum={pageNumListings}
+                        location='Listings'
+                        totalResults={userData.product.length}
                         resultsPerPage={resultsPerPage}
                       />
                       <div className='columns is-multiline'>
-                        {userData.order_history.slice((pageNumOrders - 1) * resultsPerPage, ((pageNumOrders - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
+                        {userData.product.slice((pageNumListings - 1) * resultsPerPage, ((pageNumListings - 1) * resultsPerPage) + resultsPerPage).map((product, index) => {
                           return <ProductCard
                             key={index}
-                            location='Orders'
-                            productId={item.product.id}
-                            productName={item.product.product_name}
-                            productImage={item.product.product_image}
-                            productPrice={item.product.price}
-                            productSize={item.product.size}
-                            productCategory={item.product.category}
-                            productCondition={item.product.condition}
-                            productGender={item.product.gender}
-                            productDescription={item.product.description}
-                            purchaseDate={item.created_at}
+                            location='Listings'
+                            productId={product.id}
+                            productName={product.product_name}
+                            productImage={product.product_image}
+                            productPrice={product.price}
+                            productSize={product.size}
+                            productCategory={product.category}
+                            productCondition={product.condition}
+                            productGender={product.gender}
+                            productDescription={product.description}
                             userId={match.params.userId}
                             removeFromWishlist={removeFromWishlist}
                           />
@@ -193,56 +150,101 @@ function Profile({ match }) {
                       </div>
                     </div>
                   }
-                </div>}
-              </div>
-            }
-          </>
-        }
 
-        {tab === 'Wishlist' &&
-          <>
-            {isOwner &&
-              <div className='box'>
-                <h5 className='title is-size-5'>Wishlist</h5>
-                {userData.wishlist && <div>
-                  {userData.wishlist.length === 0 ?
-                    <p>No products saved to wishlist</p>
-                    :
-                    <div>
-                      <Paginate
-                        onChange={handlePageChange}
-                        pageNum={pageNumWishlist}
-                        location='Wishlist'
-                        totalResults={userData.wishlist.length}
-                        resultsPerPage={resultsPerPage}
-                      />
-                      <div className='columns is-multiline'>
-                        {userData.wishlist.slice((pageNumWishlist - 1) * resultsPerPage, ((pageNumWishlist - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
-                          return <ProductCard
-                            key={index}
-                            location='Wishlist'
-                            productId={item.id}
-                            productName={item.product.product_name}
-                            productImage={item.product.product_image}
-                            productPrice={item.product.price}
-                            productSize={item.product.size}
-                            productCategory={item.product.category}
-                            productCondition={item.product.condition}
-                            productGender={item.product.gender}
-                            productDescription={item.product.description}
-                            userId={match.params.userId}
-                            removeFromWishlist={removeFromWishlist}
-                          />
-                        })}
+                </div>
+              }
+            </>
+          }
+          {tab === 'Orders' &&
+            <>
+              {isOwner &&
+                <div className='box'>
+                  <h5 className='title is-size-3'>Order history</h5>
+                  {userData.order_history && <div>
+                    {userData.order_history.length === 0 ?
+                      <p>No products purchased yet</p>
+                      :
+                      <div>
+                        <Paginate
+                          onChange={handlePageChange}
+                          pageNum={pageNumOrders}
+                          location='Orders'
+                          totalResults={userData.order_history.length}
+                          resultsPerPage={resultsPerPage}
+                        />
+                        <div className='columns is-multiline'>
+                          {userData.order_history.slice((pageNumOrders - 1) * resultsPerPage, ((pageNumOrders - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
+                            return <ProductCard
+                              key={index}
+                              location='Orders'
+                              productId={item.product.id}
+                              productName={item.product.product_name}
+                              productImage={item.product.product_image}
+                              productPrice={item.product.price}
+                              productSize={item.product.size}
+                              productCategory={item.product.category}
+                              productCondition={item.product.condition}
+                              productGender={item.product.gender}
+                              productDescription={item.product.description}
+                              purchaseDate={item.created_at}
+                              userId={match.params.userId}
+                              removeFromWishlist={removeFromWishlist}
+                            />
+                          })}
+                        </div>
                       </div>
-                    </div>
-                  }
-                </div>}
-              </div>
-            }
-          </>
-        }
+                    }
+                  </div>}
+                </div>
+              }
+            </>
+          }
 
+          {tab === 'Wishlist' &&
+            <>
+              {isOwner &&
+                <div className='box'>
+                  <h5 className='title is-size-3'>Wishlist</h5>
+                  {userData.wishlist && <div>
+                    {userData.wishlist.length === 0 ?
+                      <p>No products saved to wishlist</p>
+                      :
+                      <div>
+                        <Paginate
+                          onChange={handlePageChange}
+                          pageNum={pageNumWishlist}
+                          location='Wishlist'
+                          totalResults={userData.wishlist.length}
+                          resultsPerPage={resultsPerPage}
+                        />
+                        <div className='columns is-multiline'>
+                          {userData.wishlist.slice((pageNumWishlist - 1) * resultsPerPage, ((pageNumWishlist - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
+                            return <ProductCard
+                              key={index}
+                              location='Wishlist'
+                              productId={item.id}
+                              productName={item.product.product_name}
+                              productImage={item.product.product_image}
+                              productPrice={item.product.price}
+                              productSize={item.product.size}
+                              productCategory={item.product.category}
+                              productCondition={item.product.condition}
+                              productGender={item.product.gender}
+                              productDescription={item.product.description}
+                              userId={match.params.userId}
+                              removeFromWishlist={removeFromWishlist}
+                            />
+                          })}
+                        </div>
+                      </div>
+                    }
+                  </div>}
+                </div>
+              }
+            </>
+          }
+
+        </div>
       </div>
     </div>
   </>
