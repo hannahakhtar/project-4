@@ -36,6 +36,7 @@
     "fontawesome": "^5.6.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
+    "nodemailer": "^6.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-fontawesome": "^1.7.1",

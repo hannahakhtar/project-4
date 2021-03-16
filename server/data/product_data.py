@@ -10,7 +10,7 @@ list_product = [
         category="Shoes",
         price=20.00,
         condition="Used",
-        in_stock=True,
+        in_stock=False,
         gender="Unisex",
         user_id=1
     ),
@@ -23,7 +23,7 @@ list_product = [
         category="Dresses",
         price=20.00,
         condition="New",
-        in_stock=True,
+        in_stock=False,
         gender="Womens",
         user_id=1
     ),
@@ -114,7 +114,7 @@ list_product = [
         category="Tops",
         price=34.99,
         condition="Used",
-        in_stock=True,
+        in_stock=False,
         gender="Mens",
         user_id=2
     ),
@@ -127,7 +127,7 @@ list_product = [
         category="Tops",
         price=5.00,
         condition="Used",
-        in_stock=True,
+        in_stock=False,
         gender="Womens",
         user_id=3
     ),
@@ -180,7 +180,7 @@ list_product = [
         category="Other",
         price=20.00,
         condition="New",
-        in_stock=True,
+        in_stock=False,
         gender="Unisex",
         user_id=3
     ),

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { getLoggedInUserId } from '../lib/auth.js'
+// import nodemailer from 'nodemailer'
 
 function Checkout({ location }) {
 
@@ -9,8 +11,7 @@ function Checkout({ location }) {
   const { register, handleSubmit, errors } = useForm()
   const [errorbox, updateErrorbox] = useState('')
   const token = localStorage.getItem('token')
-  // const [checkout, updateCheckout] = useState('')
-  // const [showModal, updateShowModal] = useState(false)
+  const loggedInUserId = getLoggedInUserId()
 
   const shipping = 3.99
 
@@ -37,21 +38,47 @@ function Checkout({ location }) {
     'in_stock': false
   }
 
-  // End point needed for posting to order history
-
-  // async function saveToOrderHistory() {
-  //   const { data } = await axios.post(``, {
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //   console.log(data)
-  // }
+  async function saveToOrderHistory() {
+    const { data } = await axios.post(`api/users/${loggedInUserId}/order-history/${product.product.id}`, {}, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    console.log(data)
+  }
 
   async function handleSubmitProduct() {
     const { data } = await axios.put(`/api/products/${product.product.id}`, purchased, {
       headers: { Authorization: `Bearer ${token}` }
     })
+    saveToOrderHistory()
+    // email()
     console.log(data)
   }
+
+  // async function email() {
+  //   const testAccount = await nodemailer.createTestAccount()
+  
+  //   const transporter = nodemailer.createTransport({
+  //     host: 'smtp.ethereal.email',
+  //     port: 587,
+  //     secure: false, // true for 465, false for other ports
+  //     auth: {
+  //       user: testAccount.user, 
+  //       pass: testAccount.pass
+  //     }
+  //   })
+  
+  //   const info = await transporter.sendMail({
+  //     from: '"Garms 🧦" <checkout@garms.com>', 
+  //     to: 'jacobaston92@gmail.com', 
+  //     subject: 'Hello ✔', 
+  //     text: 'Hello world?', 
+  //     html: '<b>Your purchase is complete</b>'
+  //   })
+  
+  //   console.log('Message sent: %s', info.messageId)
+  
+  //   console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
+  // }
 
   const imageStyle = {
     borderRadius: '5%'
@@ -198,12 +225,14 @@ function Checkout({ location }) {
         <h3>Total plus shipping:</h3>
         <h3>£{(product.product.price + shipping).toFixed(2)}</h3>
 
-        {product.product.id && <Link to={'/search-home'}><button
+        {/* {product.product.id && <Link to={'/search-home'}> */}
+        <button
           className='button is-info mr-3'
           onClick={handleSubmitProduct}
         >
           Continue
-        </button></Link>}
+        </button>
+        {/* </Link>} */}
 
       </form >
 

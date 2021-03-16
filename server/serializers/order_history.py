@@ -9,3 +9,11 @@ class OrderHistorySchema(ma.SQLAlchemyAutoSchema):
 
     user = fields.Nested('UserSchema')    
     product = fields.Nested('ProductSchema')
+
+class SimpleOrderHistorySchema(ma.SQLAlchemyAutoSchema):
+    class Meta: 
+        model = OrderHistory
+        load_instance = True
+
+    user_id = fields.Integer(required=True)
+    product_id = fields.Integer(required=True)

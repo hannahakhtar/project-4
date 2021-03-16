@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import RandomSelection from '../components/randomSelection'
 import { getLoggedInUserId } from '../lib/auth.js'
 import Navbar from '../components/Navbar'
-import { findLastKey } from 'lodash'
+// import { findLastKey } from 'lodash'
 
 function SingleProduct({ match, history }) {
 
@@ -15,6 +15,7 @@ function SingleProduct({ match, history }) {
   const token = localStorage.getItem('token')
   const [product, updateProduct] = useState({})
   const [user, updateUser] = useState({})
+  // const [inWishlist, updateInWishlist] = useState(false)
 
 
   async function fetchProductData() {
@@ -32,19 +33,20 @@ function SingleProduct({ match, history }) {
     fetchUserData()
   }, [])
 
-  // console.log(user.wishlist && user.wishlist.map(item => item.product.id === product.id))
+  // user.wishlist && user.wishlist.filter(item => item.product.id === product.id) ? updateInWishlist(true) : updateInWishlist(false)
 
-  user.wishlist && user.wishlist.map(item => item.product.id === product.id) ? console.log('Item already in your wishlist') : console.log('Item not in wishlist')
-
-  // user.wishlist && user.wishlist.map(item => {
-  //   if (item.product.id === product.id) {
-  //     console.log('Item already in your wishlist')
-  //   }
-  // })
-
+  user.wishlist && user.wishlist.find(item => {
+    if (item.product.id === product.id) {
+      console.log(true)
+      return <></>
+    } else {
+      console.log(false)
+      return <button className="mb-3" onClick={handleWishlist}>Wishlist</button>
+    }
+  })
 
   async function handleWishlist() {
-    const { data } = await axios.post(`/users/${loggedInUserId}/wishlist/${productId}`, {
+    const { data } = await axios.post(`/api/users/${loggedInUserId}/wishlist/${productId}`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     })
     console.log(data)
@@ -79,10 +81,12 @@ function SingleProduct({ match, history }) {
   }
 
   const backgroundImage = {
-    background: 'url(https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+    background: 'url(https://prolocksni.co.uk/wp-content/uploads/2018/04/400x400.png)',
     borderRadius: '5%',
-    backgroundrepeat: 'no-repeat',
-    backgroundsize: 'auto',
+    display: 'block',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '100%',
     height: '375px'
   }
 
@@ -93,7 +97,7 @@ function SingleProduct({ match, history }) {
   return <>
     <Navbar />
     <div className="container">
-      <section className="content is-flex mt-3 mb-2">
+      <section className="content is-flex mb-2">
         {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 is-rounded ml-4 m-2" src={'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'} /></Link>}
         {product.user && <Link to={`/users/${product.user.id}`}><h4 className="sub-title m-3">{product.user.username}</h4></Link>}
       </section>
