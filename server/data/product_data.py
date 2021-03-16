@@ -184,7 +184,7 @@ list_product = [
         gender="Unisex",
         user_id=3
     ),
-        Product(
+    Product(
         product_name="Calvin Klein boxers - three pack",
         product_image="https://i.ibb.co/qpdZbsj/boxers.jpg",
         brand="Calvin Klien",
