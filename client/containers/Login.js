@@ -19,10 +19,12 @@ function Login({ match, history }) {
 
     try {
       const { data } = await axios.post('/api/login', formdata,)
-      if (localStorage) {
+      if (localStorage && data.token) {
         localStorage.setItem('token', data.token)
+        history.push('/search-home')
+      } else {
+        updateErrorbox('Sorry - user details are incorrect')
       }
-      history.push('/search-home')
     } catch (err) {
       console.log(err.response.data)
     }

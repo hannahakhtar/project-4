@@ -9,7 +9,7 @@ const ProductCard = ({ location, productId, productName, productImage, productPr
 
     <div className='card  bm--card-equal-height'>
       <div className='card-image'>
-        <figure className='image is-4by3'>
+        <figure className='image is-square'>
           <a href={`/products/${productId}`}><img src={productImage} alt={`${productName} image`} /></a>
         </figure>
       </div>
