@@ -229,9 +229,7 @@ function Checkout({ location, history }) {
           <h3>Total plus shipping:</h3>
           <h3>£{(product.product.price + shipping).toFixed(2)}</h3>
 
-          {/* {product.product.id && <Link to={'/search-home'}> */}
           <button className="button is-primary">Buy Now</button>
-          {/* </Link>} */}
         </form >
 
         <Link to={`products/${product.product.id}`}><button className='button is-primary'>Continue Shopping</button></Link>
