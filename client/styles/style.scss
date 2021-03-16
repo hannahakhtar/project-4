@@ -1,7 +1,8 @@
 @import "../../node_modules/bulma/bulma.sass";
+// @import { wallpaper } from '../'
 
 $light-grey: #f4f5f7;
-$primary: #b139f6;
+$primary: #5332db;
 $secondary: #fafbfc;
 $text-subtle: #ffffff;
 $warning: #FF5454;
@@ -9,7 +10,10 @@ $default-radius: 30px;
 $font-primary: 'Nunito', sans-serif;
 
 
+
 .profile-image{width: 80px; height: 80px; border-radius: 50%;}
+
+
 
 // ! search home styling
 
@@ -50,3 +54,4 @@ $font-primary: 'Nunito', sans-serif;
 .search-results-dropdown:hover {
   background-color: lightblue;
 }
+
