@@ -1,3 +1,81 @@
 @import "../../node_modules/bulma/bulma.sass";
 
-.profile-image{width: 80px; height: 80px; border-radius: 50%;}
+.body,
+html,
+#root {
+  background-color: #f4f4f4;
+}
+
+.homepage {
+  background-image: url("https://i.ibb.co/Kwk4QYp/wallpaper.jpg");
+  background-size: cover;
+}
+.register {
+  background-image: url("https://i.ibb.co/Kwk4QYp/wallpaper.jpg");
+  background-size: cover;
+}
+.login {
+  background-image: url("https://i.ibb.co/Kwk4QYp/wallpaper.jpg");
+  background-size: cover;
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+}
+
+nav .profile-image {
+  width: 40px;
+  height: 40px;
+}
+
+.userdetails {
+  min-width: 200px;
+}
+
+.button.is-primary {
+  background-color: #5332db !important;
+}
+
+.button.is-link {
+  background-color: #a6a2a9 !important;
+}
+
+.navbar {
+  background-color: #5332db !important;
+}
+
+.nostackcolumns {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.nostackcolumns .right {
+  align-self: flex-end;
+}
+
+footer {
+  background-color: #1b1a1d;
+}
+.logo {
+  max-width: 150px;
+}
+footer .logo {
+  max-width: 100px;
+}
+
+.homepage .container {
+  max-width: 360px !important;
+}
+
+.login .container, .register .container {
+  max-width: 460px !important;
+}
+
+.underline {
+  text-decoration: underline;
+}

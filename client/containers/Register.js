@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
+import Navbar from '../components/Navbar.js'
 
 function Register({ history }) {
   const { register, handleSubmit, errors } = useForm()
@@ -30,114 +31,115 @@ function Register({ history }) {
     }
   }
 
-  const backgroundStyle = {
-    height: '100vh',
-    background: 'url(https://i.pinimg.com/736x/a1/1e/ae/a11eae81ff3fd4da53e676cd64d876cf.jpg)',
-    backgroundSize: 'cover'
-  }
+
 
   return <>
-    <div className='container'>
-      <div className="hero is-fullheight-with-navbar is-primary">
-        <div className='px-4 pt-4 pb-4' style={backgroundStyle}>
-          <h1 className="title is-size-1 has-text-centered">Register</h1>
+    <Navbar />
 
-          {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
+    <div className="hero is-fullheight-with-navbar register">
+      <div className="hero-body">
+        <div className="container">
+          <div className='box mt-4 mb-4 mx-4'>
 
-          <form onSubmit={handleSubmit(onSubmit)} >
+            <h1 className="title has-text-centered mt-2 mb-5">Register</h1>
 
-            <div className='field'>
-              <label>
-                <p>Username</p>
-              </label>
-              <input
-                className={`input ${errors.username && 'is-danger'}`}
-                name='username'
-                placeholder='Username'
-                type='text'
-                defaultValue=''
-                ref={register({ required: true })}
-              />
-              {errors.username && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-            </div>
+            {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
 
-            <div className='field'>
-              <label>
-                <p>First name</p>
-              </label>
-              <input
-                className={`input ${errors.first_name && 'is-danger'}`}
-                name='first_name'
-                placeholder='First Name'
-                defaultValue=''
-                ref={register({ required: true })}
-              />
-              {errors.first_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-            </div>
+            <form onSubmit={handleSubmit(onSubmit)} >
 
-            <div className='field'>
-              <label>
-                <p>Last name</p>
-              </label>
-              <input
-                className={`input ${errors.last_name && 'is-danger'}`}
-                name='last_name'
-                placeholder='Last Name'
-                defaultValue=''
-                ref={register({ required: true })}
-              />
-              {errors.last_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-            </div>
+              <div className='field'>
+                <label>
+                  <p>Username</p>
+                </label>
+                <input
+                  className={`input ${errors.username && 'is-danger'}`}
+                  name='username'
+                  placeholder='Username'
+                  type='text'
+                  defaultValue=''
+                  ref={register({ required: true })}
+                />
+                {errors.username && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+              </div>
+
+              <div className='field'>
+                <label>
+                  <p>First name</p>
+                </label>
+                <input
+                  className={`input ${errors.first_name && 'is-danger'}`}
+                  name='first_name'
+                  placeholder='First Name'
+                  defaultValue=''
+                  ref={register({ required: true })}
+                />
+                {errors.first_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+              </div>
+
+              <div className='field'>
+                <label>
+                  <p>Last name</p>
+                </label>
+                <input
+                  className={`input ${errors.last_name && 'is-danger'}`}
+                  name='last_name'
+                  placeholder='Last Name'
+                  defaultValue=''
+                  ref={register({ required: true })}
+                />
+                {errors.last_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+              </div>
 
 
-            <div className='field'>
-              <label>
-                <p>Location</p>
-              </label>
-              <input
-                className={`input ${errors.location && 'is-danger'}`}
-                name='location'
-                placeholder='Location'
-                defaultValue=''
-                ref={register({ required: true })}
-              />
-              {errors.location && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-            </div>
-            <div className='field'>
-              <label>
-                <p>Email</p>
-              </label>
-              <input
-                className={`input ${errors.email && 'is-danger'}`}
-                name='email'
-                placeholder='Email@email.com'
-                type='text'
-                defaultValue=''
-                ref={register({ required: true })}
-              />
-              {errors.email && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-            </div>
+              <div className='field'>
+                <label>
+                  <p>Location</p>
+                </label>
+                <input
+                  className={`input ${errors.location && 'is-danger'}`}
+                  name='location'
+                  placeholder='Location'
+                  defaultValue=''
+                  ref={register({ required: true })}
+                />
+                {errors.location && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+              </div>
+              <div className='field'>
+                <label>
+                  <p>Email</p>
+                </label>
+                <input
+                  className={`input ${errors.email && 'is-danger'}`}
+                  name='email'
+                  placeholder='Email@email.com'
+                  type='text'
+                  defaultValue=''
+                  ref={register({ required: true })}
+                />
+                {errors.email && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+              </div>
 
-            <div className='field'>
-              <label>
-                <p>Password</p>
-              </label>
-              <input
-                className={`input ${errors.password && 'is-danger'}`}
-                name='password'
-                placeholder='Password'
-                type='password'
-                defaultValue=''
-                ref={register({ required: true })}
-              />
-              {errors.password && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
-            </div>
+              <div className='field'>
+                <label>
+                  <p>Password</p>
+                </label>
+                <input
+                  className={`input ${errors.password && 'is-danger'}`}
+                  name='password'
+                  placeholder='Password'
+                  type='password'
+                  defaultValue=''
+                  ref={register({ required: true })}
+                />
+                {errors.password && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
+              </div>
 
-            <button className='button is-primary mt-3'>Register</button>
-          </form >
+              <button className='button is-primary mt-3'>Register</button>
+            </form >
 
+          </div>
         </div>
-      </div>
+      </div >
     </div >
   </>
 }

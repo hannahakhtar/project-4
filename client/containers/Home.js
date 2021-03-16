@@ -3,27 +3,28 @@ import { Link } from 'react-router-dom'
 
 function Home() {
 
-  const backgroundStyle = {
-    height: '100vh',
-    background: 'url(http://papers.co/wallpaper/papers.co-mp61-jeff-sheldon-clothes-hanger-life-dark-4-wallpaper.jpg)',
-    backgroundSize: 'auto'
-  }
 
   return <>
     <header>
-      <div className="hero is-fullheight-with-navbar is-primary">
-        <div className="hero-body" style={backgroundStyle}>
+      <div className="hero is-fullheight-with-navbar homepage">
+        <div className="hero-body">
           <div className="container has-text-centered">
-            <h1 className="title is-size-1 mb-6">GARMS</h1>
-            <div className="field">
-              <div className="control">
-                <Link className="button is-primary is-size-6  has-text-centered is-fullwidth" to={'/register'}>
-                  Sign up
-                </Link>
-              </div>
-            </div>
-            <div>
-              <p>Already have an account? <Link to={'/login'}>Log in</Link></p>
+            <div className='box mt-4 mb-4 mx-4'>
+
+
+
+              <Link to={'/search-home'}><img src='https://i.ibb.co/0YfbzWr/logo-garms.png' alt='Garms logo' className='mt-2 mb-2'></img></Link>
+
+
+              <p className='is-size-5 mb-4'>Buy and sell pre-loved clothing</p>
+              <div className="field">
+                <div className="control">
+                  <Link className="button is-primary is-size-6  has-text-centered is-fullwidth mb-2" to={'/login'}>
+                    Log in</Link>
+                  <Link className="button is-link is-size-6  has-text-centered is-fullwidth mb-2" to={'/register'}>
+                    Register</Link>
+                </div>
+              </div> 
             </div>
           </div>
         </div>
