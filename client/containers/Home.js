@@ -3,16 +3,12 @@ import { Link } from 'react-router-dom'
 
 function Home() {
 
-  const backgroundStyle = {
-    height: '100vh',
-    background: 'url(http://papers.co/wallpaper/papers.co-mp61-jeff-sheldon-clothes-hanger-life-dark-4-wallpaper.jpg)',
-    backgroundSize: 'auto'
-  }
+
 
   return <>
     <header>
       <div className="hero is-fullheight-with-navbar is-primary">
-        <div className="hero-body" style={backgroundStyle}>
+        <div className="hero-body">
           <div className="container has-text-centered">
             <h1 className="title is-size-1 mb-6">GARMS</h1>
             <div className="field">

@@ -4,14 +4,8 @@ import { Link } from 'react-router-dom'
 import { getLoggedInUserId } from '../lib/auth'
 import Navbar from '../components/Navbar'
 
-// * current issues:
-// * 1) make prices filter better to group them and sort them from high to low
-// * 2) on hover on filters, change colour to blue or something else
-// * 3) change on click to hover instead? what happens if onclick remains? If after certain amount of time, dropdown goes back.
-
 function SearchResults({ match }) {
 
-  const currentUser = getLoggedInUserId()
   const [filteredResults, updateFilteredResults] = useState([])
   const [furtherFilteredResults, updateFurtherFilteredResults] = useState([])
   const [isLoading, updateIsLoading] = useState(true)
@@ -19,9 +13,22 @@ function SearchResults({ match }) {
   const [brands, updateBrands] = useState([])
   const [sizes, updateSizes] = useState([])
   const [categories, updateCategories] = useState([])
-  const [prices, updatePrices] = useState([])
   const [conditions, updateConditions] = useState([])
   const [searchResults, updateSearchResults] = useState(match.params.id)
+  const [genderIsShown, updateGenderIsShown] = useState(false)
+  const [brandIsShown, updateBrandIsShown] = useState(false)
+  const [sizeIsShown, updateSizeIsShown] = useState(false)
+  const [categoryIsShown, updateCategoryIsShown] = useState(false)
+  const [priceIsShown, updatePriceIsShown] = useState(false)
+  const [conditionIsShown, updateConditionIsShown] = useState(false)
+
+  const currentUser = getLoggedInUserId()
+  const priceRanges = [
+    { 'displayPrice': '£0 - £9.99', 'minPrice': 0, 'maxPrice': 9.99 },
+    { 'displayPrice': '£10 - £24.99', 'minPrice': 10, 'maxPrice': 24.99 },
+    { 'displayPrice': '£25 - £49.99', 'minPrice': 25, 'maxPrice': 49.99 },
+    { 'displayPrice': '£50+', 'minPrice': 50, 'maxPrice': 10000 }
+  ]
 
   async function fetchAllProducts() {
     const { data } = await axios.get('/api/products')
@@ -41,29 +48,26 @@ function SearchResults({ match }) {
     })
     const uniqueGenders = new Set(genders.sort())
     const uniqueGendersArray = [...uniqueGenders]
-    const brands = data.map(result => {
+
+    const brands = inStockArray.map(result => {
       return result.brand
     })
     const uniqueBrands = new Set(brands.sort())
     const uniqueBrandsArray = [...uniqueBrands]
-    const sizes = data.map(result => {
+
+    const sizes = inStockArray.map(result => {
       return result.size
     })
     const uniqueSizes = new Set(sizes.sort())
     const uniqueSizesArray = [...uniqueSizes]
-    const categories = data.map(result => {
+
+    const categories = inStockArray.map(result => {
       return result.category
     })
     const uniqueCategories = new Set(categories.sort())
     const uniqueCategoriesArray = [...uniqueCategories]
-    const prices = data.map(result => {
-      return result.price
-    })
-    const uniquePrices = new Set(prices.sort(function(a, b) {
-      return a - b
-    }))
-    const uniquePricesArray = [...uniquePrices]
-    const conditions = data.map(result => {
+
+    const conditions = inStockArray.map(result => {
       return result.condition
     })
     const uniqueContitions = new Set(conditions.sort())
@@ -73,7 +77,6 @@ function SearchResults({ match }) {
     updateBrands(uniqueBrandsArray)
     updateSizes(uniqueSizesArray)
     updateCategories(uniqueCategoriesArray)
-    updatePrices(uniquePricesArray)
     updateConditions(uniqueContitionsArray)
     updateFilteredResults(inStockArray)
     updateFurtherFilteredResults(inStockArray)
@@ -84,106 +87,143 @@ function SearchResults({ match }) {
     fetchAllProducts()
   }, [searchResults])
 
-  function handleGenderClick(gender) {
+  function handleGenderHover(gender) {
     try {
       const filteredGender = furtherFilteredResults.filter(result => {
         return gender === result.gender
       })
-      handleGenderDropdownClick()
+      handleGenderButtonMouseEnter()
       updateFurtherFilteredResults(filteredGender)
     } catch (err) {
       console.log(err)
     }
   }
 
-  function handleBrandClick(brand) {
+  function handleBrandHover(brand) {
     try {
       const filteredBrand = furtherFilteredResults.filter(result => {
         return brand === result.brand
       })
-      handleBrandDropdownClick()
+      handleBrandButtonMouseEnter()
       updateFurtherFilteredResults(filteredBrand)
     } catch (err) {
       console.log(err)
     }
   }
 
-  function handleSizeClick(size) {
+  function handleSizeHover(size) {
     try {
       const filteredSize = furtherFilteredResults.filter(result => {
         return size === result.size
       })
-      handleSizeDropdownClick()
+      handleSizeButtonMouseEnter()
       updateFurtherFilteredResults(filteredSize)
     } catch (err) {
       console.log(err)
     }
   }
 
-  function handleCategoryClick(category) {
+  function handleCategoryHover(category) {
     try {
       const filteredCategory = furtherFilteredResults.filter(result => {
         return category === result.category
       })
-      handleCategoryDropdownClick()
+      handleCategoryButtonMouseEnter()
       updateFurtherFilteredResults(filteredCategory)
     } catch (err) {
       console.log(err)
     }
   }
 
-  function handlePriceClick(price) {
+  function handlePriceHover(minPrice, maxPrice) {
     try {
       const filteredPrice = furtherFilteredResults.filter(result => {
-        return price === result.price
+        return result.price >= minPrice && result.price <= maxPrice
       })
-      handlePriceDropdownClick()
+      handlePriceButtonMouseEnter()
       updateFurtherFilteredResults(filteredPrice)
     } catch (err) {
       console.log(err)
     }
   }
 
-  function handleConditionClick(condition) {
+  function handleConditionHover(condition) {
     try {
       const filteredCondition = furtherFilteredResults.filter(result => {
         return condition === result.condition
       })
-      handleConditionDropdownClick()
+      handleConditionButtonMouseEnter()
       updateFurtherFilteredResults(filteredCondition)
     } catch (err) {
       console.log(err)
     }
   }
 
-  function handleGenderDropdownClick() {
+  function handleGenderButtonMouseEnter() {
+    if (!genderIsShown) {
+      updateGenderIsShown(true)
+    } else {
+      updateGenderIsShown(false)
+    }
     const dropdown = document.querySelector('.genderDropdown')
     dropdown.classList.toggle('is-active')
+    updateGenderIsShown(true)
   }
 
-  function handleBrandDropdownClick() {
+  function handleBrandButtonMouseEnter() {
+    if (!brandIsShown) {
+      updateBrandIsShown(true)
+    } else {
+      updateBrandIsShown(false)
+    }
     const dropdown = document.querySelector('.brandDropdown')
     dropdown.classList.toggle('is-active')
+    updateBrandIsShown(true)
   }
 
-  function handleSizeDropdownClick() {
+  function handleSizeButtonMouseEnter() {
+    if (!sizeIsShown) {
+      updateSizeIsShown(true)
+    } else {
+      updateSizeIsShown(false)
+    }
     const dropdown = document.querySelector('.sizeDropdown')
     dropdown.classList.toggle('is-active')
+    updateSizeIsShown(true)
   }
 
-  function handleCategoryDropdownClick() {
+  function handleCategoryButtonMouseEnter() {
+    if (!categoryIsShown) {
+      updateCategoryIsShown(true)
+    } else {
+      updateCategoryIsShown(false)
+    }
     const dropdown = document.querySelector('.categoryDropdown')
     dropdown.classList.toggle('is-active')
+    updateCategoryIsShown(true)
   }
 
-  function handlePriceDropdownClick() {
+  function handlePriceButtonMouseEnter() {
+    if (!priceIsShown) {
+      updatePriceIsShown(true)
+    } else {
+      updatePriceIsShown(false)
+    }
     const dropdown = document.querySelector('.priceDropdown')
     dropdown.classList.toggle('is-active')
+    updatePriceIsShown(true)
   }
 
-  function handleConditionDropdownClick() {
+  function handleConditionButtonMouseEnter() {
+    if (!conditionIsShown) {
+      updateConditionIsShown(true)
+    } else {
+      updateConditionIsShown(false)
+    }
     const dropdown = document.querySelector('.conditionDropdown')
     dropdown.classList.toggle('is-active')
+    updateConditionIsShown(true)
+
   }
 
   function genderNoOfItems(gender) {
@@ -224,7 +264,7 @@ function SearchResults({ match }) {
 
   function priceNoOfItems(price) {
     const numOfItems = furtherFilteredResults.filter(item => {
-      if (item.price === price) {
+      if (item.price >= price.minPrice && item.price <= price.maxPrice) {
         return item
       }
     })
@@ -306,110 +346,109 @@ function SearchResults({ match }) {
   }
 
   return <>
-  <Navbar />
-    <h2>Search Results</h2>
-    <h4>Your search results for <strong>{searchResults}</strong></h4>
-    <section>
+    <Navbar />
+    <h2 className="search-results-searched-word">Your search results for "<strong>{searchResults}</strong>"</h2>
+    <section className="search-results-filters-div">
       <div className="genderDropdown dropdown">
         <div className="dropdown-trigger">
-          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleGenderDropdownClick()}>
+          <button className="button search-results-filters" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleGenderButtonMouseEnter()}>
             <span>Gender</span>
             <span className="icon is-small">
               <i className="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          {genderIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleGenderButtonMouseEnter()}>
             <div className="dropdown-content">
               {gender.map((gender, index) => {
-                return <div key={index} className="dropdown-item" onClick={() => handleGenderClick(gender)}>{gender} <strong>({genderNoOfItems(gender)})</strong></div>
+                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleGenderHover(gender)}>{gender} <strong>({genderNoOfItems(gender)})</strong></div>
               })}
             </div>
-          </div>
+          </div>}
         </div>
       </div>
       <div className="brandDropdown dropdown">
         <div className="dropdown-trigger">
-          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleBrandDropdownClick()}>
+          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleBrandButtonMouseEnter()}>
             <span>Brand</span>
             <span className="icon is-small">
               <i className="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          {brandIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleBrandButtonMouseEnter()}>
             <div className="dropdown-content">
               {brands.map((brand, index) => {
-                return <div key={index} className="dropdown-item" onClick={() => handleBrandClick(brand)}>{brand} <strong>({brandsNoOfItems(brand)})</strong></div>
+                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleBrandHover(brand)}>{brand} <strong>({brandsNoOfItems(brand)})</strong></div>
               })}
             </div>
-          </div>
+          </div>}
         </div>
       </div>
       <div className="sizeDropdown dropdown">
         <div className="dropdown-trigger">
-          <button className=" button" aria-haspopup="true" aria-controls="dropdown-menu"onClick={() => handleSizeDropdownClick()}>
+          <button className=" button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleSizeButtonMouseEnter()}>
             <span>Size</span>
             <span className="icon is-small">
               <i className="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          {sizeIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleSizeButtonMouseEnter()}>
             <div className="dropdown-content">
               {sizes.map((size, index) => {
-                return <div key={index} className="dropdown-item" onClick={() => handleSizeClick(size)}>{size} <strong>({sizeNoOfItems(size)})</strong></div>
+                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleSizeHover(size)}>{size} <strong>({sizeNoOfItems(size)})</strong></div>
               })}
             </div>
-          </div>
+          </div>}
         </div>
       </div>
       <div className="categoryDropdown dropdown">
         <div className="dropdown-trigger">
-          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleCategoryDropdownClick()}>
+          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleCategoryButtonMouseEnter()}>
             <span>Category</span>
             <span className="icon is-small">
               <i className="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          {categoryIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleCategoryButtonMouseEnter()}>
             <div className="dropdown-content">
               {categories.map((category, index) => {
-                return <div key={index} className="dropdown-item" onClick={() => handleCategoryClick(category)}>{category} <strong>({categoryNoOfItems(category)})</strong></div>
+                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleCategoryHover(category)}>{category} <strong>({categoryNoOfItems(category)})</strong></div>
               })}
             </div>
-          </div>  
+          </div>}
         </div>
       </div>
       <div className="priceDropdown dropdown">
         <div className="dropdown-trigger">
-          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handlePriceDropdownClick()}>
+          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handlePriceButtonMouseEnter()}>
             <span>Price</span>
             <span className="icon is-small">
               <i className="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          {priceIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handlePriceButtonMouseEnter()}>
             <div className="dropdown-content">
-              {prices.map((price, index) => {
-                return <div key={index} className="dropdown-item" onClick={() => handlePriceClick(price)}>£{price} <strong>({priceNoOfItems(price)})</strong></div>
+              {priceRanges.map((price, index) => {
+                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handlePriceHover(price.minPrice, price.maxPrice)}>{price.displayPrice} <strong>({priceNoOfItems(price)})</strong></div>
               })}
             </div>
-          </div>
+          </div>}
         </div>
       </div>
       <div className="conditionDropdown dropdown">
         <div className="dropdown-trigger">
-          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleConditionDropdownClick()}>
+          <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleConditionButtonMouseEnter()}>
             <span>Condition</span>
             <span className="icon is-small">
               <i className="fas fa-angle-down" aria-hidden="true"></i>
             </span>
           </button>
-          <div className="dropdown-menu" id="dropdown-menu" role="menu">
+          {conditionIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleConditionButtonMouseEnter()}>
             <div className="dropdown-content">
               {conditions.map((condition, index) => {
-                return <div key={index} className="dropdown-item" onClick={() => handleConditionClick(condition)}>{condition} <strong>({conditionNoOfItems(condition)})</strong></div>
+                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleConditionHover(condition)}>{condition} <strong>({conditionNoOfItems(condition)})</strong></div>
               })}
             </div>
-          </div>
+          </div>}
         </div>
       </div>
       <button className="button" onClick={clearFilters}>Clear filters</button>

@@ -6,9 +6,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { getLoggedInUserId } from '../lib/auth'
 import Navbar from '../components/Navbar'
 
-// * current bugs:
-// * 1) enter button doesn't work to search
-
 function SearchHome() {
 
   const currentUser = getLoggedInUserId()
@@ -43,17 +40,10 @@ function SearchHome() {
 
   return <>
     <Navbar />
-    <div>
-      <h1>Search Page</h1>
-    </div>
     <section>
-      <h4>Search</h4>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Search:
-          <input type="text" placeholder="search Garms" onChange={(e) => updateSearch(e.target.value)} />
-        </label>
-        <Link className="button" value="search" to={{
+      <form className="search-home-form" onSubmit={handleSubmit}>
+        <input className="input" type="text" placeholder="search Garms" onChange={(e) => updateSearch(e.target.value)} />
+        <Link className="button is-primary search-home-button" value="search" to={{
           pathname: `/search-results/${search}`
           // state: { search }
         }}>Click to search</Link>
@@ -61,9 +51,9 @@ function SearchHome() {
     </section>
 
     <section>
-      <h4>Categories</h4>
+      <h4 className="search-home-headings">Categories</h4>
       <div className="section">
-        <div className="container">
+        <div className="container carousel-container">
           <div className="columns is-multiline is-mobile">
             <div className="carousel-wrapper">
               <Carousel infiniteLoop autoPlay showArrows showStatus={false} centerMode showThumbs={false} show={3}>
@@ -94,7 +84,7 @@ function SearchHome() {
     </section>
 
     <section>
-      <h4>Our favourites!</h4>
+      <h4 className="search-home-headings">Our favourites!</h4>
       <div className="section">
         <div className="container">
           <div className="columns is-multiline is-mobile">
