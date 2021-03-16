@@ -185,7 +185,7 @@ list_product = [
         user_id=3
     ),
         Product(
-        product_name="Unworn Calvin Klien boxers - three pack",
+        product_name="Unworn Calvin Klein boxers - three pack",
         product_image="http://placehold.it/600x400",
         brand="Calvin Klien",
         size="Large",
