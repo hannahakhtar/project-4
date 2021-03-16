@@ -173,7 +173,7 @@ list_product = [
     ),
     Product(
         product_name="New York baseball cap",
-        product_image="https://i.ibb.co/F07m8x8/baseballcap.jpg",
+        product_image="https://i.ibb.co/z4jCbYZ/baseballcap.jpg",
         brand="New Era",
         size="One size fits all",
         description="Black New York Yankies cap",
