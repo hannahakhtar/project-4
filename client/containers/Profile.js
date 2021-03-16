@@ -15,7 +15,7 @@ function Profile({ match }) {
   const [pageNumListings, updatePageNumListings] = useState(1)
   const [pageNumOrders, updatePageNumOrders] = useState(1)
   const [pageNumWishlist, updatePageNumWishlist] = useState(1)
-  const [tab, updateTab] = useState('Wishlist')
+  const [tab, updateTab] = useState('Listings')
   const resultsPerPage = 4
   const LoggedInUserId = getLoggedInUserId()
 
@@ -120,7 +120,7 @@ function Profile({ match }) {
                     </div>}
                   </div>
 
-                  {userData.product.length === 0 ?
+                  {userData.product.filter(product => product.in_stock === true).length === 0 ?
                     <p>No products listed yet</p>
                     :
                     <div>
@@ -128,7 +128,7 @@ function Profile({ match }) {
                         onChange={handlePageChange}
                         pageNum={pageNumListings}
                         location='Listings'
-                        totalResults={userData.product.length}
+                        totalResults={userData.product.filter(product => product.in_stock === true).length}
                         resultsPerPage={resultsPerPage}
                       />
                       <div className='columns is-multiline'>
@@ -172,7 +172,7 @@ function Profile({ match }) {
                         </div> 
                       </div>
 
-                      {userData.product.length === 0 ?
+                      {userData.product.filter(product => product.in_stock === false).length === 0 ?
                         <p>No products sold yet</p>
                         :
                         <div>
@@ -180,7 +180,7 @@ function Profile({ match }) {
                             onChange={handlePageChange}
                             pageNum={pageNumListings}
                             location='Listings'
-                            totalResults={userData.product.length}
+                            totalResults={userData.product.filter(product => product.in_stock === false).length}
                             resultsPerPage={resultsPerPage}
                           />
                           <div className='columns is-multiline'>
@@ -264,7 +264,7 @@ function Profile({ match }) {
                 <div className='box'>
                   <h5 className='title is-size-3'>Wishlist</h5>
                   {userData.wishlist && <div>
-                    {userData.wishlist.length === 0 ?
+                    {userData.wishlist.filter(product => product.product.in_stock === true).length === 0 ?
                       <p>No products saved to wishlist</p>
                       :
                       <div>
@@ -272,11 +272,11 @@ function Profile({ match }) {
                           onChange={handlePageChange}
                           pageNum={pageNumWishlist}
                           location='Wishlist'
-                          totalResults={userData.wishlist.length}
+                          totalResults={userData.wishlist.filter(product => product.product.in_stock === true).length}
                           resultsPerPage={resultsPerPage}
                         />
                         <div className='columns is-multiline'>
-                          {userData.wishlist.slice((pageNumWishlist - 1) * resultsPerPage, ((pageNumWishlist - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
+                          {userData.wishlist.filter(product => product.product.in_stock === true).slice((pageNumWishlist - 1) * resultsPerPage, ((pageNumWishlist - 1) * resultsPerPage) + resultsPerPage).map((item, index) => {
                             return <ProductCard
                               key={index}
                               location='Wishlist'
