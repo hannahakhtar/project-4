@@ -30,19 +30,24 @@ function SingleProduct({ match, history }) {
     fetchUserData()
   }, [match.params.id])
 
-  // user.wishlist && user.wishlist.filter(item => item.product.id === product.id) ? <></> : <button className="button is-primary mb-3" onClick={handleWishlist}>Wishlist</button>
+  const wishlistId = user.wishlist && user.wishlist.some(item => {
+    return item.id
+  })
 
-  {
-    user.wishlist && user.wishlist.find(item => {
-      if (item.product.id === product.id) {
-        console.log(true)
-        return <></>
-      }
-    })
-  }
+  console.log(wishlistId)
+
+
+  console.log(user)
 
   async function handleWishlist() {
     const { data } = await axios.post(`/api/users/${loggedInUserId}/wishlist/${productId}`, {}, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+    console.log(data)
+  }
+
+  async function removeFromWishlist() {
+    const { data } = await axios.delete(`/api/users/${loggedInUserId}/wishlist/${wishlistId}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
     console.log(data)
@@ -86,11 +91,15 @@ function SingleProduct({ match, history }) {
     border: '2px solid black'
   }
 
+  const imageStyle = {
+    borderRadius: '100%'
+  }
+
   return <>
     <Navbar />
     <div className="container">
       <section className="content is-flex mb-0">
-        {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 is-rounded ml-4 m-2 p-1" src={user.image} /></Link>}
+        {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 ml-4 mt-2" src={product.user.image} style={imageStyle} /></Link>}
         {product.user && <Link to={`/users/${product.user.id}`}><h4 className="sub-title m-3 p-1">{product.user.username}</h4></Link>}
       </section>
       <div className="columns is-tablet">
@@ -110,7 +119,7 @@ function SingleProduct({ match, history }) {
                   : <Link to={`/productform/${productId}`}><button className="button is-primary mb-3 mr-1">Edit</button></Link>
                 : product.in_stock === true
                   ? user.wishlist && user.wishlist.find(item => item.product.id === product.id)
-                    ? <></>
+                    ? <button className="button is-primary mb-3" onClick={removeFromWishlist}>Remove From Wishlist</button>
                     : <button className="button is-primary mb-3" onClick={handleWishlist}>Add To Wishlist</button>
                   : <></>}
               {product.user && loggedInUserId === product.user.id
@@ -140,8 +149,8 @@ function SingleProduct({ match, history }) {
       </div>
       <section className="content" style={boxStyle}>
         <div className="content m-4 is-flex" style={borderStyle}>
-          <img className="image is-48x48 is-rounded m-3" src={'https://i.pinimg.com/originals/49/cd/d8/49cdd84297f34cb03fabe17eb346adb3.png'} />
-          <h6 className="has-text-centered mt-3 mb-3 mr-3 p-2">All in app purchases are covered by Buyer Protection</h6>
+          <img className="image is-32x32 is-rounded m-3" src={'https://i.pinimg.com/originals/49/cd/d8/49cdd84297f34cb03fabe17eb346adb3.png'} />
+          <h6 className="has-text-centered mt-1 mb-1 mr-3 p-2">All in app purchases are covered by Buyer Protection</h6>
         </div>
       </section>
       <section className="content m-3">

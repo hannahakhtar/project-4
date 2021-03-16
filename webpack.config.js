@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+// const WorkboxPlugin = require('workbox-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const env = process.env.NODE_ENV === 'production' ? (
   new webpack.EnvironmentPlugin({ ...process.env })
@@ -43,10 +44,15 @@ module.exports = () => {
       new Dotenv(),
       new webpack.HotModuleReplacementPlugin(),
       new HtmlWebpackPlugin({
+        // title: 'Garms',
         template: 'client/index.html',
         filename: 'index.html',
         inject: 'body'
       }),
+      // new WorkboxPlugin.GenerateSW({
+      //   clientsClaim: true,
+      //   skipWaiting: true
+      // }),
       env
     ]
   }

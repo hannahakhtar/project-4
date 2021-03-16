@@ -1,0 +1,20 @@
+{
+  "short_name": "Garms",
+  "name": "Garms",
+  "icons": [
+    {
+      "src": "./images/unnamed.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/logo-garms-white.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "../",
+  "display": "standalone",
+  "theme_color": "5332db",
+  "background_color": "#fff"
+}
