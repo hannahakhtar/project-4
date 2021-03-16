@@ -280,7 +280,7 @@ function Profile({ match }) {
                             return <ProductCard
                               key={index}
                               location='Wishlist'
-                              productId={item.id}
+                              productId={item.product.id}
                               productName={item.product.product_name}
                               productImage={item.product.product_image}
                               productPrice={item.product.price}
