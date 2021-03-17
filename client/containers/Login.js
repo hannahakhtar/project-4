@@ -25,7 +25,6 @@ function Login({ match, history }) {
         updateErrorbox('Sorry - user details are incorrect')
       }
     } catch (err) {
-      //console.log(err.response.data)
       updateErrorbox('Sorry - user details are incorrect')
     }
   }

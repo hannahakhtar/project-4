@@ -21,7 +21,6 @@ function Register({ history }) {
 
     try {
       const { data } = await axios.post('/api/signup', formdata,)
-      //console.log(data)
       if (data.id) {
         history.push('/login/success')
       } else {

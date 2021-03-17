@@ -30,9 +30,8 @@ function SingleProduct({ match, history }) {
     const { data } = await axios.get(`/api/users/${loggedInUserId}`)
     updateUser(data)
     const wishlistItem = data.wishlist.find(item => item.product.id === parseInt(match.params.id))
-    //console.log(wishlistItem)
     if (wishlistItem) {
-      //console.log(wishlistItem.id)
+
       updateIsInWishlist(true)
       updateWishlistId(wishlistItem.id)
     }
@@ -107,8 +106,7 @@ function SingleProduct({ match, history }) {
   const imageStyle = {
     borderRadius: '100%'
   }
-
-  console.log('..', product.user)
+  
   return <>
     <Navbar />
     <div className="container mt-6">

@@ -44,7 +44,6 @@ function Checkout({ location, history }) {
     const { data } = await axios.post(`api/users/${loggedInUserId}/order-history/${product.product.id}`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     })
-    console.log(data)
   }
 
   async function handleSubmitProduct() {

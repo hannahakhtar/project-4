@@ -62,11 +62,6 @@ function Profile({ match }) {
       const { data } = await axios.delete(`/api/users/${userId}/wishlist/${WishlistItemId}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
-      if (data.errors) {
-        console.log(data.errors)
-      } else {
-        console.log(data)
-      }
     } catch (err) {
       console.log(err)
     }

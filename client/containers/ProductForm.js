@@ -29,9 +29,8 @@ export default function ProductForm({ match, history }) {
           updatePopulateForm(data)
           updateImageUrl(data.product_image)
           updateLoading(false)
-          //console.log(data)
         } catch (err) {
-          console.log(err)
+    
           updateErrorbox('Sorry - could not find that product')
           updateLoading(false)
         }
@@ -88,7 +87,7 @@ export default function ProductForm({ match, history }) {
           headers: { Authorization: `Bearer ${token}` }
           // headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
-        console.log(data)
+
         if (!imageUrl) {
           updateErrorbox('Please upload an image')
         } else if (data.errors) {
@@ -106,7 +105,6 @@ export default function ProductForm({ match, history }) {
           headers: { Authorization: `Bearer ${token}` }
           //headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
-        console.log(data)
         if (!imageUrl) {
           updateErrorbox('Please upload an image')
         } else if (data.errors) {

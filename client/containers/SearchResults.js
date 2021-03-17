@@ -163,19 +163,17 @@ function SearchResults({ match }) {
   }
 
   function handleSortByDropdown(result) {
-    console.log(result)
-    console.log(furtherFilteredResults)
     try {
       if (result === 'Low - High') {
         furtherFilteredResults.sort(function (a, b) {
           return a.price - b.price
         })
-      } 
+      }
       if (result === 'High - Low') {
         furtherFilteredResults.sort(function (a, b) {
           return b.price - a.price
         })
-      } 
+      }
     } catch (err) {
       console.log(err)
     }
@@ -340,7 +338,7 @@ function SearchResults({ match }) {
 
   if (filteredResults.length === 0) {
     displayNoSearchResults = <>
-      <p className="no-search-results">Sorry, there are no results matching your search. Try again?</p>
+      <p className="no-search-results ">Sorry, there are no results matching your search. Try again?</p>
       <Link className="button is-primary" to={{ pathname: '/search-home' }}>Back to search</Link>
     </>
   }
@@ -360,135 +358,141 @@ function SearchResults({ match }) {
 
   return <>
     <Navbar />
-    <h2 className="search-results-searched-word">Your search results for "<strong>{searchResults}</strong>"</h2>
-    <section className="container search-results-filters-div">
-      <div className="genderDropdown dropdown">
-        <div className="dropdown-trigger">
-          <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleGenderButtonClicked()}>
-            <span>Gender</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-          {genderIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleGenderButtonClicked()}>
-            <div className="dropdown-content">
-              {gender.map((gender, index) => {
-                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleGenderDropdown(gender)}>{gender} ({genderNoOfItems(gender)})</div>
-              })}
+    <div className="hero is-fullheight-with-navbar">
+      <div>
+        <div className="container pt-5 pb-5 px-4">
+          <h2 className="search-results-searched-word">Your search results for "<strong>{searchResults}</strong>"</h2>
+          <section className="container search-results-filters-div">
+            <div className="genderDropdown dropdown">
+              <div className="dropdown-trigger">
+                <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleGenderButtonClicked()}>
+                  <span>Gender</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                {genderIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleGenderButtonClicked()}>
+                  <div className="dropdown-content">
+                    {gender.map((gender, index) => {
+                      return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleGenderDropdown(gender)}>{gender} ({genderNoOfItems(gender)})</div>
+                    })}
+                  </div>
+                </div>}
+              </div>
             </div>
-          </div>}
+            <div className="brandDropdown dropdown">
+              <div className="dropdown-trigger">
+                <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleBrandButtonClicked()}>
+                  <span>Brand</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                {brandIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleBrandButtonClicked()}>
+                  <div className="dropdown-content">
+                    {brands.map((brand, index) => {
+                      return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleBrandDropdown(brand)}>{brand} ({brandsNoOfItems(brand)})</div>
+                    })}
+                  </div>
+                </div>}
+              </div>
+            </div>
+            <div className="sizeDropdown dropdown">
+              <div className="dropdown-trigger">
+                <button className=" button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleSizeButtonClicked()}>
+                  <span>Size</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                {sizeIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleSizeButtonClicked()}>
+                  <div className="dropdown-content">
+                    {sizes.map((size, index) => {
+                      return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleSizeDropdown(size)}>{size} ({sizeNoOfItems(size)})</div>
+                    })}
+                  </div>
+                </div>}
+              </div>
+            </div>
+            <div className="categoryDropdown dropdown">
+              <div className="dropdown-trigger">
+                <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleCategoryButtonClicked()}>
+                  <span>Category</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                {categoryIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleCategoryButtonClicked()}>
+                  <div className="dropdown-content">
+                    {categories.map((category, index) => {
+                      return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleCategoryDropdown(category)}>{category} ({categoryNoOfItems(category)})</div>
+                    })}
+                  </div>
+                </div>}
+              </div>
+            </div>
+            <div className="priceDropdown dropdown">
+              <div className="dropdown-trigger">
+                <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handlePriceButtonClicked()}>
+                  <span>Price</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                {priceIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handlePriceButtonClicked()}>
+                  <div className="dropdown-content">
+                    {priceRanges.map((price, index) => {
+                      return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handlePriceDropdown(price.minPrice, price.maxPrice)}>{price.displayPrice} ({priceNoOfItems(price)})</div>
+                    })}
+                  </div>
+                </div>}
+              </div>
+            </div>
+            <div className="conditionDropdown dropdown">
+              <div className="dropdown-trigger">
+                <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleConditionButtonClicked()}>
+                  <span>Condition</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                {conditionIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleConditionButtonClicked()}>
+                  <div className="dropdown-content">
+                    {conditions.map((condition, index) => {
+                      return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleConditionDropdown(condition)}>{condition} ({conditionNoOfItems(condition)})</div>
+                    })}
+                  </div>
+                </div>}
+              </div>
+            </div>
+            <div className="sortByDropdown dropdown">
+              <div className="dropdown-trigger">
+                <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleSortByButtonClicked()}>
+                  <span>Sort results</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+                {sortByIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleSortByButtonClicked()}>
+                  <div className="dropdown-content">
+                    {sortingResults.map((result, index) => {
+                      return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleSortByDropdown(result)}>{result}</div>
+                    })}
+                  </div>
+                </div>}
+              </div>
+            </div>
+            <button className="button cat-dropdown" onClick={clearFilters}>Clear filters</button>
+          </section>
+          <section className="display-search-results">
+            {displaySearchResults}
+          </section>
+          <section className="display-no-search-results">
+            {displayNoSearchResults}
+          </section>
         </div>
       </div>
-      <div className="brandDropdown dropdown">
-        <div className="dropdown-trigger">
-          <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleBrandButtonClicked()}>
-            <span>Brand</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-          {brandIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleBrandButtonClicked()}>
-            <div className="dropdown-content">
-              {brands.map((brand, index) => {
-                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleBrandDropdown(brand)}>{brand} ({brandsNoOfItems(brand)})</div>
-              })}
-            </div>
-          </div>}
-        </div>
-      </div>
-      <div className="sizeDropdown dropdown">
-        <div className="dropdown-trigger">
-          <button className=" button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleSizeButtonClicked()}>
-            <span>Size</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-          {sizeIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleSizeButtonClicked()}>
-            <div className="dropdown-content">
-              {sizes.map((size, index) => {
-                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleSizeDropdown(size)}>{size} ({sizeNoOfItems(size)})</div>
-              })}
-            </div>
-          </div>}
-        </div>
-      </div>
-      <div className="categoryDropdown dropdown">
-        <div className="dropdown-trigger">
-          <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleCategoryButtonClicked()}>
-            <span>Category</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-          {categoryIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleCategoryButtonClicked()}>
-            <div className="dropdown-content">
-              {categories.map((category, index) => {
-                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleCategoryDropdown(category)}>{category} ({categoryNoOfItems(category)})</div>
-              })}
-            </div>
-          </div>}
-        </div>
-      </div>
-      <div className="priceDropdown dropdown">
-        <div className="dropdown-trigger">
-          <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handlePriceButtonClicked()}>
-            <span>Price</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-          {priceIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handlePriceButtonClicked()}>
-            <div className="dropdown-content">
-              {priceRanges.map((price, index) => {
-                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handlePriceDropdown(price.minPrice, price.maxPrice)}>{price.displayPrice} ({priceNoOfItems(price)})</div>
-              })}
-            </div>
-          </div>}
-        </div>
-      </div>
-      <div className="conditionDropdown dropdown">
-        <div className="dropdown-trigger">
-          <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleConditionButtonClicked()}>
-            <span>Condition</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-          {conditionIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleConditionButtonClicked()}>
-            <div className="dropdown-content">
-              {conditions.map((condition, index) => {
-                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleConditionDropdown(condition)}>{condition} ({conditionNoOfItems(condition)})</div>
-              })}
-            </div>
-          </div>}
-        </div>
-      </div>
-      <div className="sortByDropdown dropdown">
-        <div className="dropdown-trigger">
-          <button className="button cat-dropdown" aria-haspopup="true" aria-controls="dropdown-menu" onClick={() => handleSortByButtonClicked()}>
-            <span>Sort results</span>
-            <span className="icon is-small">
-              <i className="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
-          {sortByIsShown && <div className="dropdown-menu" id="dropdown-menu" role="menu" onMouseLeave={() => handleSortByButtonClicked()}>
-            <div className="dropdown-content">
-              {sortingResults.map((result, index) => {
-                return <div key={index} className="dropdown-item search-results-dropdown" onClick={() => handleSortByDropdown(result)}>{result}</div>
-              })}
-            </div>
-          </div>}
-        </div>
-      </div>
-      <button className="button cat-dropdown" onClick={clearFilters}>Clear filters</button>
-    </section>
-    <section className="display-search-results">
-      {displaySearchResults}
-    </section>
-    <section className="display-no-search-results">
-      {displayNoSearchResults}
-    </section>
+    </div>
   </>
 }
 
