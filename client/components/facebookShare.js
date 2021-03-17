@@ -13,7 +13,7 @@ export default function ShareButtonFacebook({ productId }) {
   }
 
   return <FacebookShareButton {...shareButtonProps}>
-    <button className="button facebook" ><i className='fab fa-facebook-f mr-2'></i>Share</button>
+    <div className="button facebook" ><i className='fab fa-facebook-f mr-2'></i>Share</div>
   </FacebookShareButton>
 
 }
