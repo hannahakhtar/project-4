@@ -164,7 +164,7 @@ function SingleProduct({ match, history }) {
                 }
               </>}
               <ShareButton
-                productId={productId}
+                // productId={productId}
               />
 
             </div>
