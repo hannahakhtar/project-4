@@ -17,10 +17,6 @@ function SingleProduct({ match, history }) {
   const [inWishlist, updateIsInWishlist] = useState(false)
   const [wishlistId, updateWishlistId] = useState(0)
 
-
-
-
-
   async function fetchProductData() {
     const { data } = await axios.get(`/api/products/${productId}`)
     updateProduct(data)
