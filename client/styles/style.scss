@@ -109,7 +109,7 @@ nav .profile-image {
 }
 
 .button.is-primary {
-  background-color: #e4dff8 !important;
+  background-color: #5332db !important;
 }
 
 .button.is-link {
@@ -228,8 +228,17 @@ footer .logo {
   margin-bottom: 20px;
 }
 
+.about-aref:hover {
+  color: #5332db;
+}
+
 h2.category-card {
   font-size: 1.25em;
+}
+
+.facebook {
+  background-color: #4267B2 !important;
+  color: white !important;
 }
 
 @media only screen and (min-width: 200px) and (max-width: 767px) {

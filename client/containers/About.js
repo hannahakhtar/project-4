@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import DynamicScrollToTop from './DynamicScrollToTop'
 
 function About() {
 
@@ -55,6 +56,7 @@ function About() {
 
   return <>
     <Navbar />
+    <DynamicScrollToTop />
     <div className="container">
       <div className="hero is-fullheight-with-navbar">
         <div className="box about-page about-page-box-1">
@@ -63,7 +65,7 @@ function About() {
         </div>
         <div className="box about-page">
           <h2 className="about-h2">Founders</h2>
-          <p className="about-p">Garms was founded by <a href="https://github.com/hannahakhtar">Hannah Akhtar</a>, <a href="https://github.com/ikalff">I. Kalff</a> & <a href="https://github.com/Jacobaston">Jake Aston</a> for project 4 of <a href="https://generalassemb.ly/">General Assembly’s</a> Software Engeering Immersive.</p>
+          <p className="about-p">Garms was founded by <a href="https://github.com/hannahakhtar" className="about-aref">Hannah Akhtar</a>, <a href="https://github.com/ikalff" className="about-aref">India Kalff</a> & <a href="https://github.com/Jacobaston" className="about-aref">Jake Aston</a> for project 4 of <a href="https://generalassemb.ly/" className="about-aref">General Assembly’s</a> Software Engeering Immersive.</p>
         </div>
         <div className="box about-page about-page-box-3">
           <h2 className="about-h2">Technologies</h2>

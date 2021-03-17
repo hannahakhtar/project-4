@@ -1,6 +1,6 @@
 import React from 'react'
 // import FaFacebook from 'react-icons/lib/fa/facebook'
-import { FacebookShareButton, FacebookIcon } from 'react-share'
+import { FacebookShareButton } from 'react-share'
 
 export default function ShareButtonFacebook({ productId }) {
   const shareButtonProps = {
@@ -13,7 +13,7 @@ export default function ShareButtonFacebook({ productId }) {
   }
 
   return <FacebookShareButton {...shareButtonProps}>
-    <FacebookIcon></FacebookIcon>
+    <button className="button facebook" ><i className='fab fa-facebook-f mr-2'></i>Share</button>
   </FacebookShareButton>
 
 }
