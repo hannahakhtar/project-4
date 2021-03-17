@@ -6,8 +6,6 @@ import { getLoggedInUserId } from '../lib/auth'
 import Navbar from '../components/Navbar'
 import ProductCard from '../components/ProductCard.js'
 import Carousel from '../components/Carousel.js'
-// import { parseConnectionUrl } from 'nodemailer/lib/shared'
-
 
 function SearchHome() {
 

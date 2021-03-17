@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import DynamicScrollToTop from './DynamicScrollToTop'
+import DynamicScrollToTop from '../components/DynamicScrollToTop'
 
 function About() {
 
@@ -45,7 +45,6 @@ function About() {
       url: 'https://www.sqlalchemy.org/img/sqla_logo.png',
       alt: 'SQLAlchemy'
     }
-    
   ]
 
   const tech = techInfo.map(t => {

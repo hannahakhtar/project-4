@@ -31,8 +31,6 @@ function Register({ history }) {
     }
   }
 
-
-
   return <>
     <Navbar />
 

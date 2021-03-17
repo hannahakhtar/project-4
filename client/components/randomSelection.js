@@ -6,7 +6,6 @@ function randomSelection() {
 
   const [featuredItems, updateFeaturedItems] = useState([])
 
-
   async function fetchFeaturedItems() {
     const { data } = await axios.get('/api/products')
     const inStock = data.filter(result => {

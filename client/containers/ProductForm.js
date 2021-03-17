@@ -120,24 +120,17 @@ export default function ProductForm({ match, history }) {
 
   }
 
-
-
-
   return <>
     <Navbar />
     <div className="hero is-fullheight-with-navbar">
       <div>
         <div className="container pt-5 pb-5 px-4">
 
-
           <h1 className='title'>{match.params.productId ? 'Edit product' : 'List a new product'}</h1>
 
           {errorbox && <div className='box mt-4 has-background-danger has-text-white'>{errorbox}</div>}
 
-
-
           <form onSubmit={handleSubmit(onSubmit)} >
-
             <div className='field'>
               <input
                 className={`input ${errors.product_name && 'is-danger'}`}
@@ -148,10 +141,6 @@ export default function ProductForm({ match, history }) {
               />
               {errors.product_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
-
-
-
-
             <div className='field'>
               <input
                 className={`input ${errors.price && 'is-danger'}`}
@@ -164,7 +153,6 @@ export default function ProductForm({ match, history }) {
               />
               {errors.price && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
-
             <div className='field'>
               <input
                 className={`input ${errors.brand && 'is-danger'}`}
@@ -175,8 +163,6 @@ export default function ProductForm({ match, history }) {
               />
               {errors.brand && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
-
-
             <div className='field'>
               <textarea
                 className={`textarea ${errors.description && 'is-danger'}`}
@@ -187,7 +173,6 @@ export default function ProductForm({ match, history }) {
               />
               {errors.description && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
-
             <div className='field'>
               <input
                 className={`input ${errors.size && 'is-danger'}`}
@@ -198,13 +183,9 @@ export default function ProductForm({ match, history }) {
               />
               {errors.size && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
             </div>
-
-
-
             {!loading &&
               <div className='field'>
                 <div className={`is-fullwidth select ${errors.gender && 'is-danger'}`}>
-
                   <select name='gender'
                     defaultValue={populateForm.gender}
                     ref={register({
@@ -215,16 +196,13 @@ export default function ProductForm({ match, history }) {
                     <option value='Male'>Male</option>
                     <option value='Female'>Female</option>
                   </select>
-
                 </div>
                 {errors.gender && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
               </div>
             }
-
             {!loading &&
               <div className='field'>
                 <div className={`is-fullwidth select ${errors.category && 'is-danger'}`}>
-
                   <select name='category'
                     defaultValue={populateForm.category}
                     ref={register({
@@ -245,7 +223,6 @@ export default function ProductForm({ match, history }) {
                 </div>
               </div>
             }
-
             {!loading &&
               <div className='field'>
                 <div className={`is-fullwidth select ${errors.condition && 'is-danger'}`}>
@@ -264,28 +241,19 @@ export default function ProductForm({ match, history }) {
                 </div>
               </div>
             }
-
-
             <div className='box mt-4 mb-4'>
               <h5 className='title is-size-5'>Upload an image</h5>
-
               <div className='columns is-vcentered'>
-
                 <div className='column is-narrow'>
                   <img src={imageUrl ? imageUrl : 'http://placehold.it/400x400?text=IMAGE'} className="displayed-image" width='100' />
                 </div>
-
                 <div className='column is-narrow'>
                   <input type='file' className='fileinput button' />
                 </div>
                 <div className='column is-narrow'>
                   <button type='button' className='button' onClick={handleImageUpload}>Upload</button></div>
               </div>
-
             </div>
-
-
-
             <input
               className='button is-primary'
               type='submit'

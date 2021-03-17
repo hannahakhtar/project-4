@@ -7,6 +7,7 @@ function Home({ history }) {
     localStorage.clear()
     history.push('/login')
   }
+
   return <>
     <header>
       <div className="hero is-fullheight-with-navbar homepage">
@@ -32,6 +33,5 @@ function Home({ history }) {
     </header>
   </>
 }
-
 
 export default withRouter(Home)

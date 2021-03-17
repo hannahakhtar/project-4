@@ -47,8 +47,6 @@ export default function UserForm({ match, history }) {
 
   }, [])
 
-
-
   function handleImageUpload() {
     updateErrorbox('')
     const { files } = document.querySelector('input[type="file"]')
@@ -72,7 +70,6 @@ export default function UserForm({ match, history }) {
   }
 
   async function onSubmit(data) {
-
 
     const formdata = {
       'username': data.username,
@@ -104,7 +101,6 @@ export default function UserForm({ match, history }) {
       try {
         const { data } = await axios.post('/api/users', formdata, {
           headers: { Authorization: `Bearer ${token}` }
-          //headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
         if (!imageUrl) {
           updateErrorbox('Please upload an image')
@@ -118,24 +114,18 @@ export default function UserForm({ match, history }) {
         console.log(err)
       }
     }
-
   }
-
 
   return <>
     <Navbar />
     <div className="hero is-fullheight-with-navbar">
       <div>
         <div className="container pt-5 pb-5 px-4">
-
           <h1 className='title'>Edit your profile</h1>
 
           {errorbox && <div className='box mt-4 has-background-danger has-text-white'>{errorbox}</div>}
-
-
           {populateForm &&
             <form onSubmit={handleSubmit(onSubmit)} >
-
 
               <div className='field'>
                 <input
@@ -147,7 +137,6 @@ export default function UserForm({ match, history }) {
                 />
                 {errors.username && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
               </div>
-
 
               <div className='field'>
                 <input
@@ -171,7 +160,6 @@ export default function UserForm({ match, history }) {
                 {errors.last_name && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
               </div>
 
-
               <div className='field'>
                 <input
                   className={`input ${errors.location && 'is-danger'}`}
@@ -194,7 +182,6 @@ export default function UserForm({ match, history }) {
                 {errors.email && <div className='mt-2 mb-2 is-size-7'>This field is required</div>}
               </div>
 
-
               <div className='box mt-4 mb-4'>
                 <h5 className='title is-size-5'>Upload a profile image</h5>
 
@@ -210,11 +197,7 @@ export default function UserForm({ match, history }) {
                   <div className='column is-narrow'>
                     <button type='button' className='button' onClick={handleImageUpload}>Upload</button></div>
                 </div>
-
               </div>
-
-
-
               <input
                 className='button is-primary'
                 type='submit'

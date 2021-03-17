@@ -5,7 +5,7 @@ import RandomSelection from '../components/randomSelection'
 import { getLoggedInUserId } from '../lib/auth.js'
 import Navbar from '../components/Navbar'
 import ShareButton from '../components/facebookShare'
-import DynamicScrollToTop from './DynamicScrollToTop'
+import DynamicScrollToTop from '../components/DynamicScrollToTop'
 
 function SingleProduct({ match, history }) {
 
@@ -130,8 +130,6 @@ function SingleProduct({ match, history }) {
             <div className='buttons mt-5'>
               {handleInStock()}
 
-
-
               {product.user && <>
                 {loggedInUserId === product.user.id &&
                   <>
@@ -144,7 +142,6 @@ function SingleProduct({ match, history }) {
                   </>
                 }
               </>}
-
 
               {product.user && <>
                 {loggedInUserId !== product.user.id && <>
@@ -160,7 +157,6 @@ function SingleProduct({ match, history }) {
               <ShareButton
                 productId={productId}
               />
-
             </div>
 
             {product.user && <div className='columns mt-4'>

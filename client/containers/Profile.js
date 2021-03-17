@@ -68,7 +68,6 @@ function Profile({ match }) {
     fetchUser()
   }
 
-
   return <>
     <Navbar />
     <div className="hero is-fullheight-with-navbar">
