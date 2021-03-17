@@ -14,7 +14,7 @@ function About() {
       alt: 'CSS3'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002428/GA%20Project%204%20images/JavaScript-logo_tiowac.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002405/GA%20Project%204%20images/bulma-logo_abh1lm.png',
       alt: 'Bulma'
     },
     {
@@ -22,7 +22,7 @@ function About() {
       alt: 'JavaScript'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002460/GA%20Project%204%20imagesreact-1-logo-png-transparent_l1td6v.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002460/GA%20Project%204%20images/react-1-logo-png-transparent_l1td6v.png',
       alt: 'React'
     },
     {
