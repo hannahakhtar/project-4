@@ -4,16 +4,19 @@ import { Link } from 'react-router-dom'
 import RandomSelection from '../components/randomSelection'
 import { getLoggedInUserId } from '../lib/auth.js'
 import Navbar from '../components/Navbar'
+import ShareButton from '../components/facebookShare'
 // import { findLastKey } from 'lodash'
 
 function SingleProduct({ match, history }) {
 
   const productId = match.params.id
+  let wishlistId
   const loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
   const [product, updateProduct] = useState({})
   const [user, updateUser] = useState({})
-  const [wishlistButton, updateWishlistButton] = useState(true)
+  // const [wishlistButton, updateWishlistButton] = useState()
+  // const [card, updateCard] = useState()
 
   async function fetchProductData() {
     const { data } = await axios.get(`/api/products/${productId}`)
@@ -28,16 +31,12 @@ function SingleProduct({ match, history }) {
   useEffect(() => {
     fetchProductData()
     fetchUserData()
-  }, [match.params.id])
+  }, [productId])
 
-  const wishlistId = user.wishlist && user.wishlist.some(item => {
-    return item.id
+  user.wishlist && user.wishlist.find(item => {
+    if (item.product.id === product.id)
+      wishlistId = item.id
   })
-
-  console.log(wishlistId)
-
-
-  console.log(user)
 
   async function handleWishlist() {
     const { data } = await axios.post(`/api/users/${loggedInUserId}/wishlist/${productId}`, {}, {
@@ -81,25 +80,11 @@ function SingleProduct({ match, history }) {
     }
   }
 
-  const boxStyle = {
-    width: '370px',
-    margin: 'auto',
-    display: 'block'
-  }
-
-  const borderStyle = {
-    border: '2px solid black'
-  }
-
-  const imageStyle = {
-    borderRadius: '100%'
-  }
-
   return <>
     <Navbar />
     <div className="container">
       <section className="content is-flex mb-0">
-        {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 ml-4 mt-2" src={product.user.image} style={imageStyle} /></Link>}
+        {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 ml-4 mt-2" src={product.user.image} style={{ borderRadius: '100%' }} /></Link>}
         {product.user && <Link to={`/users/${product.user.id}`}><h4 className="sub-title m-3 p-1">{product.user.username}</h4></Link>}
       </section>
       <div className="columns is-tablet">
@@ -126,6 +111,7 @@ function SingleProduct({ match, history }) {
                 ? product.in_stock === false ? <></>
                   : <button className="button is-primary mb-3" onClick={handleDelete}>Delete</button>
                 : <></>}
+              <ShareButton productId={productId} />
             </div>
           </section>
         </div>
@@ -147,8 +133,8 @@ function SingleProduct({ match, history }) {
           </section>
         </div>
       </div>
-      <section className="content" style={boxStyle}>
-        <div className="content m-4 is-flex" style={borderStyle}>
+      <section className="content" style={{ width: '370px', margin: 'auto', display: 'block' }}>
+        <div className="content m-4 is-flex" style={{ border: '2px solid black' }}>
           <img className="image is-32x32 is-rounded m-3" src={'https://i.pinimg.com/originals/49/cd/d8/49cdd84297f34cb03fabe17eb346adb3.png'} />
           <h6 className="has-text-centered mt-1 mb-1 mr-3 p-2">All in app purchases are covered by Buyer Protection</h6>
         </div>
