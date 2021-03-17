@@ -5,7 +5,7 @@ import RandomSelection from '../components/randomSelection'
 import { getLoggedInUserId } from '../lib/auth.js'
 import Navbar from '../components/Navbar'
 import ShareButton from '../components/facebookShare'
-import { update } from 'lodash'
+import DynamicScrollToTop from './DynamicScrollToTop'
 
 function SingleProduct({ match, history }) {
 
@@ -101,6 +101,8 @@ function SingleProduct({ match, history }) {
   
   return <>
     <Navbar />
+    <DynamicScrollToTop />
+
     <div className="container mt-6">
       <div className="columns is-tablet">
         <div className="column ml-3 mr-3 pb-0">
