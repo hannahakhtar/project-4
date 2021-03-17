@@ -14,11 +14,11 @@ function About() {
       alt: 'CSS3'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002405/GA%20Project%204%20images/bulma-logo_abh1lm.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002428/GA%20Project%204%20images/JavaScript-logo_tiowac.png',
       alt: 'Bulma'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002428/GA%20Project%204%20imagesJavaScript-logo_tiowac.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002428/GA%20Project%204%20images/JavaScript-logo_tiowac.png',
       alt: 'JavaScript'
     },
     {
