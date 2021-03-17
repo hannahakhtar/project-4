@@ -46,6 +46,7 @@
     "react-notify-toast": "^0.5.1",
     "react-responsive-carousel": "^3.2.14",
     "react-router-dom": "^5.2.0",
+    "react-share": "^4.4.0",
     "react-slick": "^0.28.1"
   }
 }
