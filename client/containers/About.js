@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
+import DynamicScrollToTop from './DynamicScrollToTop'
 
 function About() {
 
@@ -55,6 +56,7 @@ function About() {
 
   return <>
     <Navbar />
+    <DynamicScrollToTop />
     <div className="container">
       <div className="hero is-fullheight-with-navbar">
         <div className="box about-page about-page-box-1">

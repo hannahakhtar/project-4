@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import RandomSelection from '../components/randomSelection'
 import { getLoggedInUserId } from '../lib/auth.js'
 import Navbar from '../components/Navbar'
+import { update } from 'lodash'
+import DynamicScrollToTop from './DynamicScrollToTop'
 // import { findLastKey } from 'lodash'
 
 function SingleProduct({ match, history }) {
@@ -13,7 +15,6 @@ function SingleProduct({ match, history }) {
   const token = localStorage.getItem('token')
   const [product, updateProduct] = useState({})
   const [user, updateUser] = useState({})
-
 
   async function fetchProductData() {
     const { data } = await axios.get(`/api/products/${productId}`)
@@ -26,17 +27,16 @@ function SingleProduct({ match, history }) {
   }
 
   useEffect(() => {
-    fetchProductData()
     fetchUserData()
+    fetchProductData()
   }, [match.params.id])
 
   const wishlistId = user.wishlist && user.wishlist.some(item => {
     return item.id
   })
 
-  console.log(wishlistId)
-
-
+  console.log(user.wishlist)
+  console.log('wishlist id', wishlistId)
   console.log(user)
 
   async function handleWishlist() {
@@ -73,10 +73,6 @@ function SingleProduct({ match, history }) {
             }
           }}><button className="button is-primary mt-3">Buy now</button></Link>
         </>
-      } else {
-        return <>
-          <h3>Sold</h3>
-        </>
       }
     }
   }
@@ -97,6 +93,7 @@ function SingleProduct({ match, history }) {
 
   return <>
     <Navbar />
+    <DynamicScrollToTop />
     <div className="container">
       <section className="content is-flex mb-0">
         {product.user && <Link to={`/users/${product.user.id}`}><img className="image is-32x32 ml-4 mt-2" src={product.user.image} style={imageStyle} /></Link>}
@@ -133,15 +130,13 @@ function SingleProduct({ match, history }) {
           <section className="content m-3">
             <div>
               <h3 className="title"><strong>{product.product_name}</strong></h3>
-              <p><strong>Description:</strong> {product.description}</p>
             </div>
             <div>
-              <p><strong>Size:</strong> {product.size}</p>
-              <p><strong>Condition:</strong> {product.condition}</p>
-              <p><strong>Brand:</strong> {product.brand}</p>
-            </div>
-            <div>
-              <strong><p>Price: £{product.price}</p></strong>
+              <p className="block"><strong>Description:</strong> {product.description}</p>
+              <p className="block"><strong>Size:</strong> {product.size}</p>
+              <p className="block"><strong>Condition:</strong> {product.condition}</p>
+              <p className="block"><strong>Brand:</strong> {product.brand}</p>
+              <strong><p className="block">Price: £{product.price}</p></strong>
             </div>
             <div>{handleInStock()}</div>
           </section>
