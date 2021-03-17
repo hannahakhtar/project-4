@@ -91,6 +91,7 @@ function SingleProduct({ match, history }) {
     borderRadius: '100%'
   }
 
+  console.log('..', product.user)
   return <>
     <Navbar />
     <DynamicScrollToTop />
@@ -136,7 +137,7 @@ function SingleProduct({ match, history }) {
               <p className="block"><strong>Size:</strong> {product.size}</p>
               <p className="block"><strong>Condition:</strong> {product.condition}</p>
               <p className="block"><strong>Brand:</strong> {product.brand}</p>
-              <strong><p className="block">Price: £{product.price}</p></strong>
+              <p className="block"><strong>Price:</strong> £{product.price}</p>
             </div>
             <div>{handleInStock()}</div>
           </section>
