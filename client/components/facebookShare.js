@@ -4,7 +4,7 @@ import { FacebookShareButton } from 'react-share'
 
 export default function ShareButtonFacebook() {
   const shareButtonProps = {
-    url: 'garms-shopping.herokuapp.com/products/15',
+    url: 'https://www.google.com',
     // change url and deployment link`,
     network: 'Facebook',
     text: 'Check out this cool listing on Garms!',
