@@ -6,43 +6,43 @@ function About() {
 
   const techInfo = [
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002348/samples/1200px-HTML5_logo_and_wordmark.svg_earyn1.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002348/GA%20Project%204%20images/1200px-HTML5_logo_and_wordmark.svg_earyn1.png',
       alt: 'HTML5'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002377/samples/CSS3_logo_and_wordmark.svg_h33grc.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002377/GA%20Project%204%20images/CSS3_logo_and_wordmark.svg_h33grc.png',
       alt: 'CSS3'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002405/samples/bulma-logo_abh1lm.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002405/GA%20Project%204%20images/bulma-logo_abh1lm.png',
       alt: 'Bulma'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002428/samples/JavaScript-logo_tiowac.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002428/GA%20Project%204%20imagesJavaScript-logo_tiowac.png',
       alt: 'JavaScript'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002460/samples/react-1-logo-png-transparent_l1td6v.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002460/GA%20Project%204%20imagesreact-1-logo-png-transparent_l1td6v.png',
       alt: 'React'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002501/samples/elephant_1_dpmtcn.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002501/GA%20Project%204%20images/elephant_1_dpmtcn.png',
       alt: 'PostgreSQL'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002526/samples/pytest1_owfuqs.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002526/GA%20Project%204%20images/pytest1_owfuqs.png',
       alt: 'PyTest'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002560/samples/marshmallow-logo_hka29l.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002560/GA%20Project%204%20images/marshmallow-logo_hka29l.png',
       alt: 'Marshmallow'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002566/samples/flask-logo_z4xuum.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002566/GA%20Project%204%20images/flask-logo_z4xuum.png',
       alt: 'Flask'
     },
     {
-      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002571/samples/sqla_logo_r4iq4c.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002571/GA%20Project%204%20images/sqla_logo_r4iq4c.png',
       alt: 'SQLAlchemy'
     }
   ]
