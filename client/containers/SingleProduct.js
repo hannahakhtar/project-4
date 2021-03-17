@@ -86,10 +86,6 @@ function SingleProduct({ match, history }) {
             }
           }}>Buy now</Link>
         </>
-      } else {
-        return <>
-          <h3>Sold</h3>
-        </>
       }
     }
   }
@@ -164,7 +160,7 @@ function SingleProduct({ match, history }) {
                 }
               </>}
               <ShareButton
-                // productId={productId}
+                productId={productId}
               />
 
             </div>
