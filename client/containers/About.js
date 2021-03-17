@@ -6,43 +6,43 @@ function About() {
 
   const techInfo = [
     {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1200px-HTML5_logo_and_wordmark.svg.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002348/samples/1200px-HTML5_logo_and_wordmark.svg_earyn1.png',
       alt: 'HTML5'
     },
     {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/1200px-CSS3_logo_and_wordmark.svg.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002377/samples/CSS3_logo_and_wordmark.svg_h33grc.png',
       alt: 'CSS3'
     },
     {
-      url: 'https://bulma.io/images/bulma-logo.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002405/samples/bulma-logo_abh1lm.png',
       alt: 'Bulma'
     },
     {
-      url: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002428/samples/JavaScript-logo_tiowac.png',
       alt: 'JavaScript'
     },
     {
-      url: 'https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-png-transparent.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002460/samples/react-1-logo-png-transparent_l1td6v.png',
       alt: 'React'
     },
     {
-      url: 'https://www.postgresql.org/media/img/about/press/elephant.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002501/samples/elephant_1_dpmtcn.png',
       alt: 'PostgreSQL'
     },
     {
-      url: 'https://docs.pytest.org/en/stable/_static/pytest1.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002526/samples/pytest1_owfuqs.png',
       alt: 'PyTest'
     },
     {
-      url: 'https://marshmallow.readthedocs.io/en/stable/_static/marshmallow-logo.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002560/samples/marshmallow-logo_hka29l.png',
       alt: 'Marshmallow'
     },
     {
-      url: 'https://flask.palletsprojects.com/en/1.1.x/_images/flask-logo.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002566/samples/flask-logo_z4xuum.png',
       alt: 'Flask'
     },
     {
-      url: 'https://www.sqlalchemy.org/img/sqla_logo.png',
+      url: 'https://res.cloudinary.com/da3rlixzz/image/upload/v1616002571/samples/sqla_logo_r4iq4c.png',
       alt: 'SQLAlchemy'
     }
   ]
