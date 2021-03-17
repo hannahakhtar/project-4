@@ -50,7 +50,6 @@ function Checkout({ location, history }) {
     const { data } = await axios.put(`/api/products/${product.product.id}`, purchased, {
       headers: { Authorization: `Bearer ${token}` }
     })
-
     // email()
     console.log(data)
   }
@@ -233,7 +232,7 @@ function Checkout({ location, history }) {
 
             <Link to={`products/${product.product.id}`}><button className='button is-primary'>Continue Shopping</button></Link>
             <div className='mt-4'>
-              <small>Please note, this is just a project and real card details should not be entered</small>
+              <small>Please note, this is a project and real card details should not be entered</small>
             </div>
           </div>
         </div>

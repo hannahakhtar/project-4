@@ -40,8 +40,10 @@ function Login({ match, history }) {
             <h1 className="title has-text-centered mt-2 mb-5">Login</h1>
 
             {errorbox && <div className='box has-background-danger has-text-white'>{errorbox}</div>}
-            {match.params.message === 'success' && <div className='box has-background-success has-text-white'>Registration sucessful. Log in to continue.</div>}
-
+            {!errorbox && <>
+              {match.params.message === 'success' && <div className='box has-background-success has-text-white'>Registration sucessful. Log in to continue.</div>}
+            </>
+            }
 
             <form onSubmit={handleSubmit(onSubmit)} >
 

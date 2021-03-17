@@ -10,12 +10,10 @@ function Navbar({ history }) {
   let loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
 
-
-
   useEffect(() => {
     async function fetchData() {
       loggedInUserId = getLoggedInUserId() 
-      if (!isNaN(loggedInUserId)) {
+      if (loggedInUserId) {
         try {
           const { data } = await axios.get(`/api/users/${loggedInUserId}`, {
             headers: { Authorization: `Bearer ${token}` }
@@ -40,10 +38,7 @@ function Navbar({ history }) {
     history.push('/login')
   }
 
-
   return <nav className='navbar' role='navigation' aria-label='main navigation'>
-
-
 
     <div className='container px-4 pt-4 pb-4'>
 
@@ -66,7 +61,6 @@ function Navbar({ history }) {
               Logged in as <Link className='mr-2 has-text-white  underline' to={`/users/${loggedInUserId}`}><strong>{userData.username}</strong></Link> 
               | 
               <a className='ml-2 has-text-white underline' onClick={logOut}>Log out</a>
-
             </div>
           </div>
             :
@@ -75,9 +69,6 @@ function Navbar({ history }) {
               <Link className='button' to='/login'>Login</Link>
             </>
           }
-
-
-
         </div>
       </div>
     </div>
