@@ -32,9 +32,9 @@ function Navbar({ history }) {
   }, [loggedIn])
 
   function logOut() {
-    localStorage.clear()
+    localStorage.removeItem('token')
     updateLoggedIn(false)
-    history.push('/login')
+    history.push('/')
   }
 
   return <nav className='navbar' role='navigation' aria-label='main navigation'>
