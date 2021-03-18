@@ -7,12 +7,11 @@ function Navbar({ history }) {
 
   const [userData, updateUserData] = useState({})
   const [loggedIn, updateLoggedIn] = useState(false)
-  let loggedInUserId = getLoggedInUserId()
+  const loggedInUserId = getLoggedInUserId()
   const token = localStorage.getItem('token')
 
   useEffect(() => {
     async function fetchData() {
-      loggedInUserId = getLoggedInUserId() 
       if (loggedInUserId) {
         try {
           const { data } = await axios.get(`/api/users/${loggedInUserId}`, {
@@ -44,7 +43,8 @@ function Navbar({ history }) {
 
       <div className='nostackcolumns'>
         <div>
-          <Link to={'/search-home'}><img src='https://i.ibb.co/2ZSffTJ/logo-garms-white.png' alt='Garms logo' className='logo'></img></Link>
+          {loggedIn && <Link to={'/search-home'}><img src='https://i.ibb.co/2ZSffTJ/logo-garms-white.png' alt='Garms logo' className='logo'></img></Link>}
+          {!loggedIn && <Link to={'/'}><img src='https://i.ibb.co/2ZSffTJ/logo-garms-white.png' alt='Garms logo' className='logo'></img></Link>}
         </div>
 
         <div className='buttons'>
@@ -58,8 +58,8 @@ function Navbar({ history }) {
             </div>
 
             <div className='has-text-white is-hidden-mobile'>
-              Logged in as <Link className='mr-2 has-text-white  underline' to={`/users/${loggedInUserId}`}><strong>{userData.username}</strong></Link> 
-              | 
+              Logged in as <Link className='mr-2 has-text-white underline' to={`/users/${loggedInUserId}`}><strong>{userData.username}</strong></Link>
+              |
               <a className='ml-2 has-text-white underline' onClick={logOut}>Log out</a>
             </div>
           </div>

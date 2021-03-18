@@ -209,16 +209,16 @@ export default function ProductForm({ match, history }) {
                       required: 'select one option'
                     })}>
                     <option value=''>Item category</option>
-                    <option value='Outerwear'>Outerwear</option>
                     <option value='Accessories'>Accessories</option>
-                    <option value='Tops'>Tops</option>
                     <option value='Bottoms'>Bottoms</option>
-                    <option value='Skirts'>Skirts</option>
                     <option value='Dresses'>Dresses</option>
-                    <option value='Underwear'>Underwear</option>
-                    <option value='Shoes'>Shoes</option>
                     <option value='Lingerie'>Lingerie</option>
                     <option value='Other'>Other</option>
+                    <option value='Outerwear'>Outerwear</option>
+                    <option value='Shoes'>Shoes</option>
+                    <option value='Skirts'>Skirts</option>
+                    <option value='Tops'>Tops</option>
+                    <option value='Underwear'>Underwear</option>
                   </select>
                 </div>
               </div>
@@ -233,7 +233,7 @@ export default function ProductForm({ match, history }) {
                       required: 'select one option'
                     })}>
                     <option value=''>Item condition</option>
-                    <option value='Brand new with tags'>Worn often - some damage/wear</option>
+                    <option value='Brand new with tags'>Brand new with tags</option>
                     <option value='New without tags'>New without tags</option>
                     <option value='Worn occasionally - good condition'>Worn occasionally - good condition</option>
                     <option value='Worn often - some damage/wear'>Worn often - some damage/wear</option>

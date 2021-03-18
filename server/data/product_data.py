@@ -27,6 +27,19 @@ list_product = [
         gender="Womens",
         user_id=1
     ),
+     Product(
+        product_name="Khaki Dress",
+        product_image="https://i.ibb.co/Chj30XW/khakidress.jpg",
+        brand="Zara",
+        size="12",
+        description="Khaki coloured dress - never worn",
+        category="Dresses",
+        price=20.00,
+        condition="Brand new with tags",
+        in_stock=False,
+        gender="Womens",
+        user_id=1
+    ),
     Product(
         product_name="Wooly jacket",
         product_image="https://i.ibb.co/QnyZSc8/woolcoat.jpg",
@@ -235,5 +248,57 @@ list_product = [
         in_stock=True,
         gender="Womens",
         user_id=3
+    ),
+    Product(
+        product_name="Khaki Dress",
+        product_image="https://i.ibb.co/Chj30XW/khakidress.jpg",
+        brand="Zara",
+        size="12",
+        description="Khaki coloured dress - never worn",
+        category="Dresses",
+        price=20.00,
+        condition="Brand new with tags",
+        in_stock=True,
+        gender="Womens",
+        user_id=1
+    ),
+    Product(
+        product_name="New York baseball cap",
+        product_image="https://i.ibb.co/z4jCbYZ/baseballcap.jpg",
+        brand="New Era",
+        size="One size fits all",
+        description="Black New York Yankies cap",
+        category="Other",
+        price=20.00,
+        condition="Worn occasionally - good condition",
+        in_stock=True,
+        gender="Unisex",
+        user_id=1
+    ),
+    Product(
+        product_name="Nike socks",
+        product_image="https://i.ibb.co/VWGDGdw/nikesocks.jpg",
+        brand="Nike",
+        size="8",
+        description="Black ankle socks",
+        category="Other",
+        price=5.00,
+        condition="Worn often - some damage/wear",
+        in_stock=True,
+        gender="Unisex",
+        user_id=2
+    ),
+    Product(
+        product_name="White Trainers",
+        product_image="https://i.ibb.co/0YkH1Px/pumatrainers.jpg",
+        brand="Puma",
+        size="8",
+        description="White Puma trainers - only used a few times",
+        category="Shoes",
+        price=20.00,
+        condition="Worn occasionally - good condition",
+        in_stock=True,
+        gender="Unisex",
+        user_id=1
     )
 ]
