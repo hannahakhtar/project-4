@@ -43,13 +43,14 @@ function Navbar({ history }) {
 
       <div className='nostackcolumns'>
         <div>
-          {loggedIn && <Link to={'/search-home'}><img src='https://i.ibb.co/2ZSffTJ/logo-garms-white.png' alt='Garms logo' className='logo'></img></Link>}
-          {!loggedIn && <Link to={'/'}><img src='https://i.ibb.co/2ZSffTJ/logo-garms-white.png' alt='Garms logo' className='logo'></img></Link>}
+          {loggedIn ?
+            <Link to={'/search-home'}><img src='https://i.ibb.co/2ZSffTJ/logo-garms-white.png' alt='Garms logo' className='logo'></img></Link>
+            :
+            <Link to={'/'}><img src='https://i.ibb.co/2ZSffTJ/logo-garms-white.png' alt='Garms logo' className='logo'></img></Link>
+          }
         </div>
 
         <div className='buttons'>
-
-
           {loggedIn ? <div className='nostackcolumns'>
 
             <div className='mr-4'>
