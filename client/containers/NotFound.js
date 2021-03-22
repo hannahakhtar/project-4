@@ -1,8 +1,7 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory, withRouter, Link } from 'react-router-dom'
 import NavBar from '../components/Navbar'
 import { getLoggedInUserId } from '../lib/auth.js'
-import { withRouter } from 'react-router-dom'
 
 function NotFound() {
 
@@ -17,7 +16,7 @@ function NotFound() {
           <h1 className="no-search-results">Oops!</h1>
           <p className="no-search-results">Your page was not found...</p>
           <br />
-          {!loggedIn && <button className="button is-primary">Register or Login</button>}
+          {!loggedIn && <Link className="button is-primary" to={'/'}>Register or Login</Link>}
           {loggedIn && <button className="button is-primary" onClick={() => history.goBack()}>Go back</button>}
         </div>
       </div>
