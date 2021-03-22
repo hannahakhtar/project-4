@@ -24,8 +24,8 @@ function SearchHome() {
     const inStock = data.filter(result => {
       return result.in_stock === true
     })
-    const shuffledItems = inStock.sort(() => 0.5 - Math.random()).filter(x => x.id !== currentUser)
-    const featuredItems = shuffledItems.slice(0, 12)
+    const shuffledItems = inStock.sort(() => 0.5 - Math.random()).filter(x => x.user.id !== currentUser)
+    const featuredItems = shuffledItems.slice(0, 8)
     updateFeaturedItems(featuredItems)
     updateAllCategories(uniqueCategoriesArray)
   }
