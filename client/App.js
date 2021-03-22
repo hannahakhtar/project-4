@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import './styles/style.scss'
 import 'bulma'
 
@@ -15,6 +15,7 @@ import SingleProduct from './containers/SingleProduct'
 import EditUser from './containers/EditUser'
 import OrderConfirmation from './containers/OrderConfirmation'
 import About from './containers/About'
+import NotFound from './containers/NotFound'
 import Footer from './components/Footer'
 
 const App = () => {
@@ -37,6 +38,8 @@ const App = () => {
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/order-confirmation" component={OrderConfirmation} />
         <Route exact path="/about" component={About} />
+        <Route exact path="/not-found" component={NotFound}/>
+        <Redirect to="/not-found" />
       </Switch>
       <Footer></Footer>
     </BrowserRouter>
