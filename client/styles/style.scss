@@ -59,6 +59,11 @@ font-family: 'M PLUS Rounded 1c', sans-serif;
   color: white;
 }
 
+.dropdown-content {
+  max-height: 10em;
+  overflow: auto;
+}
+
 .display-search-results {
   margin-top: 100px;
 }

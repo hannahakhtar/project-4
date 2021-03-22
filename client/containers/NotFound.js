@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHistory, withRouter, Link } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import NavBar from '../components/Navbar'
 import { getLoggedInUserId } from '../lib/auth.js'
 
@@ -24,4 +24,4 @@ function NotFound() {
   </>
 }
 
-export default withRouter(NotFound)
+export default NotFound

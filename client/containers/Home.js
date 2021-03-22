@@ -1,12 +1,7 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 
-function Home({ history }) {
-
-  function logOut() {
-    localStorage.clear()
-    history.push('/login')
-  }
+function Home() {
 
   return <>
     <header>
