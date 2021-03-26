@@ -1,7 +1,5 @@
 ### ![GA](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
 
-<br/>
-
 # Garms - Project 4
 
 ## Overview
@@ -93,7 +91,7 @@ We scheduled a stand up each day to discuss what tickets were complete, what tic
 
 <br/>
 
-### Backend - Days 2 & 3 - TO DO
+### Backend - Days 2 & 3
 
 <br/>
 
@@ -163,7 +161,7 @@ We created decorators for erros, logging and secure route. Secure route was used
 
 Pytest was used for the testing and each endpoint had a test associated to it; by the end of the project, all 16 tests passed.
 
-### Frontend - Days 4, 5, 6, 7
+### Frontend - Days 4-7
 
 <br/>
 
