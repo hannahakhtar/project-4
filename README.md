@@ -4,21 +4,13 @@
 
 # Garms - Project 4
 
-<br/>
-
 ## Overview
-
-<br/>
 
 Garms is an app which allows users to buy and sell pre-loved clothes, accessories, shoes and more. The project was completed over the course of a week in a team of three and is deployed on [Heroku](https://garms-shopping.herokuapp.com/).
 
 by [Hannah Akhtar](https://github.com/hannahakhtar), [India Kalff](https://github.com/ikalff) and [Jake Aston](https://github.com/Jacobaston).
 
-<br/>
-
 ## The Brief
-
-<br/>
 
 * **Build a full-stack application** by making your own back-end and your own front-end
 * **Use an Flask API** to serve your data from a Postgres database
@@ -27,11 +19,7 @@ by [Hannah Akhtar](https://github.com/hannahakhtar), [India Kalff](https://githu
 * **Implement thoughtful user stories/wireframes** that are significant enough to help you know which features are core MVP and which you can cut
 * **Be deployed online** so it's publicly accessible.
 
-<br/>
-
 ## Technologies Used
-
-<br/>
 
 ### Back-end:
 
@@ -43,8 +31,6 @@ by [Hannah Akhtar](https://github.com/hannahakhtar), [India Kalff](https://githu
 - Bcrypt
 - Pytest
 
-<br/>
-
 ### Frontend:
 
 - HTML5
@@ -55,8 +41,6 @@ by [Hannah Akhtar](https://github.com/hannahakhtar), [India Kalff](https://githu
 - React Router DOM
 - React Hook Form
 - React Share
-
-<br/>
 
 ### Other:
 
@@ -77,11 +61,7 @@ by [Hannah Akhtar](https://github.com/hannahakhtar), [India Kalff](https://githu
 
 ## Approach
 
-<br/>
-
 ### Day 1 - Planning
-
-<br/>
 
 As a group, we decided that building an e-commerce website would be a great experience, and so, Garms was born!
 
@@ -183,8 +163,6 @@ We created decorators for erros, logging and secure route. Secure route was used
 
 Pytest was used for the testing and each endpoint had a test associated to it; by the end of the project, all 16 tests passed.
 
-<br/>
-
 ### Frontend - Days 4, 5, 6, 7
 
 <br/>
@@ -194,8 +172,6 @@ Once the back end was complete, we split the front end tickets which had been cr
 <br/>
 
 **Search home**
-
-<br/>
 
 The search home page had a search bar, a carousel with all the categories (which had been pre-set before seeding) and 'our favourites'.
 
@@ -247,8 +223,6 @@ Using the data from the above reference axios request, all in stock items were f
 <br/>
 
 **Search results**
-
-<br/>
 
 For each filter option for the user, there was a dropdown. Focussing on the gender dropdown here, if the used clicked on the dropdown, the dropdown menu shows with the options (mens, unisex and womens) that the user can filter. This was initied by mapping over the state which was set on page render.
 
@@ -306,8 +280,6 @@ handleGenderDropdown would update the state updateFurtherFilteredResults, which 
 
 **Single product**
 
-<br/>
-
 The single product page shows an image of the product, and information about this, including a description, brand, price, size and condition. You can also see the seller's details and a link to their profile page, so you can view other items that they are currently selling.
 
 This page shows different buttons, dependent on whether you were the owner of the listing or not. If you were the owner of the listing, you are able to click buttons to edit or delete the listing.
@@ -364,8 +336,6 @@ There is also a button to allow all users to share links of the item on Facebook
 
 **Dynamic scroll to top**
 
-<br/>
-
 In the latest version of React, there is no out of the box support for scroll resoration. Therefore I used the below code snippet for the about page and single product page, so that the user will see the top of the new page that renders.
 
 ```js
@@ -391,43 +361,25 @@ In the latest version of React, there is no out of the box support for scroll re
 
 ## Conclusion
 
-<br/>
-
 ### Wins
-
-<br/>
 
 - The project was a great opportunity to learn Python, Flask and using a PostgreSQL database, as this was my first opportunity to do so.
 - I am becoming more comfortable with React and trying out new libraries.
 
-<br/>
-
 ### Challenges
-
-<br/>
 
 - Python and Flask were new technologies for this project, so it took slightly longer than expected to determine the relationships between the tables. However, it was a great learning experience.
 
 ### Bugs
 
-<br/>
-
 - Featured products on search page displays the current user's listed items, which is not great UI. (This has been fixed post-project)
 - If you are not logged on, you can manually change the URL and navigate to 'buy' a product - to fix this, I need to check if a user is logged on, before displaying the relevant information on each page.
 
-<br/>
-
 ### Lessons learned
-
-<br/>
 
 - The search results page has a lot of code that was reused for each search dropdown. I have learnt that I could have created a resuable component to make this code DRY.
 
-<br/>
-
 ### Future development plans
-
-<br/>
 
 - I would like to add further filtering to the search results page:
   - enable a user to filter by two or more of the dropdown results, e.g. choosing mens and unisex from the gender dropdown.
@@ -436,11 +388,7 @@ In the latest version of React, there is no out of the box support for scroll re
 - allow a user to sell more than one of each item, and subsequently show how many of a particular item are available on the single item page.
 - front end testing
 
-<br/>
-
 ## The Result
-
-<br/>
 
 Home
 
