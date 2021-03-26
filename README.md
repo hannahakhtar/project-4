@@ -179,6 +179,15 @@ Search bar:
 
 When a user types, in the search bar, the state of updateSearch is updated. This state was passed through as props when the users clicked search, as I used a link with a string literal. This could then be used in the search results page.
 
+```js
+<form className="search-home-form" onSubmit={handleSubmit}>
+  <input className="input" type="text" placeholder="Search Garms" onChange={%(e) => updateSearch(e.target.value)%} />
+  <Link className="button is-primary search-home-button" value="search" to={%{
+    pathname: `/search-results/${search}`
+  }%}>Click to search</Link>
+</form>
+```
+
 <br/>
 
 Categories:
@@ -310,12 +319,12 @@ function handleInStock() {
     } else {
       if (product.in_stock === true) {
         return <>
-          <Link className="button is-primary" to={{
+          <Link className="button is-primary" to={{%
             pathname: '/checkout',
-            state: {
+            state: {%
               product: product
-            }
-          }}>Buy now</Link>
+            %}
+          %}}>Buy now</Link>
         </>
       }
     }
