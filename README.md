@@ -177,16 +177,7 @@ The search home page had a search bar, a carousel with all the categories (which
 
 Search bar:
 
-e.target.value updated state and this was passed through as props, as I used a link with a string literal. This could then be used in the search results page.
-
-```js
-<form className="search-home-form" onSubmit={handleSubmit}>
-  <input className="input" type="text" placeholder="Search Garms" onChange={(e) => updateSearch(e.target.value)} />
-  <Link className="button is-primary search-home-button" value="search" to={{
-    pathname: `/search-results/${search}`
-  }}>Click to search</Link>
-</form>
-```      
+When a user types, in the search bar, the state of updateSearch is updated. This state was passed through as props when the users clicked search, as I used a link with a string literal. This could then be used in the search results page.
 
 <br/>
 
