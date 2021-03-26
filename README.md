@@ -182,9 +182,9 @@ When a user types, in the search bar, the state of updateSearch is updated. This
 ```js
 <form className="search-home-form" onSubmit={handleSubmit}>
   <input className="input" type="text" placeholder="Search Garms" onChange={(e) => updateSearch(e.target.value)} />
-  <Link className="button is-primary search-home-button" value="search" to={%{
+  <Link className="button is-primary search-home-button" value="search" to={{
     pathname: `/search-results/${search}`
-  }%}>Click to search</Link>
+  }}>Click to search</Link>
 </form>
 ```
 
