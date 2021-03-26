@@ -179,7 +179,7 @@ function SingleProduct({ match, history }) {
         </div>
       </div>
       <section className="content m-3">
-        <h4>More things you might like</h4>
+        <h4>Other items you may be interested in..</h4>
         <RandomSelection />
       </section>
     </div>

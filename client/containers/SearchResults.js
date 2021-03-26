@@ -179,7 +179,6 @@ function SearchResults({ match }) {
     }
   }
 
-
   function handleGenderButtonClicked() {
     if (!genderIsShown) {
       updateGenderIsShown(true)

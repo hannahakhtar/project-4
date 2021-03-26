@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { getLoggedInUserId } from '../lib/auth'
 
 function randomSelection() {
 
   const [featuredItems, updateFeaturedItems] = useState([])
+  const currentUser = getLoggedInUserId()
 
   async function fetchFeaturedItems() {
+
     const { data } = await axios.get('/api/products')
     const inStock = data.filter(result => {
       return result.in_stock === true
     })
-    const shuffledItems = inStock.sort(() => 0.5 - Math.random())
+    const shuffledItems = inStock.sort(() => 0.5 - Math.random()).filter(x => x.user.id !== currentUser)
     const featuredItems = shuffledItems.slice(0, 6)
     updateFeaturedItems(featuredItems)
   }

@@ -60,7 +60,7 @@ function About() {
       <div className="hero is-fullheight-with-navbar">
         <div className="box about-page about-page-box-1">
           <h2 className="about-h2">About Garms</h2>
-          <p className="about-p">Garms is an application for users to buy and sell clothes, accessories and shoes.</p>
+          <p className="about-p">Garms is an app which allows users to buy and sell pre-loved clothes, accessories, shoes and more.</p>
         </div>
         <div className="box about-page">
           <h2 className="about-h2">Founders</h2>
