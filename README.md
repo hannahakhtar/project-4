@@ -55,8 +55,6 @@ by [Hannah Akhtar](https://github.com/hannahakhtar), [India Kalff](https://githu
 - Slack
 - Table Plus
 
-<br/>
-
 ## Approach
 
 ### Day 1 - Planning
@@ -64,8 +62,6 @@ by [Hannah Akhtar](https://github.com/hannahakhtar), [India Kalff](https://githu
 As a group, we decided that building an e-commerce website would be a great experience, and so, Garms was born!
 
 We all wanted to be involved in the full-stack development of the app. We also decided early on that we should develop it to be fully responsive and was built as mobile first. With that in mind we used photoshop to create a storyboard/wireframe as well QuickDBD for the models we required and the relationships between them.
-
-<br/>
 
 Photoshop was used to create a wireframe and plan the user journey:
 
@@ -89,11 +85,7 @@ Git and GitHub were used for version control and had constant communication duri
 
 We scheduled a stand up each day to discuss what tickets were complete, what tickets were being worked on and support requirements. 
 
-<br/>
-
 ### Backend - Days 2 & 3
-
-<br/>
 
 For the backend, a Postgres database was used to serve a Flask API. For the backend, as Python and Flask were new technologies, we all wanted to increase our experience. Therefore, we pair (triple) programmed the backend.
 
@@ -355,7 +347,6 @@ In the latest version of React, there is no out of the box support for scroll re
     <div />
   )
 ```
-<br/>
 
 ## Conclusion
 
