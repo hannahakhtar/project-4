@@ -359,6 +359,7 @@ In the latest version of React, there is no out of the box support for scroll re
 
 - Python and Flask were new technologies for this project, so it took slightly longer than expected to determine the relationships between the tables. However, it was a great learning experience.
 
+
 ### Bugs
 
 - Featured products on search page displays the current user's listed items, which is not great UI. (This has been fixed post-project)
@@ -367,6 +368,7 @@ In the latest version of React, there is no out of the box support for scroll re
 ### Lessons learned
 
 - The search results page has a lot of code that was reused for each search dropdown. I have learnt that I could have created a resuable component to make this code DRY.
+- The value of reusable components were extremely important in this project to enable quicker coding and to stop duplication of work.
 
 ### Future development plans
 

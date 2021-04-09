@@ -85,7 +85,6 @@ export default function ProductForm({ match, history }) {
       try {
         const { data } = await axios.put(`/api/products/${match.params.productId}`, formdata, {
           headers: { Authorization: `Bearer ${token}` }
-          // headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
 
         if (!imageUrl) {
@@ -103,7 +102,6 @@ export default function ProductForm({ match, history }) {
       try {
         const { data } = await axios.post('/api/products', formdata, {
           headers: { Authorization: `Bearer ${token}` }
-          //headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImlhdCI6MTYxNTY1MDE3MSwiZXhwIjoxNjE1NzM2NTcxfQ.ZNaHSQGbMTpIz_uQQr15iU-MCYFj6aIZZKcoSyPE0zc' }
         })
         if (!imageUrl) {
           updateErrorbox('Please upload an image')
@@ -117,7 +115,6 @@ export default function ProductForm({ match, history }) {
         console.log(err)
       }
     }
-
   }
 
   return <>

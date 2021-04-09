@@ -98,8 +98,7 @@ function Profile({ match }) {
               </div>
             </div>
           }
-
-
+          
           {errorbox && <div className='box mt-4 has-background-danger has-text-white'>{errorbox}</div>}
 
           {tab === 'Listings' &&
@@ -157,7 +156,6 @@ function Profile({ match }) {
             </>
           }
 
-
           {tab === 'Sold' &&
             <>
               {isOwner &&
@@ -201,9 +199,6 @@ function Profile({ match }) {
               }
             </>
           }
-
-
-
 
           {tab === 'Orders' &&
             <>
